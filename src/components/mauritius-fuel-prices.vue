@@ -6,9 +6,12 @@
 				<p
 					class="text-xl text-center md:text-left"
 				>Progression of fuel prices in Mauritius (2002 - Present)</p>
-				<div class="text-sm text-center md:text-left font-normal pb-4">Last Updated (11 Jan 2020)</div>
+				<div
+					class="text-sm text-center md:text-left font-normal pb-4"
+					v-if="latestPrices"
+				>Last Updated : {{ new Date(latestPrices.petrol[0]).toDateString() }}</div>
 			</div>
-			<CurrentPrice />
+			<CurrentPrice v-if="latestPrices" :prices="latestPrices" />
 		</div>
 		<div v-if="!loading" class="chart-container flex flex-col text-blue-500">
 			<highcharts :updateArgs="[true, false]" :options="chartOptions"></highcharts>
@@ -88,6 +91,7 @@ export default {
 					}
 				}
 			},
+			latestPrices: null,
 			URL:
 				"https://spreadsheets.google.com/feeds/list/19xdGb9OyWLV9zpQKqT66EGG-1fGoc5JIvZXdVRj0C1w/1/public/values?alt=json"
 		};
@@ -130,6 +134,11 @@ export default {
 						];
 					});
 
+					this.latestPrices = {
+						petrol: petrol[0],
+						diesel: diesel[0]
+					};
+
 					this.chartOptions.series[0].data = petrol;
 					this.chartOptions.series[1].data = diesel;
 
@@ -142,6 +151,7 @@ export default {
 				});
 		}
 	},
+
 	mounted() {
 		this.fetchDataFromGoogleSheet();
 	},
