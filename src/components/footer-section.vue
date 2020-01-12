@@ -7,22 +7,12 @@
 		<div>&nbsp;</div>
 		<ul class="menu">
 			<li>
-				<nuxt-link to="/bio">Contribute on GitHub</nuxt-link>
+				<a
+					target="_blank"
+					href="https://github.com/MrSunshyne/mauritius-fuel-prices"
+					class="underline"
+				>Contribute on GitHub</a>
 			</li>
 		</ul>
 	</div>
 </template>
-
-<style scoped>
-.menu {
-	display: flex;
-
-	a {
-		@apply pl-2;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-}
-</style>

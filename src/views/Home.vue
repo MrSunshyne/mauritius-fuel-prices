@@ -1,12 +1,13 @@
 <template>
 	<div class="home">
-		<h1 class="text-2xl">Welcome to your boilerplate</h1>
+		<MauritiusFuelPrices />
 	</div>
 </template>
 
 <script>
+import MauritiusFuelPrices from "../components/mauritius-fuel-prices";
 export default {
 	name: "home",
-	components: {}
+	components: { MauritiusFuelPrices }
 };
 </script>

@@ -3,8 +3,7 @@
 	<div
 		class="main-menu container mx-auto font-bold md:flex justify-center md:justify-between items-center py-3 md:py-10"
 	>
-		<nuxt-link class="hidden text-center md:inline text-3xl" :to="'/'">Project Name</nuxt-link>
-
+		<div></div>
 		<ul class="flex mr-3">
 			<li>
 				<a href="https://mrsunshyne.gitlab.io" target="_blank">View other projects →</a>
