@@ -1,0 +1,9 @@
+/* @import './markdown.css'; */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html.dark {
+  background: #121212;
+}
