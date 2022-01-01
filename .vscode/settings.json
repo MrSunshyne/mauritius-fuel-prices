@@ -1,0 +1,38 @@
+{
+  "cSpell.words": [
+    "Vitesse",
+    "ti-vitesse"
+  ],
+  // "prettier.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "files.associations": {
+    "*.css": "postcss",
+  },
+  "eslint.alwaysShowStatus": true,
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.format.enable": true,
+  "peacock.color": "#8cb795",
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#abcbb2",
+    "activityBar.activeBorder": "#8175aa",
+    "activityBar.background": "#abcbb2",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#8175aa",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "sash.hoverBorder": "#abcbb2",
+    "statusBar.background": "#8cb795",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#6da378",
+    "statusBarItem.remoteBackground": "#8cb795",
+    "statusBarItem.remoteForeground": "#15202b",
+    "titleBar.activeBackground": "#8cb795",
+    "titleBar.activeForeground": "#15202b",
+    "titleBar.inactiveBackground": "#8cb79599",
+    "titleBar.inactiveForeground": "#15202b99"
+  },
+  "editor.tabSize": 2
+}

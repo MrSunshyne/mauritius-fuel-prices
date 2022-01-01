@@ -5,14 +5,14 @@
 			<div class="px-4 mr-2 py-2 border diesel-border">
 				<div class="uppercase text-md text-left font-bold tracking-widest">Diesel</div>
 				<div>
-					<span class="text-3xl font-bold">{{ prices.diesel[1]}}</span>
+					<span class="text-3xl font-bold">{{ prices.diesel }}</span>
 					<span class="text-xl">Rs/L</span>
 				</div>
 			</div>
 			<div class="px-4 py-2 border petrol-border">
 				<div class="uppercase text-md text-left font-bold tracking-widest">Petrol</div>
 				<div>
-					<span class="text-3xl font-bold">{{ prices.petrol[1]}}</span>
+					<span class="text-3xl font-bold">{{ prices.petrol }}</span>
 					<span class="text-xl">Rs/L</span>
 				</div>
 			</div>

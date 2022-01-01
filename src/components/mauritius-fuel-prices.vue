@@ -9,12 +9,18 @@
 				<div
 					class="text-sm text-center md:text-left font-normal pb-4"
 					v-if="latestPrices"
-				>Last Updated : {{ new Date(latestPrices.petrol[0]).toDateString() }}</div>
+				>Last Updated : {{ dateUpdated }}</div>
 			</div>
 			<CurrentPrice v-if="latestPrices" :prices="latestPrices" />
 		</div>
 		<div v-if="!loading" class="chart-container flex flex-col text-blue-500">
-			<highcharts :updateArgs="[true, false]" :options="chartOptions"></highcharts>
+			<VueApexCharts
+				width="100%"
+				class="w-full h-full"
+				type="line"
+				:options="chartOptions"
+				:series="series"
+			></VueApexCharts>
 		</div>
 		<div v-else>Loading data...</div>
 		<p>
@@ -32,166 +38,126 @@
 	</div>
 </template>
 
-<script>
-import Vue from "vue";
-import { Chart } from "highcharts-vue";
-import CurrentPrice from "./CurrentPrice.vue";
-export default {
-	components: {
-		highcharts: Chart,
-		CurrentPrice
-	},
-	data() {
-		return {
-			loading: true,
-			chartOptions: {
-				series: [
-					{
-						data: [],
-						name: "Petrol",
-						lineWidth: 3,
-						color: "var(--petrol)"
-					},
-					{
-						data: [],
-						name: "Diesel",
-						lineWidth: 3,
-						color: "var(--diesel)"
-					}
-				],
-				labels: {
-					style: { color: "currentColor" }
-				},
-				caption: {
-					style: { color: "red" }
-				},
-				setOptions: {},
-				chart: {
-					backgroundColor: "transparent"
-				},
-				title: {
-					text: "",
-					style: { color: "currentColor", fontSize: "32px" }
-				},
-				xAxis: {
-					type: "datetime",
-					tickPixelInterval: 100,
-					plotLines: [
-						{
-							width: 5,
-							color: "#808080"
-						}
-					]
-				},
-				yAxis: {
-					min: 0,
-					max: 100,
-					title: {
-						text: "Price Rs/Litre"
-					}
-				}
-			},
-			latestPrices: null,
-			URL:
-				"https://spreadsheets.google.com/feeds/list/19xdGb9OyWLV9zpQKqT66EGG-1fGoc5JIvZXdVRj0C1w/1/public/values?alt=json"
-		};
-	},
-	methods: {
-		extractData(entries) {
-			return entries.map(this.extractObject);
+<script setup lang="ts">
+import VueApexCharts from 'vue3-apexcharts'
+import { ApexOptions } from 'apexcharts'
+
+
+let loading = ref(true);
+let series = reactive([]);
+let chartOptions: ApexOptions = reactive({
+	chart: {
+		type: 'line',
+		dropShadow: {
+			enabled: true,
+			color: '#000',
+			top: 18,
+			left: 7,
 		},
+	},
+	dataLabels: {
+		enabled: true,
+	},
+	stroke: {
+		curve: 'smooth'
+	},
 
-		extractObject(entry) {
-			const fieldNameList = Object.keys(entry).filter(fieldName =>
-				fieldName.includes("gsx$")
-			);
-
-			const formattedObjet = {};
-			fieldNameList.forEach(fieldName => {
-				const trimmedName = fieldName.replace("gsx$", "");
-				formattedObjet[trimmedName] = entry[fieldName][`$t`];
-			});
-
-			return formattedObjet;
-		},
-		fetchDataFromGoogleSheet() {
-			fetch(this.URL)
-				.then(response => response.json())
-				.then(({ feed }) => this.extractData(feed.entry))
-				.then(stats => {
-					let petrol = stats.map(stat => {
-						return [
-							new Date(stat["_cn6ca"]).getTime() + 3600000 * 4,
-							parseInt(stat["_cokwr"])
-						];
-						//   diesel: parseInt(stat['_cpzh4'])
-					});
-
-					let diesel = stats.map(stat => {
-						return [
-							new Date(stat["_cn6ca"]).getTime() + 3600000 * 4,
-							parseInt(stat["_cpzh4"])
-						];
-					});
-
-					this.latestPrices = {
-						petrol: petrol[0],
-						diesel: diesel[0]
-					};
-
-					this.chartOptions.series[0].data = petrol;
-					this.chartOptions.series[1].data = diesel;
-
-					this.loading = false;
-				})
-				.catch(error => {
-					throw new Error(
-						"Error should be caught by Vue global error handler." + error
-					);
-				});
+	// grid: {
+	// 	borderColor: '#e7e7e7',
+	// 	row: {
+	// 		colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+	// 		opacity: 0.5
+	// 	},
+	// },
+	xaxis: {
+		type: 'datetime',
+		title: {
+			text: 'Timeline'
 		}
 	},
-
-	mounted() {
-		this.fetchDataFromGoogleSheet();
+	yaxis: {
+		title: {
+			text: "Price Rs/Litre"
+		}
 	},
-	head() {
-		return {
-			title: "Mauritius Fuel Price",
-			meta: [
-				{
-					hid: "description",
-					name: "description",
-					content: "Progression of fuel prices in Mauritius (2002 - Present)"
-				},
-				{ hid: "og:type", property: "og:type", content: "page" },
-				{
-					hid: "og:title",
-					property: "og:title",
-					content: "Mauritius Fuel Price"
-				},
-				{
-					hid: "og:image",
-					property: "og:image",
-					content:
-						process.env.siteUrl + "/data/og-image/mauritius-fuel-prices.jpg"
-				},
-				{
-					hid: "og:description",
-					property: "og:description",
-					content: "Progression of fuel prices in Mauritius (2002 - Present)"
-				},
-				{
-					hid: "og:url",
-					property: "og:url",
-					content: this.replaceWithAbsolute(
-						process.env.siteUrl + this.$route.path
-					)
-				}
-			]
-		};
+	legend: {
+		position: 'top',
+		horizontalAlign: 'left',
+		floating: false,
 	}
-};
+})
+
+let latestPrices = ref({
+	petrol: 0,
+	diesel: 0
+});
+
+let SHEET_ID: string = '19xdGb9OyWLV9zpQKqT66EGG-1fGoc5JIvZXdVRj0C1w'
+let SHEET_NAME: string = 'Sheet1'
+let API_KEY: string = 'AIzaSyCJZRDpeWRvJNcdggWITICUBvDKbpxhHgI'
+
+function fetchDataFromGoogleSheet() {
+
+	fetch(`https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}?key=${API_KEY}`)
+		.then(response => response.json())
+		.then(res => res.values)
+		.then(stats => {
+
+			let petrol = {
+				name: "Petrol",
+				data: stats.map(stat => {
+					return {
+						x: new Date(stat[0]).getTime() + 3600000 * 4,
+						y: parseFloat(stat[1])
+					}
+				}),
+				lineWidth: 3,
+				color: "var(--petrol)"
+			}
+
+			let diesel = {
+				name: "Diesel",
+				data: stats.map(stat => {
+					return {
+						x: new Date(stat[0]).getTime() + 3600000 * 4,
+						y: parseFloat(stat[2])
+					}
+				}),
+				lineWidth: 3,
+				color: "var(--diesel)"
+			}
+
+			series.push(petrol)
+			series.push(diesel)
+
+			latestPrices.value = {
+				petrol: petrol.data[0].y,
+				diesel: diesel.data[0].y
+			}
+
+
+			loading.value = false;
+		})
+		.catch(error => {
+			throw new Error(
+				"Error should be caught by Vue global error handler." + error
+			);
+		});
+}
+
+
+const dateUpdated = computed(() => {
+	let date = series[0]?.data[0]?.x
+	if (date) {
+		return new Date(date).toDateString()
+	}
+})
+
+onMounted(() => {
+	fetchDataFromGoogleSheet();
+})
+
+
 </script>
 
 
