@@ -6,7 +6,7 @@
 		<div></div>
 		<ul class="flex mr-3">
 			<li>
-				<a href="https://mrsunshyne.gitlab.io" target="_blank">View other projects →</a>
+				<a href="https://sandeep.ramgolam.com/projects" target="_blank">View other projects →</a>
 				<!-- <SvgMenuBg /> -->
 			</li>
 		</ul>
