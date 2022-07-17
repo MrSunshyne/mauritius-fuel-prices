@@ -7,6 +7,7 @@
       "DOM",
       "ESNext"
     ],
+    "jsx": "preserve",
     "strict": true,
     "esModuleInterop": true,
     "incremental": false,

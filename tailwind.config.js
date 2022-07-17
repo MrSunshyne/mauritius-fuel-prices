@@ -1,22 +1,9 @@
-const colors = require('tailwindcss/colors')
-
 module.exports = {
-  mode: 'jit',
-  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   safelist: ['prose', 'prose-sm', 'm-auto', 'text-left', 'container'],
   darkMode: 'class',
-  variants: {
-    extend: {
-      backgroundColor: ['odd'],
-      textAlign: ['last'],
-    },
-  },
   theme: {
     extend: {
-      colors: {
-        ...colors,
-      },
-
       screens: {
         '2xl': '1536px',
       },
@@ -30,7 +17,5 @@ module.exports = {
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
-
-
   ],
 }

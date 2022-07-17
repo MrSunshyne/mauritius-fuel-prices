@@ -3,37 +3,34 @@
 		<div class="top-section md:flex justify-between">
 			<div class="left">
 				<h1 class="text-3xl md:text-5xl text-center md:text-left font-black pt-10">Mauritius Fuel Prices</h1>
-				<p
-					class="text-xl text-center md:text-left"
-				>Progression of fuel prices in Mauritius (2002 - Present)</p>
-				<div
-					class="text-sm text-center md:text-left font-normal pb-4"
-					v-if="latestPrices"
-				>Last Updated : {{ dateUpdated }}</div>
+				<p class="text-xl text-center md:text-left">Progression of fuel prices in Mauritius (2002 - Present)</p>
+				<div class="text-sm text-center md:text-left font-normal pb-4"
+					v-if="latestPrices">Last Updated : {{ dateUpdated }}</div>
 			</div>
-			<CurrentPrice v-if="latestPrices" :prices="latestPrices" />
+			<CurrentPrice v-if="latestPrices"
+				:prices="latestPrices" />
 		</div>
-		<div v-if="!loading" class="chart-container flex flex-col text-blue-500">
-			<VueApexCharts
-				width="100%"
+		<div v-if="!loading"
+			class="chart-container flex flex-col text-blue-500">
+			<VueApexCharts width="100%"
 				class="w-full h-full"
 				type="line"
 				:options="chartOptions"
-				:series="series"
-			></VueApexCharts>
+				:series="series"></VueApexCharts>
 		</div>
 		<div v-else>Loading data...</div>
 		<p>
 			Source :
-			<a class="underline" target="_blank" href="https://www.stcmu.com/ppm/retail-prices">STC</a>
+			<a class="underline"
+				target="_blank"
+				href="https://www.stcmu.com/ppm/retail-prices">STC</a>
 		</p>
 		<p>
 			Cache :
-			<a
-				class="underline"
+			<a class="underline"
 				target="_blank"
-				href="https://docs.google.com/spreadsheets/d/19xdGb9OyWLV9zpQKqT66EGG-1fGoc5JIvZXdVRj0C1w/edit?usp=sharing"
-			>Google Sheets API</a>
+				href="https://docs.google.com/spreadsheets/d/19xdGb9OyWLV9zpQKqT66EGG-1fGoc5JIvZXdVRj0C1w/edit?usp=sharing">Google
+				Sheets API</a>
 		</p>
 	</div>
 </template>
