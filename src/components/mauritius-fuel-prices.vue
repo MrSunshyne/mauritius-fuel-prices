@@ -14,9 +14,15 @@
 			class="chart-container flex flex-col text-blue-500">
 			<VueApexCharts width="100%"
 				class="w-full h-full"
-				type="line"
+				type="area"
 				:options="chartOptions"
-				:series="series"></VueApexCharts>
+				:series="petrolSeries"></VueApexCharts>
+
+			<VueApexCharts width="100%"
+				class="w-full h-full"
+				type="area"
+				:options="chartOptions"
+				:series="dieselSeries"></VueApexCharts>
 		</div>
 		<div v-else>Loading data...</div>
 		<p>
@@ -42,39 +48,48 @@ import { ApexOptions } from 'apexcharts'
 
 let loading = ref(true);
 let series = reactive([]);
+let petrolSeries = reactive([]);
+let dieselSeries = reactive([]);
 let chartOptions: ApexOptions = reactive({
 	chart: {
-		type: 'line',
-		dropShadow: {
-			enabled: true,
-			color: '#000',
-			top: 18,
-			left: 7,
-		},
+		
 	},
 	dataLabels: {
 		enabled: true,
+		formatter: function (value, { seriesIndex, dataPointIndex, w }) {
+			if (value > 50) {
+				return `Rs/L ${value}`
+			} else {
+				return ''
+			}
+		}
 	},
 	stroke: {
 		curve: 'smooth'
 	},
 
-	// grid: {
-	// 	borderColor: '#e7e7e7',
-	// 	row: {
-	// 		colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-	// 		opacity: 0.5
-	// 	},
-	// },
+	grid: {
+		borderColor: '#e7e7e7',
+		row: {
+			colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+			opacity: 0.5
+		},
+	},
 	xaxis: {
 		type: 'datetime',
 		title: {
-			text: 'Timeline'
+			text: 'Timeline (Year)',
+			style: {
+				fontSize: '1rem',
+			}
 		}
 	},
 	yaxis: {
 		title: {
-			text: "Price Rs/Litre"
+			text: "Price Rs/Litre",
+			style: {
+				fontSize: '1rem'
+			}
 		}
 	},
 	legend: {
@@ -124,8 +139,8 @@ function fetchDataFromGoogleSheet() {
 				color: "var(--diesel)"
 			}
 
-			series.push(petrol)
-			series.push(diesel)
+			petrolSeries.push(petrol)
+			dieselSeries.push(diesel)
 
 			latestPrices.value = {
 				petrol: petrol.data[0].y,
@@ -162,5 +177,14 @@ onMounted(() => {
 .page-fuel {
 	--petrol: green;
 	--diesel: rgb(200, 200, 0);
+}
+
+.apexcharts-svg {
+    overflow: visible;
+}
+
+.chart-container {
+    padding: 2rem;
+    padding-right: 2.7rem;
 }
 </style>

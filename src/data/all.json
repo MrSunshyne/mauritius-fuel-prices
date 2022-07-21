@@ -1,0 +1,4621 @@
+{
+  "5/18/2022": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "1133.54",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "145.13"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.9062",
+      "GasOil": "0.9399"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "43.5",
+      "GasOil": "43.5"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "39.4197",
+      "GasOil": "40.8857"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues Transportation and Storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "4.2"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to finance the cost of COVID-19 vaccines",
+      "Mogas": "2",
+      "GasOil": "2"
+    },
+    {
+      "label": "STC’s Operational Expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-2.0649",
+      "GasOil": "-12.6609"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "60.0148",
+      "GasOil": "43.1848"
+    },
+    {
+      "label": "Oil Companies’ operational Expenses and Wholesale Margin",
+      "Mogas": "2.35",
+      "GasOil": "2.18"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "9.6652",
+      "GasOil": "7.1152"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "72.03",
+      "GasOil": "52.48"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "2.07",
+      "GasOil": "2.07"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "74.1",
+      "GasOil": "54.55"
+    }
+  ],
+  "4/19/2022": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "1065.54",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "138.12"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.8553",
+      "GasOil": "0.8958"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "43.5",
+      "GasOil": "43.5"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "37.2056",
+      "GasOil": "38.9673"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues Transportation and Storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "4.2"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to finance the cost of COVID-19 vaccines",
+      "Mogas": "2",
+      "GasOil": "2"
+    },
+    {
+      "label": "STC’s Operational Expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-5.6769",
+      "GasOil": "-15.0469"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "54.1887",
+      "GasOil": "38.8804"
+    },
+    {
+      "label": "Oil Companies’ operational Expenses and Wholesale Margin",
+      "Mogas": "2.35",
+      "GasOil": "2.18"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "8.7913",
+      "GasOil": "6.4696"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "65.33",
+      "GasOil": "47.53"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "2.07",
+      "GasOil": "2.07"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "67.4",
+      "GasOil": "49.6"
+    }
+  ],
+  "2/27/2022": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "898.01",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "108.45"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.7298",
+      "GasOil": "0.7092"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "44.1",
+      "GasOil": "44.1"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "32.1842",
+      "GasOil": "31.2757"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues Transportation and Storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "4.2"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to finance the cost of COVID-19 vaccines",
+      "Mogas": "2",
+      "GasOil": "2"
+    },
+    {
+      "label": "STC’s Operational Expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-5.9598",
+      "GasOil": "-11.2683"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "48.8844",
+      "GasOil": "34.9674"
+    },
+    {
+      "label": "Oil Companies’ operational Expenses and Wholesale Margin",
+      "Mogas": "2.35",
+      "GasOil": "2.18"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "7.9956",
+      "GasOil": "5.8826"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "59.23",
+      "GasOil": "43.03"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "2.07",
+      "GasOil": "2.07"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "61.3",
+      "GasOil": "45.1"
+    }
+  ],
+  "12/28/2021": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "732.1",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "87.13"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5859",
+      "GasOil": "0.5706"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "43.8",
+      "GasOil": "43.8"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "25.6624",
+      "GasOil": "24.9923"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues Transportation and Storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "4.2"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to finance the cost of COVID-19 vaccines",
+      "Mogas": "2",
+      "GasOil": "2"
+    },
+    {
+      "label": "STC’s Operational Expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-4.2641",
+      "GasOil": "-8.5501"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "44.0583",
+      "GasOil": "31.4022"
+    },
+    {
+      "label": "Oil Companies’ operational Expenses and Wholesale Margin",
+      "Mogas": "2.35",
+      "GasOil": "2.18"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "7.2717",
+      "GasOil": "5.3478"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "53.68",
+      "GasOil": "38.93"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "2.07",
+      "GasOil": "2.07"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "55.75",
+      "GasOil": "41"
+    }
+  ],
+  "9/15/2021": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "697.36",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "78.57"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5599",
+      "GasOil": "0.5167"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "42.9",
+      "GasOil": "42.9"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "24.0197",
+      "GasOil": "22.1664"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues Transportation and Storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "4.2"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to finance the cost of COVID-19 vaccines",
+      "Mogas": "2",
+      "GasOil": "2"
+    },
+    {
+      "label": "STC’s Operational Expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-7.0127",
+      "GasOil": "-8.9416"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "39.667",
+      "GasOil": "28.1848"
+    },
+    {
+      "label": "Oil Companies’ operational Expenses and Wholesale Margin",
+      "Mogas": "2.35",
+      "GasOil": "2.18"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.613",
+      "GasOil": "4.8652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "48.63",
+      "GasOil": "35.23"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "2.07",
+      "GasOil": "2.07"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "50.7",
+      "GasOil": "37.3"
+    }
+  ],
+  "7/1/2021": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "678.96",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "77.1"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5461",
+      "GasOil": "0.5075"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "43",
+      "GasOil": "43"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "23.4823",
+      "GasOil": "21.8225"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues Transportation and Storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "4.2"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to finance the cost of COVID-19 vaccines",
+      "Mogas": "2",
+      "GasOil": "2"
+    },
+    {
+      "label": "STC’s Operational Expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-6.4753",
+      "GasOil": "-8.5977"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "39.667",
+      "GasOil": "28.1848"
+    },
+    {
+      "label": "Oil Companies’ operational Expenses and Wholesale Margin",
+      "Mogas": "2.35",
+      "GasOil": "2.18"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.613",
+      "GasOil": "4.8652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "48.63",
+      "GasOil": "35.23"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "2.07",
+      "GasOil": "2.07"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "50.7",
+      "GasOil": "37.3"
+    }
+  ],
+  "3/4/2021": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "616.76",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "67.57"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4996",
+      "GasOil": "0.4475"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "40.9",
+      "GasOil": "40.9"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "20.4336",
+      "GasOil": "18.3028"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues Transportation and Storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "4.2"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "STC’s Operational Expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-",
+      "GasOil": "-5.078"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-3.4266",
+      "GasOil": "-"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "37.667",
+      "GasOil": "26.1848"
+    },
+    {
+      "label": "Oil Companies’ operational Expenses and Wholesale Margin",
+      "Mogas": "2.35",
+      "GasOil": "2.18"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.313",
+      "GasOil": "4.5652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "46.33",
+      "GasOil": "32.93"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "2.07",
+      "GasOil": "2.07"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "48.4",
+      "GasOil": "35"
+    }
+  ],
+  "12/5/2020": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "400.25",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "48.3"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.3374",
+      "GasOil": "0.3263"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "40.4",
+      "GasOil": "40.4"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "13.631",
+      "GasOil": "13.1825"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "4.2"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-0.4501",
+      "GasOil": "-0.0423"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "33.8409",
+      "GasOil": "26.1848"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.35",
+      "GasOil": "2.18"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.7391",
+      "GasOil": "4.5652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "41.93",
+      "GasOil": "32.93"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "2.07",
+      "GasOil": "2.07"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "44",
+      "GasOil": "35"
+    }
+  ],
+  "8/7/2020": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "389.04",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "48.47"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.3325",
+      "GasOil": "0.3288"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "40.25",
+      "GasOil": "40.25"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "13.3831",
+      "GasOil": "13.2342"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "3"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-2.0022",
+      "GasOil": "-"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-",
+      "GasOil": "-0.0094"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "33.8409",
+      "GasOil": "26.1848"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.35",
+      "GasOil": "2.18"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.7391",
+      "GasOil": "4.5652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "41.93",
+      "GasOil": "32.93"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "2.07",
+      "GasOil": "2.07"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "44",
+      "GasOil": "35"
+    }
+  ],
+  "4/7/2020": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "353.49",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "48.81"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.3059",
+      "GasOil": "0.331"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "40",
+      "GasOil": "40"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "12.236",
+      "GasOil": "13.24"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "3"
+    },
+    {
+      "label": "Contribution to COVID-19 Solidarity Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-0.4891",
+      "GasOil": "0.3868"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "34.2069",
+      "GasOil": "26.5868"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.15",
+      "GasOil": "1.98"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.7391",
+      "GasOil": "4.5652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "42.096",
+      "GasOil": "33.132"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.904",
+      "GasOil": "1.868"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "44",
+      "GasOil": "35"
+    }
+  ],
+  "3/7/2020": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "534.53",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "65.53"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4415",
+      "GasOil": "0.4361"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "37.75",
+      "GasOil": "37.75"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "16.6666",
+      "GasOil": "16.4628"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "3"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-0.9197",
+      "GasOil": "0"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "0",
+      "GasOil": "1.164"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "34.2069",
+      "GasOil": "26.5868"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.15",
+      "GasOil": "1.98"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.7391",
+      "GasOil": "4.5652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "42.096",
+      "GasOil": "33.132"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.904",
+      "GasOil": "1.868"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "44",
+      "GasOil": "35"
+    }
+  ],
+  "1/11/2020": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "596.26",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "78.32"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4878",
+      "GasOil": "0.5166"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "37",
+      "GasOil": "37"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "18.0486",
+      "GasOil": "19.1142"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "3"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-2.3017",
+      "GasOil": "-1.4874"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "34.2069",
+      "GasOil": "26.5868"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.15",
+      "GasOil": "1.98"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.7391",
+      "GasOil": "4.5652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "42.096",
+      "GasOil": "33.132"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.904",
+      "GasOil": "1.868"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "44",
+      "GasOil": "35"
+    }
+  ],
+  "10/5/2019": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "595.65",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "75.9"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4873",
+      "GasOil": "0.5014"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "37",
+      "GasOil": "37"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "18.0301",
+      "GasOil": "18.5518"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "3"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-2.2832",
+      "GasOil": "-0.925"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "34.2069",
+      "GasOil": "26.5868"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.15",
+      "GasOil": "1.98"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.7391",
+      "GasOil": "4.5652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "42.096",
+      "GasOil": "33.132"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.904",
+      "GasOil": "1.868"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "44",
+      "GasOil": "35"
+    }
+  ],
+  "6/11/2019": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "658.31",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "80.45"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5291",
+      "GasOil": "0.5299"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "36",
+      "GasOil": "36"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "19.0476",
+      "GasOil": "19.0764"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "12.2",
+      "GasOil": "4.7"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "3"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-3.3007",
+      "GasOil": "-1.4496"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "34.2069",
+      "GasOil": "26.5868"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.15",
+      "GasOil": "1.98"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.7391",
+      "GasOil": "4.5652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "42.096",
+      "GasOil": "33.132"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.904",
+      "GasOil": "1.868"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "44",
+      "GasOil": "35"
+    }
+  ],
+  "5/11/2019": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "676.83",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "81.35"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.543",
+      "GasOil": "0.5356"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "35.5",
+      "GasOil": "35.5"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "19.2765",
+      "GasOil": "19.0138"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "3"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-3.5209",
+      "GasOil": "-1.3783"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "36.8156",
+      "GasOil": "29.1955"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.15",
+      "GasOil": "1.98"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.1304",
+      "GasOil": "4.9565"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "45.096",
+      "GasOil": "36.132"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.904",
+      "GasOil": "1.868"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "47",
+      "GasOil": "38"
+    }
+  ],
+  "3/16/2019": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "565.14",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "76.55"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4603",
+      "GasOil": "0.5064"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "35.2",
+      "GasOil": "35.2"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "16.2026",
+      "GasOil": "17.8253"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "3"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-0.447",
+      "GasOil": "-0.1898"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "36.8156",
+      "GasOil": "29.1955"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.15",
+      "GasOil": "1.98"
+    },
+    {
+      "label": "VAT (15%) WHOLESALE PRICE",
+      "Mogas": "6.1304 45.0960",
+      "GasOil": "4.9565 36.1320"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.904",
+      "GasOil": "1.868"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "47",
+      "GasOil": "38"
+    }
+  ],
+  "1/12/2019": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "554.68",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "73.63"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.452",
+      "GasOil": "0.5064"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "34.8",
+      "GasOil": "34.8"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "15.7296",
+      "GasOil": "17.6227"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.65",
+      "GasOil": "0.5"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "3"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Rounding of Figures",
+      "Mogas": "0.026",
+      "GasOil": "0.0128"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "36.8156",
+      "GasOil": "29.1955"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.15",
+      "GasOil": "1.98"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.1304",
+      "GasOil": "4.9565"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "45.096",
+      "GasOil": "36.132"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.904",
+      "GasOil": "1.868"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "47",
+      "GasOil": "38"
+    }
+  ],
+  "10/9/2018": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "729.46",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "93.15"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5829",
+      "GasOil": "0.6103"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "35",
+      "GasOil": "35"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "20.4015",
+      "GasOil": "21.3605"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-0.7416",
+      "GasOil": "-"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-",
+      "GasOil": "-1.7859"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "39.1199",
+      "GasOil": "30.9346"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "2.15",
+      "GasOil": "1.98"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.4761",
+      "GasOil": "5.2174"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "47.746",
+      "GasOil": "38.132"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.904",
+      "GasOil": "1.868"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "49.65",
+      "GasOil": "40"
+    }
+  ],
+  "6/15/2018": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "729.98",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "88.62"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5816",
+      "GasOil": "0.5798"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "34.6",
+      "GasOil": "34.6"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "20.1234",
+      "GasOil": "20.0611"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Rounding of Figures",
+      "Mogas": "0.0265",
+      "GasOil": "0.0035"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "39.4099",
+      "GasOil": "31.2246"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "1.93",
+      "GasOil": "1.76"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.4761",
+      "GasOil": "5.2174"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "47.816",
+      "GasOil": "38.202"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.834",
+      "GasOil": "1.798"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "49.65",
+      "GasOil": "40"
+    }
+  ],
+  "5/16/2018": [
+    {
+      "label": "Reference price - US$ per metric ton",
+      "Mogas": "664.41",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "78.81"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5336",
+      "GasOil": "0.5194"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "34.2",
+      "GasOil": "34.2"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "18.2491",
+      "GasOil": "17.7635"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " flour and rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-1.3927",
+      "GasOil": "-1.1511"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "37.3664",
+      "GasOil": "29.5724"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "1.93",
+      "GasOil": "1.76"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.1696",
+      "GasOil": "4.9696"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "45.466",
+      "GasOil": "36.302"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.834",
+      "GasOil": "1.798"
+    },
+    {
+      "label": "RETAIL PRICE (Price at petrol service station)",
+      "Mogas": "47.3",
+      "GasOil": "38.1"
+    }
+  ],
+  "4/14/2018": [
+    {
+      "label": "Reference price - US$ per metric ton",
+      "Mogas": "693.94",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "83.94"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5543",
+      "GasOil": "0.5501"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "35.15",
+      "GasOil": "35.15"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "19.4836",
+      "GasOil": "19.336"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " flour and rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "1.4598",
+      "GasOil": "0.5808"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "41.4534",
+      "GasOil": "32.8768"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "1.93",
+      "GasOil": "1.76"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.7826",
+      "GasOil": "5.4652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "50.166",
+      "GasOil": "40.102"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.834",
+      "GasOil": "1.798"
+    },
+    {
+      "label": "RETAIL PRICE (Price at petrol service station)",
+      "Mogas": "52",
+      "GasOil": "41.9"
+    }
+  ],
+  "2/10/2018": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "644.53",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per Barrel",
+      "Mogas": "-",
+      "GasOil": "80.12"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5179",
+      "GasOil": "0.5268"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "33.25",
+      "GasOil": "33.25"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "17.2202",
+      "GasOil": "17.5161"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-0.3638",
+      "GasOil": "-0.9037"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "37.3664",
+      "GasOil": "29.5724"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "1.93",
+      "GasOil": "1.76"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.1696",
+      "GasOil": "4.9696"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "45.466",
+      "GasOil": "36.302"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.834",
+      "GasOil": "1.798"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "47.3",
+      "GasOil": "38.1"
+    }
+  ],
+  "12/21/2017": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "600.39",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "72.22"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.485",
+      "GasOil": "0.4773"
+    },
+    {
+      "label": "Exchange rate – Rs/US$",
+      "Mogas": "34.75",
+      "GasOil": "34.75"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "16.8538",
+      "GasOil": "16.5862"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC’s operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "0.0026",
+      "GasOil": "0.0262"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "37.3664",
+      "GasOil": "29.5724"
+    },
+    {
+      "label": "Oil Companies’ operational expenses and wholesale margin",
+      "Mogas": "1.93",
+      "GasOil": "1.76"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.1696",
+      "GasOil": "4.9696"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "45.466",
+      "GasOil": "36.302"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.834",
+      "GasOil": "1.798"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "47.3",
+      "GasOil": "38.1"
+    }
+  ],
+  "8/5/2017": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "525.34",
+      "GasOil": ""
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "61.85"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4326",
+      "GasOil": "0.4163"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "34.15",
+      "GasOil": "34.15"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "14.7733",
+      "GasOil": "14.2166"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "14.8",
+      "GasOil": "7.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "-0.0038",
+      "GasOil": "0.0045"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "35.2795",
+      "GasOil": "27.1811"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.93",
+      "GasOil": "1.76"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.8565",
+      "GasOil": "4.6109"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "43.066",
+      "GasOil": "33.552"
+    },
+    {
+      "label": "Retail margin",
+      "Mogas": "1.834",
+      "GasOil": "1.798"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "44.9",
+      "GasOil": "35.35"
+    }
+  ],
+  "2/15/2017": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "553.42",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "63.97"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4534",
+      "GasOil": "0.4294"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36.5",
+      "GasOil": "36.5"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "16.5491",
+      "GasOil": "15.6731"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-3.5627",
+      "GasOil": "-3.8537"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "33.4964",
+      "GasOil": "24.7794"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.66"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.5696",
+      "GasOil": "4.2326"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "40.886",
+      "GasOil": "30.672"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.814",
+      "GasOil": "1.778"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Petrol Service Station)",
+      "Mogas": "42.7",
+      "GasOil": "32.45"
+    }
+  ],
+  "1/6/2017": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "532.08",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "62.61"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.437",
+      "GasOil": "0.4204"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36.75",
+      "GasOil": "36.75"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "16.0598",
+      "GasOil": "15.4497"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-6.4212",
+      "GasOil": "-6.1955"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "30.1486",
+      "GasOil": "22.2142"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.66"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.0674",
+      "GasOil": "3.8478"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "37.036",
+      "GasOil": "27.722"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.814",
+      "GasOil": "1.778"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "38.85",
+      "GasOil": "29.5"
+    }
+  ],
+  "12/2/2016": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "493.31",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "56.69"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.408",
+      "GasOil": "0.3832"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36.75",
+      "GasOil": "36.75"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "14.994",
+      "GasOil": "14.0826"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-5.3554",
+      "GasOil": "-4.8284"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "30.1486",
+      "GasOil": "22.2142"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.66"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.0674",
+      "GasOil": "3.8478"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "37.036",
+      "GasOil": "27.722"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.814",
+      "GasOil": "1.778"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "38.85",
+      "GasOil": "29.5"
+    }
+  ],
+  "11/5/2016": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "511.55",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "60.24"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4217",
+      "GasOil": "0.4056"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36.5",
+      "GasOil": "36.5"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "15.3921",
+      "GasOil": "14.8044"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-5.7535",
+      "GasOil": "-5.5502"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "30.1486",
+      "GasOil": "22.2142"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.66"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.0674",
+      "GasOil": "3.8478"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "37.036",
+      "GasOil": "27.722"
+    }
+  ],
+  "9/3/2016": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "463.74",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "54.15"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.386",
+      "GasOil": "0.3674"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36.25",
+      "GasOil": "36.25"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "13.9925",
+      "GasOil": "13.3183"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-4.3539",
+      "GasOil": "-4.0641"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "30.1486",
+      "GasOil": "22.2142"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.66"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.0674",
+      "GasOil": "3.8478"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "37.036",
+      "GasOil": "27.722"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.814",
+      "GasOil": "1.778"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "38.85",
+      "GasOil": "29.5"
+    }
+  ],
+  "8/6/2016": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "455.98",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "53.24"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.381",
+      "GasOil": "0.3852"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36.4",
+      "GasOil": "36.4"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "13.8684",
+      "GasOil": "14.0213"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-4.2298",
+      "GasOil": "-4.7671"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "30.1486",
+      "GasOil": "22.2142"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.66"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.0674",
+      "GasOil": "3.8478"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "37.036",
+      "GasOil": "27.722"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.814",
+      "GasOil": "1.778"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "38.85",
+      "GasOil": "29.5"
+    }
+  ],
+  "6/3/2016": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "497.09",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "53.95"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4112",
+      "GasOil": "0.389"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36",
+      "GasOil": "36"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "14.8032",
+      "GasOil": "14.004"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-5.1646",
+      "GasOil": "-4.7498"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "30.1486",
+      "GasOil": "22.2142"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.66"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.0674",
+      "GasOil": "3.8478"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "37.036",
+      "GasOil": "27.722"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.814",
+      "GasOil": "1.778"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "38.85",
+      "GasOil": "29.5"
+    }
+  ],
+  "2/4/2016": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "412.09",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "41.76"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.348",
+      "GasOil": "0.3129"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36.65",
+      "GasOil": "36.65"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "12.7542",
+      "GasOil": "11.4678"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-3.1156",
+      "GasOil": "-2.2136"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "30.1486",
+      "GasOil": "22.2142"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.66"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.0674",
+      "GasOil": "3.8478"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "37.036",
+      "GasOil": "27.722"
+    }
+  ],
+  "11/14/2015": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "485.52",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "58.19"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4079",
+      "GasOil": "0.4218"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36.15",
+      "GasOil": "36.15"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "14.7456",
+      "GasOil": "15.2481"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.41",
+      "GasOil": "0.41"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to the construction of storage facilities for petroleum products",
+      "Mogas": "0.1",
+      "GasOil": "0.1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "2.7"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Fund from Price Stabilisation Account",
+      "Mogas": "-2.9331",
+      "GasOil": "-3.1678"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "32.3225",
+      "GasOil": "25.0403"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.66"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.3935",
+      "GasOil": "4.2717"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "39.536",
+      "GasOil": "30.972"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.814",
+      "GasOil": "1.778"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "41.35",
+      "GasOil": "32.75"
+    }
+  ],
+  "9/5/2015": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "554.88",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "64.01"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4693",
+      "GasOil": "0.4551"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "35.25",
+      "GasOil": "35.25"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "16.5428",
+      "GasOil": "16.0423"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.16",
+      "GasOil": "0.16"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "0.8597",
+      "GasOil": "0"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "0",
+      "GasOil": "0.0093"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "36.3625",
+      "GasOil": "27.4616"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.9935",
+      "GasOil": "4.6304"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "44.176",
+      "GasOil": "33.762"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.774",
+      "GasOil": "1.738"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "45.95",
+      "GasOil": "35.5"
+    }
+  ],
+  "8/13/2015": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "591.9",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "67.87"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.4978",
+      "GasOil": "0.4794"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36",
+      "GasOil": "36"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "17.9208",
+      "GasOil": "17.2584"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.16",
+      "GasOil": "0.16"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "0",
+      "GasOil": "0.7932"
+    },
+    {
+      "label": "Price Stabilisation Account",
+      "Mogas": "-0.5183",
+      "GasOil": "0"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "36.3625",
+      "GasOil": "29.4616"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.9935",
+      "GasOil": "4.9304"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "44.176",
+      "GasOil": "36.062"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.774",
+      "GasOil": "1.738"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "45.95",
+      "GasOil": "37.8"
+    }
+  ],
+  "6/6/2015": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "633.28",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "75.86"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5284",
+      "GasOil": "0.5283"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36",
+      "GasOil": "36"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "19.0224",
+      "GasOil": "19.0188"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.16",
+      "GasOil": "0.16"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Price Stabilisation Account",
+      "Mogas": "-1.6199",
+      "GasOil": "-0.9672"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "36.3625",
+      "GasOil": "29.4616"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.9935",
+      "GasOil": "4.9304"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "44.176",
+      "GasOil": "36.062"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.774",
+      "GasOil": "1.738"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "45.95",
+      "GasOil": "37.8"
+    }
+  ],
+  "4/25/2015": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "643.36",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "76.56"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.536",
+      "GasOil": "0.5326"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "36.75",
+      "GasOil": "36.75"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "19.698",
+      "GasOil": "19.5731"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.16",
+      "GasOil": "0.16"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Price Stabilisation Account",
+      "Mogas": "-2.2955",
+      "GasOil": "-1.5215"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "36.3625",
+      "GasOil": "29.4616"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.9935",
+      "GasOil": "4.9304"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "44.176",
+      "GasOil": "36.062"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.774",
+      "GasOil": "1.738"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "45.95",
+      "GasOil": "37.8"
+    }
+  ],
+  "1/17/2015": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "641.25",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "79.64"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.5369",
+      "GasOil": "0.5547"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "32.4",
+      "GasOil": "32.4"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "17.3956",
+      "GasOil": "17.9723"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.16",
+      "GasOil": "0.16"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "4",
+      "GasOil": "4"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "0.0069",
+      "GasOil": "0.0793"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "36.3625",
+      "GasOil": "29.4616"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.9935",
+      "GasOil": "4.9304"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "44.176",
+      "GasOil": "36.062"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.774",
+      "GasOil": "1.738"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "45.95",
+      "GasOil": "37.8"
+    }
+  ],
+  "12/6/2014": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "779.37",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "96.93"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.6449",
+      "GasOil": "0.6654"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "31.8",
+      "GasOil": "31.8"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "20.5078",
+      "GasOil": "21.1597"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.05",
+      "GasOil": "0.05"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "0.0047",
+      "GasOil": "0.0019"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "36.3625",
+      "GasOil": "29.4616"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "5.9935",
+      "GasOil": "4.9304"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "44.176",
+      "GasOil": "36.062"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.774",
+      "GasOil": "1.738"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "45.95",
+      "GasOil": "37.8"
+    }
+  ],
+  "11/21/2014": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "849.37",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "104.32"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.699",
+      "GasOil": "0.7121"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "31.8",
+      "GasOil": "31.8"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "22.2282",
+      "GasOil": "22.6448"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.05",
+      "GasOil": "0.05"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "0.04",
+      "GasOil": "0.0116"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "38.1182",
+      "GasOil": "30.9564"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.2478",
+      "GasOil": "5.1456"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "46.186",
+      "GasOil": "37.772"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.714",
+      "GasOil": "1.678"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "47.9",
+      "GasOil": "39.45"
+    }
+  ],
+  "8/22/2014": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "953.72",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "117.33"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.7793",
+      "GasOil": "0.7977"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "31.05",
+      "GasOil": "31.05"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "24.1973",
+      "GasOil": "24.7686"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.05",
+      "GasOil": "0.05"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "0.0274",
+      "GasOil": "0.0182"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "40.0747",
+      "GasOil": "33.0868"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.5413",
+      "GasOil": "5.4652"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "48.436",
+      "GasOil": "40.222"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.714",
+      "GasOil": "1.678"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "50.15",
+      "GasOil": "41.9"
+    }
+  ],
+  "1/13/2014": [
+    {
+      "label": "Reference Price - US$ per metric ton",
+      "Mogas": "998.92",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "126.34"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.8138",
+      "GasOil": "0.8541"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "31",
+      "GasOil": "31"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "25.2278",
+      "GasOil": "26.4771"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.05",
+      "GasOil": "0.05"
+    },
+    {
+      "label": "Contribution to the Build Mauritius Fund",
+      "Mogas": "1",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "0.823",
+      "GasOil": "0.0923"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "41.9008",
+      "GasOil": "34.8694"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.8152",
+      "GasOil": "5.7326"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "50.536",
+      "GasOil": "42.272"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.714",
+      "GasOil": "1.678"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "52.25",
+      "GasOil": "43.95"
+    }
+  ],
+  "10/31/2013": [
+    {
+      "label": "Reference Price (Platts) - US$ per metric ton",
+      "Mogas": "989.61",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price (Platts) - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "125.59"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.8066",
+      "GasOil": "0.8494"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "31",
+      "GasOil": "31"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "25.0046",
+      "GasOil": "26.3314"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.05",
+      "GasOil": "0.05"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "2.2462",
+      "GasOil": "1.428"
+    },
+    {
+      "label": "Price Stabilisation Account",
+      "Mogas": "-0.2",
+      "GasOil": "-0.19"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "41.9008",
+      "GasOil": "34.8694"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.8152",
+      "GasOil": "5.7326"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "50.536",
+      "GasOil": "42.272"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.714",
+      "GasOil": "1.678"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "52.25",
+      "GasOil": "43.95"
+    }
+  ],
+  "3/1/2013": [
+    {
+      "label": "Reference Price (Platts) - US$ per metric ton",
+      "Mogas": "1073.45",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price (Platts) - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "131.24"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.8714",
+      "GasOil": "0.8878"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "31.25",
+      "GasOil": "31.25"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "27.2313",
+      "GasOil": "27.7438"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.05",
+      "GasOil": "0.05"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "0.0195",
+      "GasOil": "0.0156"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "42.1008",
+      "GasOil": "35.0594"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.82",
+      "GasOil": "1.67"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.8152",
+      "GasOil": "5.7326"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "50.736",
+      "GasOil": "42.462"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.514",
+      "GasOil": "1.488"
+    },
+    {
+      "label": "RETAIL PRICE* (Price at Filling Station)",
+      "Mogas": "52.25",
+      "GasOil": "43.95"
+    }
+  ],
+  "3/29/2011": [
+    {
+      "label": "Reference Price (Platts) - US$ per metric ton",
+      "Mogas": "960.07",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price (Platts) - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "120.57"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.7797",
+      "GasOil": "0.807"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "30.5",
+      "GasOil": "30.5"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "23.7809",
+      "GasOil": "24.6135"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.05",
+      "GasOil": "0.05"
+    },
+    {
+      "label": "Hedging",
+      "Mogas": "1.25",
+      "GasOil": "1"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-",
+      "GasOil": "-"
+    },
+    {
+      "label": "Price Stabilisation Account",
+      "Mogas": "-",
+      "GasOil": "-"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "0.0047",
+      "GasOil": "0.0046"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "39.8856",
+      "GasOil": "32.9181"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.47",
+      "GasOil": "1.42"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.4304",
+      "GasOil": "5.3739"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "47.786",
+      "GasOil": "39.712"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.514",
+      "GasOil": "1.488"
+    },
+    {
+      "label": "RETAIL PRICE* (Price at Filling Station)",
+      "Mogas": "49.3",
+      "GasOil": "41.2"
+    }
+  ],
+  "3/14/2011": [
+    {
+      "label": "Reference Price (Platts) - US$ per metric ton",
+      "Mogas": "959.46",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price (Platts) - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "120.39"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.7793",
+      "GasOil": "0.8059"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "30.5",
+      "GasOil": "30.5"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "23.7687",
+      "GasOil": "24.58"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.05",
+      "GasOil": "0.05"
+    },
+    {
+      "label": "Hedging",
+      "Mogas": "3",
+      "GasOil": "3"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "-",
+      "GasOil": "-"
+    },
+    {
+      "label": "Price Stabilisation Account",
+      "Mogas": "-",
+      "GasOil": "-"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "0.006",
+      "GasOil": "0.0381"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "41.6247",
+      "GasOil": "34.9181"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.47",
+      "GasOil": "1.42"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.6913",
+      "GasOil": "5.6739"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "49.786",
+      "GasOil": "42.012"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.514",
+      "GasOil": "1.488"
+    },
+    {
+      "label": "RETAIL PRICE* (Price at Filling Station)",
+      "Mogas": "51.3",
+      "GasOil": "43.5"
+    }
+  ],
+  "1/22/2011": [
+    {
+      "label": "Reference Price (Platts) - US$ per metric ton",
+      "Mogas": "820.08",
+      "GasOil": "-"
+    },
+    {
+      "label": "Reference Price (Platts) - US$ per barrel",
+      "Mogas": "-",
+      "GasOil": "99.85"
+    },
+    {
+      "label": "CIF - US$/litre",
+      "Mogas": "0.672",
+      "GasOil": "0.6766"
+    },
+    {
+      "label": "Exchange rate - Rs/ US$",
+      "Mogas": "31.75",
+      "GasOil": "31.75"
+    },
+    {
+      "label": "CIF",
+      "Mogas": "21.336",
+      "GasOil": "21.4821"
+    },
+    {
+      "label": "Excise duty",
+      "Mogas": "10.8",
+      "GasOil": "3.3"
+    },
+    {
+      "label": "Maurice Ile Durable levy",
+      "Mogas": "0.3",
+      "GasOil": "0.3"
+    },
+    {
+      "label": "Contribution to Road Development Authority",
+      "Mogas": "1.85",
+      "GasOil": "1.75"
+    },
+    {
+      "label": "Contribution to Rodrigues transportation and storage",
+      "Mogas": "0.05",
+      "GasOil": "0.05"
+    },
+    {
+      "label": "Hedging",
+      "Mogas": "3",
+      "GasOil": "3"
+    },
+    {
+      "label": "Contribution to subsidy on LPG",
+      "Mogas": " Flour and Rice",
+      "GasOil": "1.5"
+    },
+    {
+      "label": "STC's operational expenses",
+      "Mogas": "0.35",
+      "GasOil": "0.4"
+    },
+    {
+      "label": "Adjustment",
+      "Mogas": "0",
+      "GasOil": "0"
+    },
+    {
+      "label": "Price Stabilisation Account",
+      "Mogas": "0",
+      "GasOil": "0"
+    },
+    {
+      "label": "Rounding of figures",
+      "Mogas": "0.0039",
+      "GasOil": "0.0056"
+    },
+    {
+      "label": "TRANSFER PRICE TO OIL COMPANIES",
+      "Mogas": "39.1899",
+      "GasOil": "31.7877"
+    },
+    {
+      "label": "Oil Companies' operational expenses and wholesale margin",
+      "Mogas": "1.47",
+      "GasOil": "1.42"
+    },
+    {
+      "label": "VAT (15%)",
+      "Mogas": "6.3261",
+      "GasOil": "5.2043"
+    },
+    {
+      "label": "WHOLESALE PRICE",
+      "Mogas": "46.986",
+      "GasOil": "38.412"
+    },
+    {
+      "label": "Retail margin (Filling station's margin)",
+      "Mogas": "1.514",
+      "GasOil": "1.488"
+    },
+    {
+      "label": "RETAIL PRICE (Price at Filling Station)",
+      "Mogas": "48.5",
+      "GasOil": "39.9"
+    }
+  ]
+}
