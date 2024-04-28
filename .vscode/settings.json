@@ -6,7 +6,7 @@
   // "prettier.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
+    "source.fixAll.eslint": "explicit"
   },
   "files.associations": {
     "*.css": "postcss",
@@ -32,7 +32,8 @@
     "titleBar.activeBackground": "#8cb795",
     "titleBar.activeForeground": "#15202b",
     "titleBar.inactiveBackground": "#8cb79599",
-    "titleBar.inactiveForeground": "#15202b99"
+    "titleBar.inactiveForeground": "#15202b99",
+    "commandCenter.border": "#15202b99"
   },
   "editor.tabSize": 2
 }
