@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "@antfu"
-  ],
-  "rules": {
-    "vue/singleline-html-element-content-newline": "off",
-    "vue/multiline-html-element-content-newline": "off"
-  }
-}
