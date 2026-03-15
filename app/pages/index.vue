@@ -599,10 +599,18 @@ function formatMonth(dateStr: string): string {
   grid-column: span 1;
   grid-row: span 2;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
+.petrol-card { background: var(--petrol-color); color: #fff; border-color: var(--petrol-color); }
+.diesel-card { background: var(--diesel-color); color: #000; border-color: var(--diesel-color); }
+
 .price-card.dimmed { opacity: 0.3; filter: grayscale(1); }
-.price-card.highlighted { border-width: 4px; padding: 22px; }
+.price-card.highlighted { 
+  transform: scale(1.02);
+  z-index: 10;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
 
 .card-header {
   display: flex;
@@ -621,18 +629,20 @@ function formatMonth(dateStr: string): string {
 .card-code {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--text-muted);
+  opacity: 0.8;
   margin-left: auto;
+  border: 1px solid currentColor;
+  padding: 2px 6px;
 }
 
 .fuel-dot {
   width: 10px;
   height: 10px;
-  border: 1.5px solid var(--border);
+  border: 1.5px solid currentColor;
 }
 
-.fuel-dot.petrol { background: var(--petrol-color); }
-.fuel-dot.diesel { background: var(--diesel-color); }
+.fuel-dot.petrol { background: #fff; }
+.fuel-dot.diesel { background: #000; }
 .fuel-dot.brent { background: var(--brent-color); }
 
 .price-value {
@@ -651,19 +661,20 @@ function formatMonth(dateStr: string): string {
   font-family: var(--font-mono);
   font-size: 16px;
   font-weight: 700;
+  opacity: 0.9;
 }
 
 .change-icon { font-size: 12px; }
 
-.price-change.up { color: var(--up-color); }
-.price-change.down { color: var(--down-color); }
+.price-change.up { color: inherit; }
+.price-change.down { color: inherit; }
 
 .card-footer {
   margin-top: auto;
   font-family: var(--font-mono);
   font-size: 10px;
-  color: var(--text-muted);
   text-transform: uppercase;
+  opacity: 0.7;
 }
 
 /* Chart */
