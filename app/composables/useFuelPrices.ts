@@ -1,41 +1,61 @@
-import { prices, DATA_SOURCE, type FuelPriceEntry } from '~/data/prices'
+import { prices as fallbackPrices, DATA_SOURCE, type FuelPriceEntry } from '~/data/prices'
+
+const DATASET_URL = 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-fuel/main/data/prices.json'
 
 export type SortField = 'date' | 'petrol' | 'diesel' | 'spread'
 export type SortDirection = 'asc' | 'desc'
 
 const sortField = ref<SortField>('date')
 const sortDirection = ref<SortDirection>('desc')
+const livePrices = ref<FuelPriceEntry[] | null>(null)
 
 export function useFuelPrices() {
-  const currentPrices = computed(() => prices[0])
+  // Use live data if fetched, otherwise fall back to bundled data
+  const prices = computed(() => livePrices.value ?? fallbackPrices)
 
-  const previousPrices = computed(() => prices[1])
+  // Fetch live data from the dataset repo
+  async function fetchLiveData() {
+    try {
+      const res = await fetch(DATASET_URL)
+      if (!res.ok) return
+      const data: FuelPriceEntry[] = await res.json()
+      if (Array.isArray(data) && data.length > 0 && data[0].date && data[0].petrol != null) {
+        livePrices.value = data
+      }
+    }
+    catch {
+      // Silently fall back to bundled data
+    }
+  }
+
+  const currentPrices = computed(() => prices.value[0])
 
   // Find the last entry where petrol or diesel actually changed
   const lastChange = computed(() => {
-    const curr = prices[0]
-    for (let i = 1; i < prices.length; i++) {
-      if (prices[i].petrol !== curr.petrol || prices[i].diesel !== curr.diesel) {
+    const p = prices.value
+    const curr = p[0]
+    for (let i = 1; i < p.length; i++) {
+      if (p[i].petrol !== curr.petrol || p[i].diesel !== curr.diesel) {
         return {
-          petrol: +(curr.petrol - prices[i].petrol).toFixed(2),
-          diesel: +(curr.diesel - prices[i].diesel).toFixed(2),
-          sinceDate: prices[i].date,
+          petrol: +(curr.petrol - p[i].petrol).toFixed(2),
+          diesel: +(curr.diesel - p[i].diesel).toFixed(2),
+          sinceDate: p[i].date,
         }
       }
     }
     return { petrol: 0, diesel: 0, sinceDate: curr.date }
   })
 
-  const allTimePetrolHigh = computed(() => Math.max(...prices.map(p => p.petrol)))
-  const allTimeDieselHigh = computed(() => Math.max(...prices.map(p => p.diesel)))
-  const allTimePetrolLow = computed(() => Math.min(...prices.map(p => p.petrol)))
-  const allTimeDieselLow = computed(() => Math.min(...prices.map(p => p.diesel)))
+  const allTimePetrolHigh = computed(() => Math.max(...prices.value.map(p => p.petrol)))
+  const allTimeDieselHigh = computed(() => Math.max(...prices.value.map(p => p.diesel)))
+  const allTimePetrolLow = computed(() => Math.min(...prices.value.map(p => p.petrol)))
+  const allTimeDieselLow = computed(() => Math.min(...prices.value.map(p => p.diesel)))
 
   // Chronological order (oldest first) for chart
-  const chronologicalPrices = computed(() => [...prices].reverse())
+  const chronologicalPrices = computed(() => [...prices.value].reverse())
 
   const sortedPrices = computed(() => {
-    const result = [...prices]
+    const result = [...prices.value]
     result.sort((a, b) => {
       let aVal: number
       let bVal: number
@@ -107,6 +127,7 @@ export function useFuelPrices() {
     sortDirection,
     chartData,
     DATA_SOURCE,
+    fetchLiveData,
     toggleSort,
     formatDate,
     formatPrice,

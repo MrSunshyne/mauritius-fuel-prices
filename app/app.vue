@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { DATA_SOURCE } = useFuelPrices()
+const { DATA_SOURCE, fetchLiveData } = useFuelPrices()
 
 const route = useRoute()
 
@@ -9,6 +9,7 @@ onMounted(() => {
   dark.value = localStorage.getItem('theme') === 'dark'
     || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)
   applyTheme()
+  fetchLiveData()
 })
 
 function toggleDark() {
