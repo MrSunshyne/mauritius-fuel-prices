@@ -754,25 +754,30 @@ function formatMonth(dateStr: string): string {
 
 .extreme-item .label {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
+  letter-spacing: 0.02em;
+  margin-bottom: 2px;
 }
 
 .extreme-item .value {
-  font-family: var(--font-mono);
-  font-size: 20px;
+  font-family: var(--font-display);
+  font-size: 24px;
   font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
 
 .extreme-item .date {
   font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-top: 2px;
+  color: var(--text);
+  margin-top: 4px;
+  opacity: 0.8;
 }
 
 /* Quick Nav */
