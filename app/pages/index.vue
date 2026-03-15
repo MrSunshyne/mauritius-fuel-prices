@@ -74,7 +74,7 @@ const innerHeight = chartHeight - padding.top - padding.bottom
 
 // --- Scales ---
 const brentMax = computed(() => Math.ceil(Math.max(...timeline.value.map(p => p.brent ?? 0)) / 10) * 10)
-const muMax = computed(() => Math.ceil(Math.max(...timeline.value.filter(p => p.petrol !== null).map(p => Math.max(p.petrol!, p.diesel!))) / 10) * 10)
+const muMax = computed(() => Math.ceil(Math.ceil(Math.max(...timeline.value.filter(p => p.petrol !== null).map(p => Math.max(p.petrol!, p.diesel!))) / 10) * 10))
 
 function xScale(index: number): number {
   return padding.left + (index / (timeline.value.length - 1)) * innerWidth
@@ -379,9 +379,9 @@ function formatMonth(dateStr: string): string {
           <!-- Tooltip -->
           <div v-if="tooltip.show && tooltip.point" class="chart-tooltip" :style="{ left: `${(tooltip.x / chartWidth) * 100}%` }">
             <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
-            <div class="tooltip-row"><span class="fuel-dot petrol" /> PETROL: {{ tooltip.point.petrol?.toFixed(2) }}</div>
-            <div class="tooltip-row"><span class="fuel-dot diesel" /> DIESEL: {{ tooltip.point.diesel?.toFixed(2) }}</div>
-            <div class="tooltip-row brent-row"><span class="fuel-dot brent" /> BRENT: {{ tooltip.point.brent?.toFixed(2) }}</div>
+            <div class="tooltip-row"><span class="fuel-dot petrol" /> PETROL: MUR {{ tooltip.point.petrol?.toFixed(2) }}/L</div>
+            <div class="tooltip-row"><span class="fuel-dot diesel" /> DIESEL: MUR {{ tooltip.point.diesel?.toFixed(2) }}/L</div>
+            <div class="tooltip-row brent-row"><span class="fuel-dot brent" /> BRENT: USD {{ tooltip.point.brent?.toFixed(2) }}/BBL</div>
           </div>
 
           <!-- Annotation detail popup -->

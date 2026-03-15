@@ -240,9 +240,9 @@ function formatMonth(dateStr: string): string {
 
           <div v-if="tooltip.show && tooltip.point" class="chart-tooltip" :style="{ left: `${(tooltip.x / chartWidth) * 100}%` }">
             <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
-            <div class="tooltip-row"><span class="dot brent" /> BRENT: ${{ tooltip.point.brent?.toFixed(2) }}</div>
-            <div class="tooltip-row"><span class="dot petrol" /> PETROL: RS {{ tooltip.point.petrol?.toFixed(2) }}</div>
-            <div class="tooltip-row"><span class="dot diesel" /> DIESEL: RS {{ tooltip.point.diesel?.toFixed(2) }}</div>
+            <div class="tooltip-row"><span class="dot brent" /> BRENT: USD {{ tooltip.point.brent?.toFixed(2) }}/BBL</div>
+            <div class="tooltip-row"><span class="dot petrol" /> PETROL: MUR {{ tooltip.point.petrol?.toFixed(2) }}/L</div>
+            <div class="tooltip-row"><span class="dot diesel" /> DIESEL: MUR {{ tooltip.point.diesel?.toFixed(2) }}/L</div>
           </div>
 
           <!-- Annotation detail popup -->
