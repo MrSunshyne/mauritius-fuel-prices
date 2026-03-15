@@ -90,7 +90,7 @@ const hoveredExtremePoint = computed(() => {
 // --- Chart dimensions ---
 const chartWidth = 900
 const chartHeight = 340
-const padding = { top: 20, right: 75, bottom: 30, left: 55 }
+const padding = { top: 20, right: 45, bottom: 30, left: 45 }
 const innerWidth = chartWidth - padding.left - padding.right
 const innerHeight = chartHeight - padding.top - padding.bottom
 
@@ -325,19 +325,19 @@ function formatMonth(dateStr: string): string {
               text-anchor="end"
             >{{ tick }}</text>
 
-            <text :x="12" :y="padding.top + innerHeight / 2" class="axis-title left" :transform="`rotate(-90, 12, ${padding.top + innerHeight / 2})`" text-anchor="middle">BRENT (USD/BBL)</text>
+            <text :x="8" :y="padding.top + innerHeight / 2" class="axis-title left" :transform="`rotate(-90, 8, ${padding.top + innerHeight / 2})`" text-anchor="middle">BRENT (USD/BBL)</text>
 
             <!-- Right Y-axis labels (Mauritius Rs) -->
             <text
               v-for="tick in yTicksRight"
               :key="'r-' + tick"
-              :x="padding.left + innerWidth + 10"
+              :x="padding.left + innerWidth + 8"
               :y="yRight(tick) + 3"
               class="axis-label"
               text-anchor="start"
             >{{ tick }}</text>
 
-            <text :x="chartWidth - 12" :y="padding.top + innerHeight / 2" class="axis-title right" :transform="`rotate(90, ${chartWidth - 12}, ${padding.top + innerHeight / 2})`" text-anchor="middle">LOCAL (MUR/L)</text>
+            <text :x="chartWidth - 8" :y="padding.top + innerHeight / 2" class="axis-title right" :transform="`rotate(90, ${chartWidth - 8}, ${padding.top + innerHeight / 2})`" text-anchor="middle">LOCAL (MUR/L)</text>
 
             <!-- X-axis labels -->
             <text
