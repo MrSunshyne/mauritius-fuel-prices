@@ -97,11 +97,11 @@ function applyTheme() {
   --row-hover: #fcfcfc;
   --active-btn-bg: #111111;
   --active-btn-text: #ffffff;
-  --petrol-color: #2563eb;
-  --diesel-color: #d97706;
+  --petrol-color: #eab308;
+  --diesel-color: #22c55e;
   --up-color: #dc2626;
   --down-color: #16a34a;
-  --brent-color: #ef4444;
+  --brent-color: #2563eb;
   --neutral-color: #444444;
   --radius: 0px;
   --radius-lg: 0px;
@@ -122,9 +122,9 @@ html.dark {
   --row-hover: #161616;
   --active-btn-bg: #e5e5e5;
   --active-btn-text: #0a0a0a;
-  --petrol-color: #3b82f6;
-  --diesel-color: #fbbf24;
-  --brent-color: #f87171;
+  --petrol-color: #facc15;
+  --diesel-color: #4ade80;
+  --brent-color: #60a5fa;
   --up-color: #f87171;
   --down-color: #4ade80;
   color-scheme: dark;
