@@ -32,9 +32,9 @@ function applyTheme() {
             <h1>Mauritius Fuel Prices</h1>
           </NuxtLink>
           <nav class="header-nav">
-            <NuxtLink to="/" :class="{ active: route.path === '/' || route.path === '/mauritius-fuel-prices/' }">Overview</NuxtLink>
-            <NuxtLink to="/comparison" :class="{ active: route.path === '/comparison' || route.path === '/mauritius-fuel-prices/comparison' }">Comparison</NuxtLink>
-            <NuxtLink to="/history" :class="{ active: route.path === '/history' || route.path === '/mauritius-fuel-prices/history' }">History</NuxtLink>
+            <NuxtLink to="/" :class="{ active: route.path === '/' }">Overview</NuxtLink>
+            <NuxtLink to="/comparison" :class="{ active: route.path === '/comparison' }">Comparison</NuxtLink>
+            <NuxtLink to="/history" :class="{ active: route.path === '/history' }">History</NuxtLink>
           </nav>
         </div>
         <div class="header-actions">
