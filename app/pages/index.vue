@@ -65,6 +65,27 @@ const annotations: Annotation[] = [
 
 const hoveredAnnotation = ref<string | null>(null)
 const hoveredFuel = ref<'petrol' | 'diesel' | null>(null)
+const hoveredExtremeDate = ref<string | null>(null)
+
+function setExtremeHover(date: string, fuel: 'petrol' | 'diesel') {
+  hoveredFuel.value = fuel
+  hoveredExtremeDate.value = date.slice(0, 7) // Match timeline's YYYY-MM format
+}
+
+function clearExtremeHover() {
+  hoveredFuel.value = null
+  hoveredExtremeDate.value = null
+}
+
+const hoveredExtremePoint = computed(() => {
+  if (!hoveredExtremeDate.value) return null
+  const idx = timeline.value.findIndex(p => p.date === hoveredExtremeDate.value)
+  if (idx === -1) return null
+  const point = timeline.value[idx]
+  const val = hoveredFuel.value === 'petrol' ? point.petrol : point.diesel
+  if (val === null) return null
+  return { x: xScale(idx), y: yRight(val), date: point.date, val }
+})
 
 // --- Chart dimensions ---
 const chartWidth = 900
@@ -368,6 +389,24 @@ function formatMonth(dateStr: string): string {
               fill="none"
             />
 
+            <!-- Extreme Hover Highlight -->
+            <template v-if="hoveredExtremePoint">
+              <line
+                :x1="hoveredExtremePoint.x"
+                :y1="padding.top"
+                :x2="hoveredExtremePoint.x"
+                :y2="padding.top + innerHeight"
+                class="extreme-line"
+              />
+              <circle
+                :cx="hoveredExtremePoint.x"
+                :cy="hoveredExtremePoint.y"
+                r="6"
+                class="extreme-dot"
+                :class="hoveredFuel"
+              />
+            </template>
+
             <!-- Hover indicator -->
             <template v-if="tooltip.show && tooltip.point">
               <line :x1="tooltip.x" :y1="padding.top" :x2="tooltip.x" :y2="padding.top + innerHeight" class="hover-line" />
@@ -398,22 +437,42 @@ function formatMonth(dateStr: string): string {
           <h3>Market Extremes</h3>
         </div>
         <div class="extremes-grid">
-          <div class="extreme-item">
+          <div
+            class="extreme-item"
+            :class="{ active: hoveredFuel === 'petrol' && hoveredExtremeDate === petrolPeak.date.slice(0, 7) }"
+            @mouseenter="setExtremeHover(petrolPeak.date, 'petrol')"
+            @mouseleave="clearExtremeHover"
+          >
             <span class="label">Petrol Peak</span>
             <span class="value">{{ formatPrice(petrolPeak.petrol) }}</span>
             <span class="date">{{ timeAgo(petrolPeak.date) }}</span>
           </div>
-          <div class="extreme-item">
+          <div
+            class="extreme-item"
+            :class="{ active: hoveredFuel === 'diesel' && hoveredExtremeDate === dieselPeak.date.slice(0, 7) }"
+            @mouseenter="setExtremeHover(dieselPeak.date, 'diesel')"
+            @mouseleave="clearExtremeHover"
+          >
             <span class="label">Diesel Peak</span>
             <span class="value">{{ formatPrice(dieselPeak.diesel) }}</span>
             <span class="date">{{ timeAgo(dieselPeak.date) }}</span>
           </div>
-          <div class="extreme-item">
+          <div
+            class="extreme-item"
+            :class="{ active: hoveredFuel === 'petrol' && hoveredExtremeDate === petrolFloor.date.slice(0, 7) }"
+            @mouseenter="setExtremeHover(petrolFloor.date, 'petrol')"
+            @mouseleave="clearExtremeHover"
+          >
             <span class="label">Petrol Floor</span>
             <span class="value">{{ formatPrice(petrolFloor.petrol) }}</span>
             <span class="date">{{ timeAgo(petrolFloor.date) }}</span>
           </div>
-          <div class="extreme-item">
+          <div
+            class="extreme-item"
+            :class="{ active: hoveredFuel === 'diesel' && hoveredExtremeDate === dieselFloor.date.slice(0, 7) }"
+            @mouseenter="setExtremeHover(dieselFloor.date, 'diesel')"
+            @mouseleave="clearExtremeHover"
+          >
             <span class="label">Diesel Floor</span>
             <span class="value">{{ formatPrice(dieselFloor.diesel) }}</span>
             <span class="date">{{ timeAgo(dieselFloor.date) }}</span>
@@ -750,6 +809,25 @@ function formatMonth(dateStr: string): string {
 .extreme-item {
   display: flex;
   flex-direction: column;
+}
+
+.extreme-item {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  margin: -8px;
+  transition: all 0.1s;
+  cursor: crosshair;
+}
+
+.extreme-item.active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.extreme-item.active .label, .extreme-item.active .date {
+  color: inherit;
+  opacity: 0.7;
 }
 
 .extreme-item .label {
