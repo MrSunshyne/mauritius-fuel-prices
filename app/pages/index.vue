@@ -4,14 +4,15 @@ import { brentPrices } from '~/data/brent'
 const {
   currentPrices,
   lastChange,
-  allTimePetrolHigh,
-  allTimeDieselHigh,
-  allTimePetrolLow,
-  allTimeDieselLow,
+  petrolPeak,
+  dieselPeak,
+  petrolFloor,
+  dieselFloor,
   chronologicalPrices,
   formatDate,
   formatPrice,
   DATA_SOURCE,
+  timeAgo,
 } = useFuelPrices()
 
 useSeoMeta({
@@ -399,19 +400,23 @@ function formatMonth(dateStr: string): string {
         <div class="extremes-grid">
           <div class="extreme-item">
             <span class="label">Petrol Peak</span>
-            <span class="value">{{ formatPrice(allTimePetrolHigh) }}</span>
+            <span class="value">{{ formatPrice(petrolPeak.petrol) }}</span>
+            <span class="date">{{ timeAgo(petrolPeak.date) }}</span>
           </div>
           <div class="extreme-item">
             <span class="label">Diesel Peak</span>
-            <span class="value">{{ formatPrice(allTimeDieselHigh) }}</span>
+            <span class="value">{{ formatPrice(dieselPeak.diesel) }}</span>
+            <span class="date">{{ timeAgo(dieselPeak.date) }}</span>
           </div>
           <div class="extreme-item">
             <span class="label">Petrol Floor</span>
-            <span class="value">{{ formatPrice(allTimePetrolLow) }}</span>
+            <span class="value">{{ formatPrice(petrolFloor.petrol) }}</span>
+            <span class="date">{{ timeAgo(petrolFloor.date) }}</span>
           </div>
           <div class="extreme-item">
             <span class="label">Diesel Floor</span>
-            <span class="value">{{ formatPrice(allTimeDieselLow) }}</span>
+            <span class="value">{{ formatPrice(dieselFloor.diesel) }}</span>
+            <span class="date">{{ timeAgo(dieselFloor.date) }}</span>
           </div>
         </div>
       </section>
@@ -759,6 +764,15 @@ function formatMonth(dateStr: string): string {
   font-family: var(--font-mono);
   font-size: 20px;
   font-weight: 800;
+}
+
+.extreme-item .date {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 2px;
 }
 
 /* Quick Nav */

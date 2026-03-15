@@ -46,10 +46,41 @@ export function useFuelPrices() {
     return { petrol: 0, diesel: 0, sinceDate: curr.date }
   })
 
-  const allTimePetrolHigh = computed(() => Math.max(...prices.value.map(p => p.petrol)))
-  const allTimeDieselHigh = computed(() => Math.max(...prices.value.map(p => p.diesel)))
-  const allTimePetrolLow = computed(() => Math.min(...prices.value.map(p => p.petrol)))
-  const allTimeDieselLow = computed(() => Math.min(...prices.value.map(p => p.diesel)))
+  const petrolPeak = computed(() => {
+    const high = Math.max(...prices.value.map(p => p.petrol))
+    return prices.value.find(p => p.petrol === high)!
+  })
+  const dieselPeak = computed(() => {
+    const high = Math.max(...prices.value.map(p => p.diesel))
+    return prices.value.find(p => p.diesel === high)!
+  })
+  const petrolFloor = computed(() => {
+    const low = Math.min(...prices.value.map(p => p.petrol))
+    return [...prices.value].reverse().find(p => p.petrol === low)!
+  })
+  const dieselFloor = computed(() => {
+    const low = Math.min(...prices.value.map(p => p.diesel))
+    return [...prices.value].reverse().find(p => p.diesel === low)!
+  })
+
+  const allTimePetrolHigh = computed(() => petrolPeak.value.petrol)
+  const allTimeDieselHigh = computed(() => dieselPeak.value.diesel)
+  const allTimePetrolLow = computed(() => petrolFloor.value.petrol)
+  const allTimeDieselLow = computed(() => dieselFloor.value.diesel)
+
+  function timeAgo(dateStr: string): string {
+    const date = new Date(dateStr)
+    const now = new Date()
+    const diffInMs = now.getTime() - date.getTime()
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24))
+    const diffInMonths = Math.floor(diffInDays / 30.44)
+    const diffInYears = Math.floor(diffInDays / 365.25)
+
+    if (diffInYears > 0) return `${diffInYears} ${diffInYears === 1 ? 'year' : 'years'} ago`
+    if (diffInMonths > 0) return `${diffInMonths} ${diffInMonths === 1 ? 'month' : 'months'} ago`
+    if (diffInDays > 0) return `${diffInDays} ${diffInDays === 1 ? 'day' : 'days'} ago`
+    return 'Today'
+  }
 
   // Chronological order (oldest first) for chart
   const chronologicalPrices = computed(() => [...prices.value].reverse())
@@ -121,6 +152,10 @@ export function useFuelPrices() {
     allTimeDieselHigh,
     allTimePetrolLow,
     allTimeDieselLow,
+    petrolPeak,
+    dieselPeak,
+    petrolFloor,
+    dieselFloor,
     chronologicalPrices,
     sortedPrices,
     sortField,
@@ -131,5 +166,6 @@ export function useFuelPrices() {
     toggleSort,
     formatDate,
     formatPrice,
+    timeAgo,
   }
 }
