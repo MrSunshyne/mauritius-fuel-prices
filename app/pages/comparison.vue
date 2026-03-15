@@ -52,7 +52,7 @@ const annotations: Annotation[] = [
 
 const chartWidth = 900
 const chartHeight = 400
-const padding = { top: 20, right: 60, bottom: 40, left: 60 }
+const padding = { top: 20, right: 75, bottom: 40, left: 60 }
 const innerWidth = chartWidth - padding.left - padding.right
 const innerHeight = chartHeight - padding.top - padding.bottom
 
@@ -195,11 +195,11 @@ function formatMonth(dateStr: string): string {
             <line v-for="tick in yTicksLeft" :key="tick" :x1="padding.left" :y1="yScaleLeft(tick)" :x2="padding.left + innerWidth" :y2="yScaleLeft(tick)" class="grid-line" />
             <text v-for="tick in yTicksLeft" :key="'l-'+tick" :x="padding.left - 12" :y="yScaleLeft(tick) + 3" class="axis-label" text-anchor="end">{{ tick }}</text>
             
-            <text :x="15" :y="padding.top + innerHeight / 2" class="axis-title left" transform="rotate(-90, 15, 120)">BRENT (USD/BBL)</text>
+            <text :x="15" :y="padding.top + innerHeight / 2" class="axis-title left" :transform="`rotate(-90, 15, ${padding.top + innerHeight / 2})`" text-anchor="middle">BRENT (USD/BBL)</text>
             
             <text v-for="tick in yTicksRight" :key="'r-'+tick" :x="padding.left + innerWidth + 12" :y="yScaleRight(tick) + 3" class="axis-label axis-right" text-anchor="start">{{ tick }}</text>
             
-            <text :x="chartWidth - 5" :y="padding.top + innerHeight / 2" class="axis-title right" transform="rotate(90, 895, 120)">LOCAL (MUR/L)</text>
+            <text :x="chartWidth - 15" :y="padding.top + innerHeight / 2" class="axis-title right" :transform="`rotate(90, ${chartWidth - 15}, ${padding.top + innerHeight / 2})`" text-anchor="middle">LOCAL (MUR/L)</text>
             
             <text v-for="label in xLabels" :key="'x-'+label.year" :x="xScale(label.index)" :y="padding.top + innerHeight + 25" class="axis-label" text-anchor="middle">{{ label.year }}</text>
 
