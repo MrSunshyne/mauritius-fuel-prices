@@ -641,8 +641,11 @@ function formatMonth(dateStr: string): string {
   border: 1.5px solid currentColor;
 }
 
-.fuel-dot.petrol { background: #fff; }
-.fuel-dot.diesel { background: #000; }
+.card-header .fuel-dot.petrol { background: #fff; }
+.card-header .fuel-dot.diesel { background: #000; }
+
+.fuel-dot.petrol { background: var(--petrol-color); }
+.fuel-dot.diesel { background: var(--diesel-color); }
 .fuel-dot.brent { background: var(--brent-color); }
 
 .price-value {
