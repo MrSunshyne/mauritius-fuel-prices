@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const {
   currentPrices,
-  priceChange,
+  lastChange,
   allTimePetrolHigh,
   allTimeDieselHigh,
   allTimePetrolLow,
@@ -135,9 +135,9 @@ function handleChartLeave() {
         </div>
         <div class="price-value">{{ formatPrice(currentPrices.petrol) }}</div>
         <div class="price-unit">per litre</div>
-        <div class="price-change" :class="{ up: priceChange.petrol > 0, down: priceChange.petrol < 0 }">
-          <template v-if="priceChange.petrol > 0">+</template>{{ priceChange.petrol.toFixed(2) }} Rs
-          <span class="change-label">vs previous</span>
+        <div class="price-change" :class="{ up: lastChange.petrol > 0, down: lastChange.petrol < 0 }">
+          <template v-if="lastChange.petrol > 0">+</template>{{ lastChange.petrol.toFixed(2) }} Rs
+          <span class="change-label">since {{ formatDate(lastChange.sinceDate) }}</span>
         </div>
       </div>
       <div class="price-card">
@@ -147,9 +147,9 @@ function handleChartLeave() {
         </div>
         <div class="price-value">{{ formatPrice(currentPrices.diesel) }}</div>
         <div class="price-unit">per litre</div>
-        <div class="price-change" :class="{ up: priceChange.diesel > 0, down: priceChange.diesel < 0 }">
-          <template v-if="priceChange.diesel > 0">+</template>{{ priceChange.diesel.toFixed(2) }} Rs
-          <span class="change-label">vs previous</span>
+        <div class="price-change" :class="{ up: lastChange.diesel > 0, down: lastChange.diesel < 0 }">
+          <template v-if="lastChange.diesel > 0">+</template>{{ lastChange.diesel.toFixed(2) }} Rs
+          <span class="change-label">since {{ formatDate(lastChange.sinceDate) }}</span>
         </div>
       </div>
     </div>

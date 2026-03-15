@@ -11,13 +11,19 @@ export function useFuelPrices() {
 
   const previousPrices = computed(() => prices[1])
 
-  const priceChange = computed(() => {
-    const curr = currentPrices.value
-    const prev = previousPrices.value
-    return {
-      petrol: +(curr.petrol - prev.petrol).toFixed(2),
-      diesel: +(curr.diesel - prev.diesel).toFixed(2),
+  // Find the last entry where petrol or diesel actually changed
+  const lastChange = computed(() => {
+    const curr = prices[0]
+    for (let i = 1; i < prices.length; i++) {
+      if (prices[i].petrol !== curr.petrol || prices[i].diesel !== curr.diesel) {
+        return {
+          petrol: +(curr.petrol - prices[i].petrol).toFixed(2),
+          diesel: +(curr.diesel - prices[i].diesel).toFixed(2),
+          sinceDate: prices[i].date,
+        }
+      }
     }
+    return { petrol: 0, diesel: 0, sinceDate: curr.date }
   })
 
   const allTimePetrolHigh = computed(() => Math.max(...prices.map(p => p.petrol)))
@@ -90,8 +96,7 @@ export function useFuelPrices() {
   return {
     prices,
     currentPrices,
-    previousPrices,
-    priceChange,
+    lastChange,
     allTimePetrolHigh,
     allTimeDieselHigh,
     allTimePetrolLow,
