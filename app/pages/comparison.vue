@@ -194,7 +194,13 @@ function formatMonth(dateStr: string): string {
           <svg :viewBox="`0 0 ${chartWidth} ${chartHeight}`" class="chart-svg" @mousemove="handleHover" @mouseleave="handleLeave">
             <line v-for="tick in yTicksLeft" :key="tick" :x1="padding.left" :y1="yScaleLeft(tick)" :x2="padding.left + innerWidth" :y2="yScaleLeft(tick)" class="grid-line" />
             <text v-for="tick in yTicksLeft" :key="'l-'+tick" :x="padding.left - 12" :y="yScaleLeft(tick) + 3" class="axis-label" text-anchor="end">{{ tick }}</text>
+            
+            <text :x="15" :y="padding.top + innerHeight / 2" class="axis-title left" transform="rotate(-90, 15, 120)">BRENT (USD/BBL)</text>
+            
             <text v-for="tick in yTicksRight" :key="'r-'+tick" :x="padding.left + innerWidth + 12" :y="yScaleRight(tick) + 3" class="axis-label axis-right" text-anchor="start">{{ tick }}</text>
+            
+            <text :x="chartWidth - 5" :y="padding.top + innerHeight / 2" class="axis-title right" transform="rotate(90, 895, 120)">LOCAL (MUR/L)</text>
+            
             <text v-for="label in xLabels" :key="'x-'+label.year" :x="xScale(label.index)" :y="padding.top + innerHeight + 25" class="axis-label" text-anchor="middle">{{ label.year }}</text>
 
             <!-- Annotation lines -->
@@ -401,6 +407,15 @@ function formatMonth(dateStr: string): string {
 .grid-line { stroke: var(--row-border); stroke-width: 1; }
 .axis-label { font-family: var(--font-mono); font-size: 9px; fill: var(--text-muted); font-weight: 600; }
 .axis-right { fill: var(--text-secondary); }
+
+.axis-title {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  fill: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 
 .area-brent { fill: var(--brent-color); opacity: 0.04; }
 .line-brent { stroke: var(--brent-color); stroke-width: 1.5; opacity: 0.3; }

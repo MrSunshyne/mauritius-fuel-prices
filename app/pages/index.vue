@@ -303,6 +303,8 @@ function formatMonth(dateStr: string): string {
               text-anchor="end"
             >{{ tick }}</text>
 
+            <text :x="15" :y="padding.top + innerHeight / 2" class="axis-title left" transform="rotate(-90, 15, 120)">BRENT (USD/BBL)</text>
+
             <!-- Right Y-axis labels (Mauritius Rs) -->
             <text
               v-for="tick in yTicksRight"
@@ -312,6 +314,8 @@ function formatMonth(dateStr: string): string {
               class="axis-label"
               text-anchor="start"
             >{{ tick }}</text>
+
+            <text :x="chartWidth - 5" :y="padding.top + innerHeight / 2" class="axis-title right" transform="rotate(90, 895, 120)">LOCAL (MUR/L)</text>
 
             <!-- X-axis labels -->
             <text
@@ -659,6 +663,15 @@ function formatMonth(dateStr: string): string {
 .grid-line { stroke: var(--row-border); stroke-width: 1; }
 .axis-label { font-family: var(--font-mono); font-size: 9px; fill: var(--text-muted); font-weight: 600; }
 .axis-label-left { opacity: 0.4; }
+
+.axis-title {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 700;
+  fill: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
 
 .area-brent { fill: var(--brent-color); opacity: 0.03; }
 .line-brent { stroke: var(--brent-color); stroke-width: 1.5; opacity: 0.3; }
