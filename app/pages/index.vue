@@ -809,11 +809,6 @@ function formatMonth(dateStr: string): string {
 .extreme-item {
   display: flex;
   flex-direction: column;
-}
-
-.extreme-item {
-  display: flex;
-  flex-direction: column;
   padding: 8px;
   margin: -8px;
   transition: all 0.1s;
