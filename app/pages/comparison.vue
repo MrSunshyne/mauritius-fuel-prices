@@ -35,6 +35,21 @@ const timeline = computed<TimelinePoint[]>(() => {
   return points
 })
 
+// --- Key dates for annotations ---
+interface Annotation {
+  date: string
+  label: string
+  detail: string
+}
+
+const annotations: Annotation[] = [
+  { date: '2008-07', label: 'Oil Peak', detail: 'Brent hit $133/bbl. Petrol reached Rs 49.50.' },
+  { date: '2011-01', label: 'PPM Introduced', detail: 'Price Stabilisation Mechanism replaced the old APM.' },
+  { date: '2014-07', label: 'Oil Collapse', detail: 'Brent dropped from $112 to $30 over 18 months.' },
+  { date: '2020-04', label: 'COVID Crash', detail: 'Brent fell to $18. Mauritius prices stayed flat at Rs 44.' },
+  { date: '2022-03', label: 'Ukraine War', detail: 'Brent surged to $117. Petrol hit all-time high Rs 74.10.' },
+]
+
 const chartWidth = 900
 const chartHeight = 400
 const padding = { top: 20, right: 60, bottom: 40, left: 60 }
@@ -96,7 +111,16 @@ const xLabels = computed(() => {
   return labels.filter((_, i) => i % 3 === 0)
 })
 
+const annotationPositions = computed(() => {
+  return annotations.map((a) => {
+    const idx = timeline.value.findIndex(p => p.date === a.date)
+    return { ...a, x: idx >= 0 ? xScale(idx) : -1, idx }
+  }).filter(a => a.x >= 0)
+})
+
 const tooltip = ref<{ show: boolean; x: number; point: TimelinePoint | null }>({ show: false, x: 0, point: null })
+const hoveredAnnotation = ref<string | null>(null)
+
 function handleHover(event: MouseEvent) {
   const svgEl = (event.currentTarget as SVGElement).closest('svg')
   if (!svgEl) return
@@ -110,7 +134,15 @@ function handleHover(event: MouseEvent) {
     if (dist < closestDist) { closestDist = dist; closestIdx = i }
   }
   tooltip.value = { show: true, x: xScale(closestIdx), point: data[closestIdx] }
+  const nearAnnotation = annotationPositions.value.find(a => Math.abs(a.x - xScale(closestIdx)) < 12)
+  hoveredAnnotation.value = nearAnnotation?.date ?? null
 }
+
+function handleLeave() {
+  tooltip.value.show = false
+  hoveredAnnotation.value = null
+}
+
 function formatMonth(dateStr: string): string {
   const [year, month] = dateStr.split('-')
   const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
@@ -159,11 +191,33 @@ function formatMonth(dateStr: string): string {
         </div>
 
         <div class="chart-container">
-          <svg :viewBox="`0 0 ${chartWidth} ${chartHeight}`" class="chart-svg" @mousemove="handleHover" @mouseleave="tooltip.show = false">
+          <svg :viewBox="`0 0 ${chartWidth} ${chartHeight}`" class="chart-svg" @mousemove="handleHover" @mouseleave="handleLeave">
             <line v-for="tick in yTicksLeft" :key="tick" :x1="padding.left" :y1="yScaleLeft(tick)" :x2="padding.left + innerWidth" :y2="yScaleLeft(tick)" class="grid-line" />
             <text v-for="tick in yTicksLeft" :key="'l-'+tick" :x="padding.left - 12" :y="yScaleLeft(tick) + 3" class="axis-label" text-anchor="end">{{ tick }}</text>
             <text v-for="tick in yTicksRight" :key="'r-'+tick" :x="padding.left + innerWidth + 12" :y="yScaleRight(tick) + 3" class="axis-label axis-right" text-anchor="start">{{ tick }}</text>
             <text v-for="label in xLabels" :key="'x-'+label.year" :x="xScale(label.index)" :y="padding.top + innerHeight + 25" class="axis-label" text-anchor="middle">{{ label.year }}</text>
+
+            <!-- Annotation lines -->
+            <g
+              v-for="a in annotationPositions"
+              :key="'ann-' + a.date"
+              class="annotation-group"
+              :class="{ highlighted: hoveredAnnotation === a.date }"
+            >
+              <line
+                :x1="a.x"
+                :y1="padding.top"
+                :x2="a.x"
+                :y2="padding.top + innerHeight"
+                class="annotation-line"
+              />
+              <text
+                :x="a.x"
+                :y="padding.top - 6"
+                class="annotation-label"
+                text-anchor="middle"
+              >{{ a.label }}</text>
+            </g>
 
             <path :d="buildPathLeft(timeline.map(p => p.brent)) + ` L${xScale(timeline.length - 1)},${padding.top+innerHeight} L${xScale(0)},${padding.top+innerHeight} Z`" class="area-brent" />
             <path :d="buildPathLeft(timeline.map(p => p.brent))" class="line-brent" fill="none" />
@@ -183,6 +237,11 @@ function formatMonth(dateStr: string): string {
             <div class="tooltip-row"><span class="dot brent" /> BRENT: ${{ tooltip.point.brent?.toFixed(2) }}</div>
             <div class="tooltip-row"><span class="dot petrol" /> PETROL: RS {{ tooltip.point.petrol?.toFixed(2) }}</div>
             <div class="tooltip-row"><span class="dot diesel" /> DIESEL: RS {{ tooltip.point.diesel?.toFixed(2) }}</div>
+          </div>
+
+          <!-- Annotation detail popup -->
+          <div v-if="hoveredAnnotation" class="annotation-popup">
+            {{ annotationPositions.find(a => a.date === hoveredAnnotation)?.detail }}
           </div>
         </div>
       </section>
@@ -344,9 +403,15 @@ function formatMonth(dateStr: string): string {
 .axis-right { fill: var(--text-secondary); }
 
 .area-brent { fill: var(--brent-color); opacity: 0.04; }
-.line-brent { stroke: var(--brent-color); stroke-width: 1.5; opacity: 0.4; }
+.line-brent { stroke: var(--brent-color); stroke-width: 1.5; opacity: 0.3; }
 .line-petrol { stroke: var(--petrol-color); stroke-width: 2.5; }
 .line-diesel { stroke: var(--diesel-color); stroke-width: 2.5; }
+
+.annotation-line { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.15; transition: all 0.2s; }
+.annotation-label { font-family: var(--font-mono); font-size: 8px; font-weight: 700; fill: var(--text-muted); opacity: 0.6; transition: all 0.2s; }
+
+.annotation-group.highlighted .annotation-line { opacity: 0.8; stroke-dasharray: none; stroke-width: 1.5; }
+.annotation-group.highlighted .annotation-label { opacity: 1; fill: var(--text); font-size: 9px; }
 
 .hover-line { stroke: var(--text); stroke-width: 1; stroke-dasharray: 2 2; }
 .hover-dot { stroke: var(--bg); stroke-width: 2; }
@@ -365,6 +430,23 @@ function formatMonth(dateStr: string): string {
 }
 
 .tooltip-date { font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 8px; padding-bottom: 4px; }
+
+.annotation-popup {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: var(--bg);
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 20;
+  border: 1px solid var(--bg);
+}
 
 /* Observations */
 .observations {

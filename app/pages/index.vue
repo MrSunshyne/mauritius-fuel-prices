@@ -337,6 +337,12 @@ function formatMonth(dateStr: string): string {
                 :y2="padding.top + innerHeight"
                 class="annotation-line"
               />
+              <text
+                :x="a.x"
+                :y="padding.top - 6"
+                class="annotation-label"
+                text-anchor="middle"
+              >{{ a.label }}</text>
             </g>
 
             <!-- Brent area & line -->
@@ -372,6 +378,11 @@ function formatMonth(dateStr: string): string {
             <div class="tooltip-row"><span class="fuel-dot petrol" /> PETROL: {{ tooltip.point.petrol?.toFixed(2) }}</div>
             <div class="tooltip-row"><span class="fuel-dot diesel" /> DIESEL: {{ tooltip.point.diesel?.toFixed(2) }}</div>
             <div class="tooltip-row brent-row"><span class="fuel-dot brent" /> BRENT: {{ tooltip.point.brent?.toFixed(2) }}</div>
+          </div>
+
+          <!-- Annotation detail popup -->
+          <div v-if="hoveredAnnotation" class="annotation-popup">
+            {{ annotationPositions.find(a => a.date === hoveredAnnotation)?.detail }}
           </div>
         </div>
       </section>
@@ -650,7 +661,7 @@ function formatMonth(dateStr: string): string {
 .axis-label-left { opacity: 0.4; }
 
 .area-brent { fill: var(--brent-color); opacity: 0.03; }
-.line-brent { stroke: var(--brent-color); stroke-width: 1; opacity: 0.2; }
+.line-brent { stroke: var(--brent-color); stroke-width: 1.5; opacity: 0.3; }
 
 .line-petrol { stroke: var(--petrol-color); stroke-width: 2.5; transition: all 0.2s; }
 .line-diesel { stroke: var(--diesel-color); stroke-width: 2.5; transition: all 0.2s; }
@@ -658,7 +669,11 @@ function formatMonth(dateStr: string): string {
 .line-petrol.dimmed, .line-diesel.dimmed { opacity: 0.1; stroke-width: 1; }
 .line-petrol.highlighted, .line-diesel.highlighted { stroke-width: 4; }
 
-.annotation-line { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.15; }
+.annotation-line { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.15; transition: all 0.2s; }
+.annotation-label { font-family: var(--font-mono); font-size: 8px; font-weight: 700; fill: var(--text-muted); opacity: 0.6; transition: all 0.2s; }
+
+.annotation-group.highlighted .annotation-line { opacity: 0.8; stroke-dasharray: none; stroke-width: 1.5; }
+.annotation-group.highlighted .annotation-label { opacity: 1; fill: var(--text); font-size: 9px; }
 
 .hover-line { stroke: var(--text); stroke-width: 1; stroke-dasharray: 2 2; }
 .hover-dot { stroke: var(--bg); stroke-width: 2; }
@@ -683,6 +698,23 @@ function formatMonth(dateStr: string): string {
 .tooltip-date { font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 6px; margin-bottom: 6px; }
 .tooltip-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
 .brent-row { opacity: 0.6; margin-top: 4px; padding-top: 4px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+.annotation-popup {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: var(--bg);
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 20;
+  border: 1px solid var(--bg);
+}
 
 /* Extremes */
 .extremes {
