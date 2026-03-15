@@ -14,10 +14,10 @@
   <text x="100" y="420" fill="#e5e5e5" font-family="sans-serif" font-size="24" font-weight="500">MAURITIUS 2002 - 2026</text>
   
   <!-- Right Side: Data -->
-  <text x="660" y="160" fill="#eab308" font-family="monospace" font-size="120" font-weight="800">58.45</text>
+  <text x="660" y="160" fill="#22c55e" font-family="monospace" font-size="120" font-weight="800">58.45</text>
   <text x="660" y="200" fill="#666" font-family="monospace" font-size="14" font-weight="700">MOGAS (PETROL) / MUR</text>
   
-  <text x="660" y="360" fill="#22c55e" font-family="monospace" font-size="120" font-weight="800">58.95</text>
+  <text x="660" y="360" fill="#eab308" font-family="monospace" font-size="120" font-weight="800">58.95</text>
   <text x="660" y="400" fill="#666" font-family="monospace" font-size="14" font-weight="700">GAS OIL (DIESEL) / MUR</text>
   
   <!-- Bottom bar -->
