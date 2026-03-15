@@ -1,41 +1,17 @@
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="1200" height="630" fill="#0c0c0c"/>
   
-  <!-- Outer Border -->
-  <rect x="40" y="40" width="1120" height="550" stroke="#222" stroke-width="4"/>
+  <!-- Sharp Accent Lines (Petrol Green & Diesel Yellow) -->
+  <rect x="0" y="0" width="1200" height="15" fill="#4ade80"/>
+  <rect x="0" y="615" width="1200" height="15" fill="#facc15"/>
   
-  <!-- Section Dividers -->
-  <path d="M40 160H1160" stroke="#222" stroke-width="2"/>
-  <path d="M600 160V590" stroke="#222" stroke-width="2"/>
+  <!-- Central Catchy Typography -->
+  <text x="600" y="280" fill="#666" font-family="monospace" font-size="24" font-weight="700" letter-spacing="0.4em" text-anchor="middle">THE_CHRONOLOGICAL_INDEX</text>
   
-  <!-- Header Section -->
-  <text x="80" y="105" fill="#666" font-family="monospace" font-size="16" font-weight="700" letter-spacing="0.2em">MARKET_REPORT // MAURITIUS_FUEL_INDEX</text>
-  <text x="80" y="140" fill="#e5e5e5" font-family="sans-serif" font-size="32" font-weight="800" letter-spacing="-0.02em">CHRONOLOGICAL PRICE REGISTRY [2002-2026]</text>
+  <text x="600" y="380" fill="#ffffff" font-family="sans-serif" font-size="110" font-weight="900" letter-spacing="-0.04em" text-anchor="middle">MAURITIUS</text>
+  <text x="600" y="480" fill="#ffffff" font-family="sans-serif" font-size="110" font-weight="900" letter-spacing="-0.04em" text-anchor="middle">FUEL PRICES</text>
   
-  <!-- Left Side: Petrol -->
-  <rect x="80" y="200" width="20" height="20" fill="#4ade80"/>
-  <text x="115" y="216" fill="#e5e5e5" font-family="sans-serif" font-size="18" font-weight="700" letter-spacing="0.05em">MOGAS (PETROL) / RON 95</text>
-  <text x="80" y="320" fill="#4ade80" font-family="monospace" font-size="110" font-weight="800">58.45</text>
-  <text x="80" y="360" fill="#666" font-family="monospace" font-size="18" font-weight="700">MUR PER LITRE</text>
-  
-  <!-- Left Side: Detail -->
-  <text x="80" y="480" fill="#e5e5e5" font-family="sans-serif" font-size="16" font-weight="500" line-height="1.5">
-    <tspan x="80" dy="0">Historical peak analysis and correlation</tspan>
-    <tspan x="80" dy="25">with international Brent benchmarks.</tspan>
-  </text>
-
-  <!-- Right Side: Diesel -->
-  <rect x="640" y="200" width="20" height="20" fill="#facc15"/>
-  <text x="675" y="216" fill="#e5e5e5" font-family="sans-serif" font-size="18" font-weight="700" letter-spacing="0.05em">GAS OIL (DIESEL) / EURO 5</text>
-  <text x="640" y="320" fill="#facc15" font-family="monospace" font-size="110" font-weight="800">58.95</text>
-  <text x="640" y="360" fill="#666" font-family="monospace" font-size="18" font-weight="700">MUR PER LITRE</text>
-  
-  <!-- Brent Info -->
-  <rect x="640" y="440" width="480" height="110" fill="#111" stroke="#222" stroke-width="2"/>
-  <text x="665" y="475" fill="#60a5fa" font-family="sans-serif" font-size="14" font-weight="800" letter-spacing="0.1em">BRENT CRUDE TREND</text>
-  <text x="665" y="515" fill="#e5e5e5" font-family="monospace" font-size="32" font-weight="800">USD 70.89</text>
-  <text x="880" y="515" fill="#666" font-family="monospace" font-size="14" font-weight="700">MARKET SPOT PRICE</text>
-
-  <!-- Footer -->
-  <text x="1120" y="615" fill="#444" font-family="monospace" font-size="12" font-weight="700" text-anchor="end">DATA SOURCE: STATE TRADING CORPORATION (STC) // PLATFORM BY SANDEEP RAMGOLAM</text>
+  <!-- Metadata Hint -->
+  <path d="M450 530H750" stroke="#222" stroke-width="2"/>
+  <text x="600" y="570" fill="#444" font-family="monospace" font-size="16" font-weight="700" letter-spacing="0.1em" text-anchor="middle">REPORTING DATA SINCE 2002 // UPDATED MARCH 2026</text>
 </svg>
