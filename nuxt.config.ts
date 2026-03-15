@@ -27,6 +27,9 @@ export default defineNuxtConfig({
         { name: 'twitter:description', content: 'Track petrol and diesel price changes in Mauritius since 2002.' },
         { name: 'twitter:image', content: 'https://fuel.ramgolam.com/og-image.png' },
       ],
+      script: [
+        { src: 'https://cloud.umami.is/script.js', defer: true, 'data-website-id': '1008a54e-9dad-4e60-852a-1cdf95eeede7' },
+      ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
