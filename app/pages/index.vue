@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { brentPrices } from '~/data/brent'
+
 const {
   currentPrices,
   lastChange,
@@ -7,7 +9,6 @@ const {
   allTimePetrolLow,
   allTimeDieselLow,
   chronologicalPrices,
-  chartData,
   formatDate,
   formatPrice,
   DATA_SOURCE,
@@ -18,54 +19,123 @@ useSeoMeta({
   description: 'Track petrol and diesel price changes in Mauritius from 2002 to present. Data sourced from the State Trading Corporation.',
 })
 
-const tooltip = ref<{ show: boolean; x: number; y: number; entry: any }>({
-  show: false,
-  x: 0,
-  y: 0,
-  entry: null,
+// --- Build unified timeline for dual-axis chart ---
+interface TimelinePoint {
+  date: string
+  brent: number | null
+  petrol: number | null
+  diesel: number | null
+}
+
+const timeline = computed<TimelinePoint[]>(() => {
+  const muPrices = chronologicalPrices.value
+  const points: TimelinePoint[] = []
+  for (const b of brentPrices) {
+    const bDate = new Date(b.date + '-15')
+    let activePetrol: number | null = null
+    let activeDiesel: number | null = null
+    for (const mu of muPrices) {
+      if (new Date(mu.date) <= bDate) {
+        activePetrol = mu.petrol
+        activeDiesel = mu.diesel
+      } else {
+        break
+      }
+    }
+    points.push({ date: b.date, brent: b.price, petrol: activePetrol, diesel: activeDiesel })
+  }
+  return points
 })
 
+// --- Key dates for annotations ---
+interface Annotation {
+  date: string
+  label: string
+  detail: string
+}
+
+const annotations: Annotation[] = [
+  { date: '2008-07', label: 'Oil Peak', detail: 'Brent hit $133/bbl. Petrol reached Rs 49.50.' },
+  { date: '2011-01', label: 'PPM Introduced', detail: 'Price Stabilisation Mechanism replaced the old APM.' },
+  { date: '2014-07', label: 'Oil Collapse', detail: 'Brent dropped from $112 to $30 over 18 months.' },
+  { date: '2020-04', label: 'COVID Crash', detail: 'Brent fell to $18. Mauritius prices stayed flat at Rs 44.' },
+  { date: '2022-03', label: 'Ukraine War', detail: 'Brent surged to $117. Petrol hit all-time high Rs 74.10.' },
+]
+
+const hoveredAnnotation = ref<string | null>(null)
+
+// --- Chart dimensions ---
 const chartWidth = 900
-const chartHeight = 300
-const padding = { top: 20, right: 20, bottom: 30, left: 50 }
+const chartHeight = 340
+const padding = { top: 20, right: 55, bottom: 30, left: 50 }
 const innerWidth = chartWidth - padding.left - padding.right
 const innerHeight = chartHeight - padding.top - padding.bottom
 
-function xScale(index: number, total: number): number {
-  return padding.left + (index / (total - 1)) * innerWidth
+// --- Scales ---
+const brentMax = computed(() => Math.ceil(Math.max(...timeline.value.map(p => p.brent ?? 0)) / 10) * 10)
+const muMax = computed(() => Math.ceil(Math.max(...timeline.value.filter(p => p.petrol !== null).map(p => Math.max(p.petrol!, p.diesel!))) / 10) * 10)
+
+function xScale(index: number): number {
+  return padding.left + (index / (timeline.value.length - 1)) * innerWidth
 }
 
-function yScale(value: number, min: number, max: number): number {
-  return padding.top + innerHeight - ((value - min) / (max - min)) * innerHeight
+function yLeft(value: number): number {
+  return padding.top + innerHeight - (value / brentMax.value) * innerHeight
 }
 
-function buildPath(values: number[], min: number, max: number, total: number): string {
-  return values
-    .map((v, i) => `${i === 0 ? 'M' : 'L'}${xScale(i, total).toFixed(1)},${yScale(v, min, max).toFixed(1)}`)
-    .join(' ')
+function yRight(value: number): number {
+  return padding.top + innerHeight - (value / muMax.value) * innerHeight
 }
 
-function buildAreaPath(values: number[], min: number, max: number, total: number): string {
-  const linePath = values
-    .map((v, i) => `${i === 0 ? 'M' : 'L'}${xScale(i, total).toFixed(1)},${yScale(v, min, max).toFixed(1)}`)
-    .join(' ')
-  const bottomRight = `L${xScale(total - 1, total).toFixed(1)},${(padding.top + innerHeight).toFixed(1)}`
-  const bottomLeft = `L${xScale(0, total).toFixed(1)},${(padding.top + innerHeight).toFixed(1)}`
-  return `${linePath} ${bottomRight} ${bottomLeft} Z`
+function buildPathLeft(values: (number | null)[]): string {
+  let started = false
+  return values.map((v, i) => {
+    if (v === null) return ''
+    const cmd = started ? 'L' : 'M'
+    started = true
+    return `${cmd}${xScale(i).toFixed(1)},${yLeft(v).toFixed(1)}`
+  }).join(' ')
 }
 
-const yTicks = computed(() => {
-  const { minVal, maxVal } = chartData.value
-  const step = maxVal <= 40 ? 5 : 10
+function buildPathRight(values: (number | null)[]): string {
+  let started = false
+  return values.map((v, i) => {
+    if (v === null) return ''
+    const cmd = started ? 'L' : 'M'
+    started = true
+    return `${cmd}${xScale(i).toFixed(1)},${yRight(v).toFixed(1)}`
+  }).join(' ')
+}
+
+function buildAreaLeft(values: (number | null)[]): string {
+  const line = buildPathLeft(values)
+  if (!line) return ''
+  // Find first and last non-null indices
+  let first = -1
+  let last = -1
+  values.forEach((v, i) => { if (v !== null) { if (first === -1) first = i; last = i } })
+  if (first === -1) return ''
+  return `${line} L${xScale(last).toFixed(1)},${(padding.top + innerHeight)} L${xScale(first).toFixed(1)},${(padding.top + innerHeight)} Z`
+}
+
+// --- Y-axis ticks ---
+const yTicksLeft = computed(() => {
+  const step = brentMax.value > 100 ? 20 : 10
   const ticks: number[] = []
-  for (let v = minVal; v <= maxVal; v += step) {
-    ticks.push(v)
-  }
+  for (let v = 0; v <= brentMax.value; v += step) ticks.push(v)
   return ticks
 })
 
+const yTicksRight = computed(() => {
+  const step = muMax.value > 50 ? 10 : 5
+  const ticks: number[] = []
+  for (let v = 0; v <= muMax.value; v += step) ticks.push(v)
+  return ticks
+})
+
+// --- X-axis labels ---
 const xLabels = computed(() => {
-  const data = chartData.value.data
+  const data = timeline.value
   const labels: { index: number; year: string }[] = []
   let lastYear = ''
   data.forEach((d, i) => {
@@ -75,47 +145,53 @@ const xLabels = computed(() => {
       lastYear = year
     }
   })
-  // Only show every Nth year label to avoid clutter
   const step = labels.length > 15 ? 3 : labels.length > 8 ? 2 : 1
   return labels.filter((_, i) => i % step === 0)
+})
+
+// --- Annotation positions ---
+const annotationPositions = computed(() => {
+  return annotations.map((a) => {
+    const idx = timeline.value.findIndex(p => p.date === a.date)
+    return { ...a, x: idx >= 0 ? xScale(idx) : -1, idx }
+  }).filter(a => a.x >= 0)
+})
+
+// --- Tooltip ---
+const tooltip = ref<{ show: boolean; x: number; point: TimelinePoint | null }>({
+  show: false, x: 0, point: null,
 })
 
 function handleChartHover(event: MouseEvent) {
   const svgEl = (event.currentTarget as SVGElement).closest('svg')
   if (!svgEl) return
   const rect = svgEl.getBoundingClientRect()
-  const mouseX = event.clientX - rect.left
-  const scaleRatio = chartWidth / rect.width
-  const scaledX = mouseX * scaleRatio
+  const scaledX = (event.clientX - rect.left) * (chartWidth / rect.width)
 
-  const data = chartData.value.data
-  const total = data.length
-
-  // Find nearest data point
+  const data = timeline.value
   let closestIdx = 0
   let closestDist = Infinity
-  for (let i = 0; i < total; i++) {
-    const px = xScale(i, total)
-    const dist = Math.abs(px - scaledX)
-    if (dist < closestDist) {
-      closestDist = dist
-      closestIdx = i
-    }
+  for (let i = 0; i < data.length; i++) {
+    const dist = Math.abs(xScale(i) - scaledX)
+    if (dist < closestDist) { closestDist = dist; closestIdx = i }
   }
 
-  const entry = data[closestIdx]
-  const px = xScale(closestIdx, total)
+  tooltip.value = { show: true, x: xScale(closestIdx), point: data[closestIdx] }
 
-  tooltip.value = {
-    show: true,
-    x: px,
-    y: 0,
-    entry,
-  }
+  // Check if near an annotation (within 8px)
+  const nearAnnotation = annotationPositions.value.find(a => Math.abs(a.x - xScale(closestIdx)) < 12)
+  hoveredAnnotation.value = nearAnnotation?.date ?? null
 }
 
 function handleChartLeave() {
   tooltip.value.show = false
+  hoveredAnnotation.value = null
+}
+
+function formatMonth(dateStr: string): string {
+  const [year, month] = dateStr.split('-')
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  return `${months[parseInt(month) - 1]} ${year}`
 }
 </script>
 
@@ -180,8 +256,9 @@ function handleChartLeave() {
     <div class="chart-section">
       <h3>Price History</h3>
       <div class="chart-legend">
-        <span class="legend-item"><span class="legend-line petrol" /> Petrol</span>
-        <span class="legend-item"><span class="legend-line diesel" /> Diesel</span>
+        <span class="legend-item"><span class="legend-line petrol" /> Petrol (Rs/L)</span>
+        <span class="legend-item"><span class="legend-line diesel" /> Diesel (Rs/L)</span>
+        <span class="legend-item faded"><span class="legend-line brent" /> Brent Crude (USD/bbl)</span>
       </div>
       <div class="chart-container">
         <svg
@@ -193,59 +270,94 @@ function handleChartLeave() {
         >
           <!-- Grid lines -->
           <line
-            v-for="tick in yTicks"
+            v-for="tick in yTicksLeft"
             :key="tick"
             :x1="padding.left"
-            :y1="yScale(tick, chartData.minVal, chartData.maxVal)"
+            :y1="yLeft(tick)"
             :x2="padding.left + innerWidth"
-            :y2="yScale(tick, chartData.minVal, chartData.maxVal)"
+            :y2="yLeft(tick)"
             class="grid-line"
           />
 
-          <!-- Y-axis labels -->
+          <!-- Left Y-axis labels (Brent USD) -->
           <text
-            v-for="tick in yTicks"
-            :key="'label-' + tick"
+            v-for="tick in yTicksLeft"
+            :key="'l-' + tick"
             :x="padding.left - 8"
-            :y="yScale(tick, chartData.minVal, chartData.maxVal) + 4"
-            class="axis-label"
+            :y="yLeft(tick) + 4"
+            class="axis-label axis-label-left"
             text-anchor="end"
+          >${{ tick }}</text>
+
+          <!-- Right Y-axis labels (Mauritius Rs) -->
+          <text
+            v-for="tick in yTicksRight"
+            :key="'r-' + tick"
+            :x="padding.left + innerWidth + 8"
+            :y="yRight(tick) + 4"
+            class="axis-label"
+            text-anchor="start"
           >Rs {{ tick }}</text>
 
           <!-- X-axis labels -->
           <text
             v-for="label in xLabels"
             :key="'x-' + label.year"
-            :x="xScale(label.index, chartData.data.length)"
+            :x="xScale(label.index)"
             :y="padding.top + innerHeight + 20"
             class="axis-label"
             text-anchor="middle"
           >{{ label.year }}</text>
 
-          <!-- Area fills -->
+          <!-- Annotation lines (behind data) -->
+          <g
+            v-for="a in annotationPositions"
+            :key="'ann-' + a.date"
+            class="annotation-group"
+            :class="{ highlighted: hoveredAnnotation === a.date }"
+          >
+            <line
+              :x1="a.x"
+              :y1="padding.top"
+              :x2="a.x"
+              :y2="padding.top + innerHeight"
+              class="annotation-line"
+            />
+            <text
+              :x="a.x"
+              :y="padding.top - 6"
+              class="annotation-label"
+              text-anchor="middle"
+            >{{ a.label }}</text>
+          </g>
+
+          <!-- Brent area fill (faded background) -->
           <path
-            :d="buildAreaPath(chartData.data.map(d => d.petrol), chartData.minVal, chartData.maxVal, chartData.data.length)"
-            class="area-petrol"
-          />
-          <path
-            :d="buildAreaPath(chartData.data.map(d => d.diesel), chartData.minVal, chartData.maxVal, chartData.data.length)"
-            class="area-diesel"
+            :d="buildAreaLeft(timeline.map(p => p.brent))"
+            class="area-brent"
           />
 
-          <!-- Lines -->
+          <!-- Brent line (faded) -->
           <path
-            :d="buildPath(chartData.data.map(d => d.petrol), chartData.minVal, chartData.maxVal, chartData.data.length)"
+            :d="buildPathLeft(timeline.map(p => p.brent))"
+            class="line-brent"
+            fill="none"
+          />
+
+          <!-- Petrol & Diesel lines (foreground) -->
+          <path
+            :d="buildPathRight(timeline.map(p => p.petrol))"
             class="line-petrol"
             fill="none"
           />
           <path
-            :d="buildPath(chartData.data.map(d => d.diesel), chartData.minVal, chartData.maxVal, chartData.data.length)"
+            :d="buildPathRight(timeline.map(p => p.diesel))"
             class="line-diesel"
             fill="none"
           />
 
           <!-- Hover indicator -->
-          <template v-if="tooltip.show && tooltip.entry">
+          <template v-if="tooltip.show && tooltip.point">
             <line
               :x1="tooltip.x"
               :y1="padding.top"
@@ -254,14 +366,23 @@ function handleChartLeave() {
               class="hover-line"
             />
             <circle
+              v-if="tooltip.point.brent"
               :cx="tooltip.x"
-              :cy="yScale(tooltip.entry.petrol, chartData.minVal, chartData.maxVal)"
+              :cy="yLeft(tooltip.point.brent)"
+              r="3"
+              class="hover-dot brent"
+            />
+            <circle
+              v-if="tooltip.point.petrol"
+              :cx="tooltip.x"
+              :cy="yRight(tooltip.point.petrol)"
               r="4"
               class="hover-dot petrol"
             />
             <circle
+              v-if="tooltip.point.diesel"
               :cx="tooltip.x"
-              :cy="yScale(tooltip.entry.diesel, chartData.minVal, chartData.maxVal)"
+              :cy="yRight(tooltip.point.diesel)"
               r="4"
               class="hover-dot diesel"
             />
@@ -276,25 +397,46 @@ function handleChartLeave() {
             fill="transparent"
           />
         </svg>
+
+        <!-- Tooltip -->
         <div
-          v-if="tooltip.show && tooltip.entry"
+          v-if="tooltip.show && tooltip.point"
           class="chart-tooltip"
           :style="{ left: `${(tooltip.x / chartWidth) * 100}%` }"
         >
-          <div class="tooltip-date">{{ formatDate(tooltip.entry.date) }}</div>
-          <div class="tooltip-row">
-            <span class="fuel-dot petrol" /> Petrol: {{ formatPrice(tooltip.entry.petrol) }}
+          <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
+          <template v-if="tooltip.point.petrol">
+            <div class="tooltip-row">
+              <span class="fuel-dot petrol" /> Petrol: Rs {{ tooltip.point.petrol?.toFixed(2) }}
+            </div>
+            <div class="tooltip-row">
+              <span class="fuel-dot diesel" /> Diesel: Rs {{ tooltip.point.diesel?.toFixed(2) }}
+            </div>
+          </template>
+          <div class="tooltip-row brent-row">
+            <span class="fuel-dot brent" /> Brent: ${{ tooltip.point.brent?.toFixed(2) }}/bbl
           </div>
-          <div class="tooltip-row">
-            <span class="fuel-dot diesel" /> Diesel: {{ formatPrice(tooltip.entry.diesel) }}
-          </div>
+        </div>
+
+        <!-- Annotation detail popup -->
+        <div
+          v-if="hoveredAnnotation"
+          class="annotation-popup"
+        >
+          {{ annotationPositions.find(a => a.date === hoveredAnnotation)?.detail }}
         </div>
       </div>
     </div>
 
     <div class="cta-row">
+      <NuxtLink to="/comparison" class="cta-btn">
+        View Global Oil Comparison
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </NuxtLink>
       <NuxtLink to="/history" class="cta-btn">
-        View Full Price History Table
+        View Full Price History
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
           <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         </svg>
@@ -368,13 +510,9 @@ function handleChartLeave() {
   flex-shrink: 0;
 }
 
-.fuel-dot.petrol {
-  background: var(--petrol-color);
-}
-
-.fuel-dot.diesel {
-  background: var(--diesel-color);
-}
+.fuel-dot.petrol { background: var(--petrol-color); }
+.fuel-dot.diesel { background: var(--diesel-color); }
+.fuel-dot.brent { background: var(--brent-color); }
 
 .price-value {
   font-size: 32px;
@@ -396,13 +534,8 @@ function handleChartLeave() {
   color: var(--neutral-color);
 }
 
-.price-change.up {
-  color: var(--up-color);
-}
-
-.price-change.down {
-  color: var(--down-color);
-}
+.price-change.up { color: var(--up-color); }
+.price-change.down { color: var(--down-color); }
 
 .change-label {
   font-weight: 400;
@@ -445,6 +578,8 @@ function handleChartLeave() {
   font-variant-numeric: tabular-nums;
 }
 
+/* --- Chart --- */
+
 .chart-section {
   margin-bottom: 32px;
 }
@@ -459,6 +594,7 @@ function handleChartLeave() {
   display: flex;
   gap: 16px;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .legend-item {
@@ -469,6 +605,10 @@ function handleChartLeave() {
   color: var(--text-secondary);
 }
 
+.legend-item.faded {
+  opacity: 0.5;
+}
+
 .legend-line {
   display: inline-block;
   width: 16px;
@@ -476,13 +616,9 @@ function handleChartLeave() {
   border-radius: 1px;
 }
 
-.legend-line.petrol {
-  background: var(--petrol-color);
-}
-
-.legend-line.diesel {
-  background: var(--diesel-color);
-}
+.legend-line.petrol { background: var(--petrol-color); }
+.legend-line.diesel { background: var(--diesel-color); }
+.legend-line.brent { background: var(--brent-color); }
 
 .chart-container {
   position: relative;
@@ -510,39 +646,75 @@ function handleChartLeave() {
   font-family: var(--font);
 }
 
-.area-petrol {
-  fill: var(--petrol-color);
-  opacity: 0.06;
+.axis-label-left {
+  opacity: 0.5;
 }
 
-.area-diesel {
-  fill: var(--diesel-color);
-  opacity: 0.06;
+/* Brent (faded background) */
+.area-brent {
+  fill: var(--brent-color);
+  opacity: 0.04;
 }
 
+.line-brent {
+  stroke: var(--brent-color);
+  stroke-width: 1;
+  opacity: 0.25;
+}
+
+/* Mauritius fuel (foreground) */
 .line-petrol {
   stroke: var(--petrol-color);
-  stroke-width: 1.5;
+  stroke-width: 2;
 }
 
 .line-diesel {
   stroke: var(--diesel-color);
-  stroke-width: 1.5;
+  stroke-width: 2;
 }
 
+/* Annotations */
+.annotation-group .annotation-line {
+  stroke: var(--text-muted);
+  stroke-width: 0.5;
+  stroke-dasharray: 3 3;
+  opacity: 0.4;
+  transition: opacity 0.15s, stroke-width 0.15s;
+}
+
+.annotation-group .annotation-label {
+  font-size: 8px;
+  fill: var(--text-muted);
+  font-family: var(--font);
+  font-weight: 500;
+  opacity: 0.6;
+  transition: opacity 0.15s, font-size 0.15s;
+}
+
+.annotation-group.highlighted .annotation-line {
+  stroke: var(--text);
+  stroke-width: 1.5;
+  opacity: 0.8;
+  stroke-dasharray: none;
+}
+
+.annotation-group.highlighted .annotation-label {
+  fill: var(--text);
+  font-size: 9px;
+  font-weight: 600;
+  opacity: 1;
+}
+
+/* Hover */
 .hover-line {
   stroke: var(--text-muted);
   stroke-width: 0.5;
   stroke-dasharray: 4 2;
 }
 
-.hover-dot.petrol {
-  fill: var(--petrol-color);
-}
-
-.hover-dot.diesel {
-  fill: var(--diesel-color);
-}
+.hover-dot.petrol { fill: var(--petrol-color); }
+.hover-dot.diesel { fill: var(--diesel-color); }
+.hover-dot.brent { fill: var(--brent-color); opacity: 0.6; }
 
 .chart-tooltip {
   position: absolute;
@@ -571,8 +743,33 @@ function handleChartLeave() {
   font-variant-numeric: tabular-nums;
 }
 
+.brent-row {
+  opacity: 0.6;
+  font-size: 11px;
+}
+
+.annotation-popup {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--active-btn-bg);
+  color: var(--active-btn-text);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 500;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* CTAs */
 .cta-row {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .cta-btn {
@@ -612,6 +809,10 @@ function handleChartLeave() {
 
   .stat-label {
     margin-bottom: 0;
+  }
+
+  .annotation-group .annotation-label {
+    display: none;
   }
 }
 </style>
