@@ -241,7 +241,7 @@ function formatMonth(dateStr: string): string {
         <div class="card-header">
           <span class="fuel-dot petrol" />
           <span class="card-title">Mogas (Petrol)</span>
-          <span class="card-code">RON 95</span>
+          <span class="card-code" title="Research Octane Number: A standard measure of fuel performance and engine knock resistance.">RON 95</span>
         </div>
         <div class="card-body">
           <div class="price-value">{{ formatPrice(currentPrices.petrol) }}</div>
@@ -265,7 +265,7 @@ function formatMonth(dateStr: string): string {
         <div class="card-header">
           <span class="fuel-dot diesel" />
           <span class="card-title">Gas Oil (Diesel)</span>
-          <span class="card-code">Euro 5</span>
+          <span class="card-code" title="European Emission Standard: Indicates ultra-low sulfur content (<10ppm) for cleaner combustion.">Euro 5</span>
         </div>
         <div class="card-body">
           <div class="price-value">{{ formatPrice(currentPrices.diesel) }}</div>
