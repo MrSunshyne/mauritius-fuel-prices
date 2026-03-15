@@ -63,6 +63,7 @@ const annotations: Annotation[] = [
 ]
 
 const hoveredAnnotation = ref<string | null>(null)
+const hoveredFuel = ref<'petrol' | 'diesel' | null>(null)
 
 // --- Chart dimensions ---
 const chartWidth = 900
@@ -110,7 +111,6 @@ function buildPathRight(values: (number | null)[]): string {
 function buildAreaLeft(values: (number | null)[]): string {
   const line = buildPathLeft(values)
   if (!line) return ''
-  // Find first and last non-null indices
   let first = -1
   let last = -1
   values.forEach((v, i) => { if (v !== null) { if (first === -1) first = i; last = i } })
@@ -118,7 +118,6 @@ function buildAreaLeft(values: (number | null)[]): string {
   return `${line} L${xScale(last).toFixed(1)},${(padding.top + innerHeight)} L${xScale(first).toFixed(1)},${(padding.top + innerHeight)} Z`
 }
 
-// --- Y-axis ticks ---
 const yTicksLeft = computed(() => {
   const step = brentMax.value > 100 ? 20 : 10
   const ticks: number[] = []
@@ -133,7 +132,6 @@ const yTicksRight = computed(() => {
   return ticks
 })
 
-// --- X-axis labels ---
 const xLabels = computed(() => {
   const data = timeline.value
   const labels: { index: number; year: string }[] = []
@@ -149,7 +147,6 @@ const xLabels = computed(() => {
   return labels.filter((_, i) => i % step === 0)
 })
 
-// --- Annotation positions ---
 const annotationPositions = computed(() => {
   return annotations.map((a) => {
     const idx = timeline.value.findIndex(p => p.date === a.date)
@@ -157,7 +154,6 @@ const annotationPositions = computed(() => {
   }).filter(a => a.x >= 0)
 })
 
-// --- Tooltip ---
 const tooltip = ref<{ show: boolean; x: number; point: TimelinePoint | null }>({
   show: false, x: 0, point: null,
 })
@@ -167,7 +163,6 @@ function handleChartHover(event: MouseEvent) {
   if (!svgEl) return
   const rect = svgEl.getBoundingClientRect()
   const scaledX = (event.clientX - rect.left) * (chartWidth / rect.width)
-
   const data = timeline.value
   let closestIdx = 0
   let closestDist = Infinity
@@ -175,10 +170,7 @@ function handleChartHover(event: MouseEvent) {
     const dist = Math.abs(xScale(i) - scaledX)
     if (dist < closestDist) { closestDist = dist; closestIdx = i }
   }
-
   tooltip.value = { show: true, x: xScale(closestIdx), point: data[closestIdx] }
-
-  // Check if near an annotation (within 8px)
   const nearAnnotation = annotationPositions.value.find(a => Math.abs(a.x - xScale(closestIdx)) < 12)
   hoveredAnnotation.value = nearAnnotation?.date ?? null
 }
@@ -190,324 +182,374 @@ function handleChartLeave() {
 
 function formatMonth(dateStr: string): string {
   const [year, month] = dateStr.split('-')
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
   return `${months[parseInt(month) - 1]} ${year}`
 }
 </script>
 
 <template>
   <main class="main">
-    <div class="hero">
-      <h2>Fuel Prices in Mauritius</h2>
-      <p class="hero-sub">Tracking petrol and diesel retail prices since 2002</p>
-      <span class="verified-badge">Data last verified March 2026</span>
-    </div>
+    <div class="bento-grid">
+      <!-- HERO & INFO -->
+      <section class="bento-item hero">
+        <div class="hero-content">
+          <span class="eyebrow">Data Report // STC Mauritius</span>
+          <h2>Fuel Price Index</h2>
+          <p>Tracking retail mogas and gas oil fluctuations in Mauritius since 2002. An analytical view of local price movements against global Brent benchmarks.</p>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-item">
+            <span class="meta-label">Last Updated</span>
+            <span class="meta-value">March 15, 2026</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Status</span>
+            <span class="meta-value pulse">Live Market</span>
+          </div>
+        </div>
+      </section>
 
-    <div class="price-cards">
-      <div class="price-card">
-        <div class="price-label">
+      <!-- PETROL CARD -->
+      <div
+        class="bento-item price-card petrol-card"
+        :class="{ dimmed: hoveredFuel && hoveredFuel !== 'petrol', highlighted: hoveredFuel === 'petrol' }"
+        @mouseenter="hoveredFuel = 'petrol'"
+        @mouseleave="hoveredFuel = null"
+      >
+        <div class="card-header">
           <span class="fuel-dot petrol" />
-          Mogas (Petrol)
+          <span class="card-title">Mogas (Petrol)</span>
+          <span class="card-code">RON 95</span>
         </div>
-        <div class="price-value">{{ formatPrice(currentPrices.petrol) }}</div>
-        <div class="price-unit">per litre</div>
-        <div class="price-change" :class="{ up: lastChange.petrol > 0, down: lastChange.petrol < 0 }">
-          <template v-if="lastChange.petrol > 0">+</template>{{ lastChange.petrol.toFixed(2) }} Rs
-          <span class="change-label">since {{ formatDate(lastChange.sinceDate) }}</span>
+        <div class="card-body">
+          <div class="price-value">{{ formatPrice(currentPrices.petrol) }}</div>
+          <div class="price-change" :class="{ up: lastChange.petrol > 0, down: lastChange.petrol < 0 }">
+            <span class="change-icon">{{ lastChange.petrol > 0 ? '▲' : '▼' }}</span>
+            <span class="change-val">{{ Math.abs(lastChange.petrol).toFixed(2) }} MUR</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          Since {{ formatDate(lastChange.sinceDate) }}
         </div>
       </div>
-      <div class="price-card">
-        <div class="price-label">
+
+      <!-- DIESEL CARD -->
+      <div
+        class="bento-item price-card diesel-card"
+        :class="{ dimmed: hoveredFuel && hoveredFuel !== 'diesel', highlighted: hoveredFuel === 'diesel' }"
+        @mouseenter="hoveredFuel = 'diesel'"
+        @mouseleave="hoveredFuel = null"
+      >
+        <div class="card-header">
           <span class="fuel-dot diesel" />
-          Gas Oil (Diesel)
+          <span class="card-title">Gas Oil (Diesel)</span>
+          <span class="card-code">Euro 5</span>
         </div>
-        <div class="price-value">{{ formatPrice(currentPrices.diesel) }}</div>
-        <div class="price-unit">per litre</div>
-        <div class="price-change" :class="{ up: lastChange.diesel > 0, down: lastChange.diesel < 0 }">
-          <template v-if="lastChange.diesel > 0">+</template>{{ lastChange.diesel.toFixed(2) }} Rs
-          <span class="change-label">since {{ formatDate(lastChange.sinceDate) }}</span>
+        <div class="card-body">
+          <div class="price-value">{{ formatPrice(currentPrices.diesel) }}</div>
+          <div class="price-change" :class="{ up: lastChange.diesel > 0, down: lastChange.diesel < 0 }">
+            <span class="change-icon">{{ lastChange.diesel > 0 ? '▲' : '▼' }}</span>
+            <span class="change-val">{{ Math.abs(lastChange.diesel).toFixed(2) }} MUR</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          Since {{ formatDate(lastChange.sinceDate) }}
         </div>
       </div>
-    </div>
 
-    <div class="stats-row">
-      <div class="stat">
-        <span class="stat-label">Petrol All-Time High</span>
-        <span class="stat-value">{{ formatPrice(allTimePetrolHigh) }}</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">Diesel All-Time High</span>
-        <span class="stat-value">{{ formatPrice(allTimeDieselHigh) }}</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">Petrol All-Time Low</span>
-        <span class="stat-value">{{ formatPrice(allTimePetrolLow) }}</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">Diesel All-Time Low</span>
-        <span class="stat-value">{{ formatPrice(allTimeDieselLow) }}</span>
-      </div>
-      <div class="stat">
-        <span class="stat-label">Data Points</span>
-        <span class="stat-value">{{ chronologicalPrices.length }}</span>
-      </div>
-    </div>
-
-    <div class="chart-section">
-      <h3>Price History</h3>
-      <div class="chart-legend">
-        <span class="legend-item"><span class="legend-line petrol" /> Petrol (Rs/L)</span>
-        <span class="legend-item"><span class="legend-line diesel" /> Diesel (Rs/L)</span>
-        <span class="legend-item faded"><span class="legend-line brent" /> Brent Crude (USD/bbl)</span>
-      </div>
-      <div class="chart-container">
-        <svg
-          :viewBox="`0 0 ${chartWidth} ${chartHeight}`"
-          preserveAspectRatio="xMidYMid meet"
-          class="chart-svg"
-          @mousemove="handleChartHover"
-          @mouseleave="handleChartLeave"
-        >
-          <!-- Grid lines -->
-          <line
-            v-for="tick in yTicksLeft"
-            :key="tick"
-            :x1="padding.left"
-            :y1="yLeft(tick)"
-            :x2="padding.left + innerWidth"
-            :y2="yLeft(tick)"
-            class="grid-line"
-          />
-
-          <!-- Left Y-axis labels (Brent USD) -->
-          <text
-            v-for="tick in yTicksLeft"
-            :key="'l-' + tick"
-            :x="padding.left - 8"
-            :y="yLeft(tick) + 4"
-            class="axis-label axis-label-left"
-            text-anchor="end"
-          >${{ tick }}</text>
-
-          <!-- Right Y-axis labels (Mauritius Rs) -->
-          <text
-            v-for="tick in yTicksRight"
-            :key="'r-' + tick"
-            :x="padding.left + innerWidth + 8"
-            :y="yRight(tick) + 4"
-            class="axis-label"
-            text-anchor="start"
-          >Rs {{ tick }}</text>
-
-          <!-- X-axis labels -->
-          <text
-            v-for="label in xLabels"
-            :key="'x-' + label.year"
-            :x="xScale(label.index)"
-            :y="padding.top + innerHeight + 20"
-            class="axis-label"
-            text-anchor="middle"
-          >{{ label.year }}</text>
-
-          <!-- Annotation lines (behind data) -->
-          <g
-            v-for="a in annotationPositions"
-            :key="'ann-' + a.date"
-            class="annotation-group"
-            :class="{ highlighted: hoveredAnnotation === a.date }"
-          >
-            <line
-              :x1="a.x"
-              :y1="padding.top"
-              :x2="a.x"
-              :y2="padding.top + innerHeight"
-              class="annotation-line"
-            />
-            <text
-              :x="a.x"
-              :y="padding.top - 6"
-              class="annotation-label"
-              text-anchor="middle"
-            >{{ a.label }}</text>
-          </g>
-
-          <!-- Brent area fill (faded background) -->
-          <path
-            :d="buildAreaLeft(timeline.map(p => p.brent))"
-            class="area-brent"
-          />
-
-          <!-- Brent line (faded) -->
-          <path
-            :d="buildPathLeft(timeline.map(p => p.brent))"
-            class="line-brent"
-            fill="none"
-          />
-
-          <!-- Petrol & Diesel lines (foreground) -->
-          <path
-            :d="buildPathRight(timeline.map(p => p.petrol))"
-            class="line-petrol"
-            fill="none"
-          />
-          <path
-            :d="buildPathRight(timeline.map(p => p.diesel))"
-            class="line-diesel"
-            fill="none"
-          />
-
-          <!-- Hover indicator -->
-          <template v-if="tooltip.show && tooltip.point">
-            <line
-              :x1="tooltip.x"
-              :y1="padding.top"
-              :x2="tooltip.x"
-              :y2="padding.top + innerHeight"
-              class="hover-line"
-            />
-            <circle
-              v-if="tooltip.point.brent"
-              :cx="tooltip.x"
-              :cy="yLeft(tooltip.point.brent)"
-              r="3"
-              class="hover-dot brent"
-            />
-            <circle
-              v-if="tooltip.point.petrol"
-              :cx="tooltip.x"
-              :cy="yRight(tooltip.point.petrol)"
-              r="4"
-              class="hover-dot petrol"
-            />
-            <circle
-              v-if="tooltip.point.diesel"
-              :cx="tooltip.x"
-              :cy="yRight(tooltip.point.diesel)"
-              r="4"
-              class="hover-dot diesel"
-            />
-          </template>
-
-          <!-- Invisible hover area -->
-          <rect
-            :x="padding.left"
-            :y="padding.top"
-            :width="innerWidth"
-            :height="innerHeight"
-            fill="transparent"
-          />
-        </svg>
-
-        <!-- Tooltip -->
-        <div
-          v-if="tooltip.show && tooltip.point"
-          class="chart-tooltip"
-          :style="{ left: `${(tooltip.x / chartWidth) * 100}%` }"
-        >
-          <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
-          <template v-if="tooltip.point.petrol">
-            <div class="tooltip-row">
-              <span class="fuel-dot petrol" /> Petrol: Rs {{ tooltip.point.petrol?.toFixed(2) }}
-            </div>
-            <div class="tooltip-row">
-              <span class="fuel-dot diesel" /> Diesel: Rs {{ tooltip.point.diesel?.toFixed(2) }}
-            </div>
-          </template>
-          <div class="tooltip-row brent-row">
-            <span class="fuel-dot brent" /> Brent: ${{ tooltip.point.brent?.toFixed(2) }}/bbl
+      <!-- CHART SECTION -->
+      <section class="bento-item chart-section">
+        <div class="section-header">
+          <h3>Historical Analysis</h3>
+          <div class="chart-legend">
+            <span class="legend-item" :class="{ active: hoveredFuel === 'petrol' }" @mouseenter="hoveredFuel = 'petrol'" @mouseleave="hoveredFuel = null">
+              <span class="legend-line petrol" /> Petrol
+            </span>
+            <span class="legend-item" :class="{ active: hoveredFuel === 'diesel' }" @mouseenter="hoveredFuel = 'diesel'" @mouseleave="hoveredFuel = null">
+              <span class="legend-line diesel" /> Diesel
+            </span>
+            <span class="legend-item brent">
+              <span class="legend-line brent" /> Brent Crude
+            </span>
           </div>
         </div>
 
-        <!-- Annotation detail popup -->
-        <div
-          v-if="hoveredAnnotation"
-          class="annotation-popup"
-        >
-          {{ annotationPositions.find(a => a.date === hoveredAnnotation)?.detail }}
-        </div>
-      </div>
-    </div>
+        <div class="chart-container">
+          <svg
+            :viewBox="`0 0 ${chartWidth} ${chartHeight}`"
+            preserveAspectRatio="xMidYMid meet"
+            class="chart-svg"
+            @mousemove="handleChartHover"
+            @mouseleave="handleChartLeave"
+          >
+            <!-- Grid lines -->
+            <line
+              v-for="tick in yTicksLeft"
+              :key="tick"
+              :x1="padding.left"
+              :y1="yLeft(tick)"
+              :x2="padding.left + innerWidth"
+              :y2="yLeft(tick)"
+              class="grid-line"
+            />
 
-    <div class="cta-row">
-      <NuxtLink to="/comparison" class="cta-btn">
-        View Global Oil Comparison
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </NuxtLink>
-      <NuxtLink to="/history" class="cta-btn">
-        View Full Price History
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-          <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </NuxtLink>
+            <!-- Left Y-axis labels (Brent USD) -->
+            <text
+              v-for="tick in yTicksLeft"
+              :key="'l-' + tick"
+              :x="padding.left - 8"
+              :y="yLeft(tick) + 3"
+              class="axis-label axis-label-left"
+              text-anchor="end"
+            >{{ tick }}</text>
+
+            <!-- Right Y-axis labels (Mauritius Rs) -->
+            <text
+              v-for="tick in yTicksRight"
+              :key="'r-' + tick"
+              :x="padding.left + innerWidth + 8"
+              :y="yRight(tick) + 3"
+              class="axis-label"
+              text-anchor="start"
+            >{{ tick }}</text>
+
+            <!-- X-axis labels -->
+            <text
+              v-for="label in xLabels"
+              :key="'x-' + label.year"
+              :x="xScale(label.index)"
+              :y="padding.top + innerHeight + 20"
+              class="axis-label"
+              text-anchor="middle"
+            >{{ label.year }}</text>
+
+            <!-- Annotation lines -->
+            <g
+              v-for="a in annotationPositions"
+              :key="'ann-' + a.date"
+              class="annotation-group"
+              :class="{ highlighted: hoveredAnnotation === a.date }"
+            >
+              <line
+                :x1="a.x"
+                :y1="padding.top"
+                :x2="a.x"
+                :y2="padding.top + innerHeight"
+                class="annotation-line"
+              />
+            </g>
+
+            <!-- Brent area & line -->
+            <path :d="buildAreaLeft(timeline.map(p => p.brent))" class="area-brent" />
+            <path :d="buildPathLeft(timeline.map(p => p.brent))" class="line-brent" fill="none" />
+
+            <!-- Petrol & Diesel lines -->
+            <path
+              :d="buildPathRight(timeline.map(p => p.petrol))"
+              class="line-petrol"
+              :class="{ highlighted: hoveredFuel === 'petrol', dimmed: hoveredFuel && hoveredFuel !== 'petrol' }"
+              fill="none"
+            />
+            <path
+              :d="buildPathRight(timeline.map(p => p.diesel))"
+              class="line-diesel"
+              :class="{ highlighted: hoveredFuel === 'diesel', dimmed: hoveredFuel && hoveredFuel !== 'diesel' }"
+              fill="none"
+            />
+
+            <!-- Hover indicator -->
+            <template v-if="tooltip.show && tooltip.point">
+              <line :x1="tooltip.x" :y1="padding.top" :x2="tooltip.x" :y2="padding.top + innerHeight" class="hover-line" />
+              <circle v-if="tooltip.point.brent" :cx="tooltip.x" :cy="yLeft(tooltip.point.brent)" r="3" class="hover-dot brent" />
+              <circle v-if="tooltip.point.petrol" :cx="tooltip.x" :cy="yRight(tooltip.point.petrol)" r="4" class="hover-dot petrol" />
+              <circle v-if="tooltip.point.diesel" :cx="tooltip.x" :cy="yRight(tooltip.point.diesel)" r="4" class="hover-dot diesel" />
+            </template>
+          </svg>
+
+          <!-- Tooltip -->
+          <div v-if="tooltip.show && tooltip.point" class="chart-tooltip" :style="{ left: `${(tooltip.x / chartWidth) * 100}%` }">
+            <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
+            <div class="tooltip-row"><span class="fuel-dot petrol" /> PETROL: {{ tooltip.point.petrol?.toFixed(2) }}</div>
+            <div class="tooltip-row"><span class="fuel-dot diesel" /> DIESEL: {{ tooltip.point.diesel?.toFixed(2) }}</div>
+            <div class="tooltip-row brent-row"><span class="fuel-dot brent" /> BRENT: {{ tooltip.point.brent?.toFixed(2) }}</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXTREMES -->
+      <section class="bento-item extremes">
+        <div class="section-header">
+          <h3>Market Extremes</h3>
+        </div>
+        <div class="extremes-grid">
+          <div class="extreme-item">
+            <span class="label">Petrol Peak</span>
+            <span class="value">{{ formatPrice(allTimePetrolHigh) }}</span>
+          </div>
+          <div class="extreme-item">
+            <span class="label">Diesel Peak</span>
+            <span class="value">{{ formatPrice(allTimeDieselHigh) }}</span>
+          </div>
+          <div class="extreme-item">
+            <span class="label">Petrol Floor</span>
+            <span class="value">{{ formatPrice(allTimePetrolLow) }}</span>
+          </div>
+          <div class="extreme-item">
+            <span class="label">Diesel Floor</span>
+            <span class="value">{{ formatPrice(allTimeDieselLow) }}</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- NAVIGATION -->
+      <nav class="bento-item quick-nav">
+        <NuxtLink to="/comparison" class="nav-btn">
+          <span>Brent Comparison</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </NuxtLink>
+        <NuxtLink to="/history" class="nav-btn">
+          <span>Price Registry</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </NuxtLink>
+      </nav>
     </div>
   </main>
 </template>
 
 <style scoped>
 .main {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 16px 24px 48px;
+  padding: 32px 24px;
 }
 
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(160px, auto);
+  gap: 20px;
+}
+
+.bento-item {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero */
 .hero {
-  padding: 32px 0 24px;
+  grid-column: span 2;
+  grid-row: span 2;
+  justify-content: space-between;
 }
 
-.hero h2 {
-  font-size: 28px;
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
   font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 4px;
-}
-
-.hero-sub {
-  font-size: 15px;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   margin-bottom: 12px;
 }
 
-.verified-badge {
-  display: inline-block;
-  padding: 3px 10px;
-  font-size: 11px;
-  font-weight: 500;
+.hero h2 {
+  font-size: 48px;
+  line-height: 0.95;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  max-width: 360px;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 32px;
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.meta-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
   color: var(--text-muted);
-  border: 1px solid var(--border);
-  border-radius: 20px;
+  margin-bottom: 4px;
 }
 
-.price-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 16px;
-  margin-bottom: 16px;
+.meta-value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
 }
 
-.price-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 20px 24px;
-}
-
-.price-label {
+.pulse {
+  color: var(--down-color);
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 8px;
+  gap: 6px;
+}
+
+.pulse::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+/* Price Cards */
+.price-card {
+  grid-column: span 1;
+  grid-row: span 2;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.price-card.dimmed { opacity: 0.3; filter: grayscale(1); }
+.price-card.highlighted { border-width: 4px; padding: 22px; }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.card-code {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-left: auto;
 }
 
 .fuel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border: 1.5px solid var(--border);
 }
 
 .fuel-dot.petrol { background: var(--petrol-color); }
@@ -515,304 +557,207 @@ function formatMonth(dateStr: string): string {
 .fuel-dot.brent { background: var(--brent-color); }
 
 .price-value {
-  font-size: 32px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-}
-
-.price-unit {
-  font-size: 12px;
-  color: var(--text-muted);
-  margin-bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin-bottom: 8px;
 }
 
 .price-change {
-  font-size: 13px;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
-  color: var(--neutral-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
 }
+
+.change-icon { font-size: 12px; }
 
 .price-change.up { color: var(--up-color); }
 .price-change.down { color: var(--down-color); }
 
-.change-label {
-  font-weight: 400;
+.card-footer {
+  margin-top: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
   color: var(--text-muted);
-  margin-left: 4px;
-}
-
-.stats-row {
-  display: flex;
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-bottom: 32px;
-}
-
-.stat {
-  flex: 1;
-  background: var(--surface);
-  padding: 12px 16px;
-  text-align: center;
-  min-width: 0;
-}
-
-.stat-label {
-  display: block;
-  font-size: 11px;
-  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
-  margin-bottom: 4px;
 }
 
-.stat-value {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-}
-
-/* --- Chart --- */
-
+/* Chart */
 .chart-section {
-  margin-bottom: 32px;
+  grid-column: span 3;
+  grid-row: span 2;
 }
 
-.chart-section h3 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 8px;
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 24px;
 }
+
+.section-header h3 { font-size: 14px; }
 
 .chart-legend {
   display: flex;
-  gap: 16px;
-  margin-bottom: 12px;
-  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
-  color: var(--text-secondary);
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.1s;
 }
 
-.legend-item.faded {
-  opacity: 0.5;
-}
+.legend-item.active, .legend-item:hover { opacity: 1; }
+.legend-item.brent { cursor: default; }
 
 .legend-line {
-  display: inline-block;
-  width: 16px;
-  height: 2px;
-  border-radius: 1px;
+  width: 24px;
+  height: 3px;
+  background: var(--text);
 }
 
 .legend-line.petrol { background: var(--petrol-color); }
 .legend-line.diesel { background: var(--diesel-color); }
-.legend-line.brent { background: var(--brent-color); }
+.legend-line.brent { background: var(--brent-color); height: 1.5px; opacity: 0.4; }
 
 .chart-container {
   position: relative;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 16px;
-  overflow: hidden;
+  flex: 1;
 }
 
 .chart-svg {
   width: 100%;
-  height: auto;
+  height: 100%;
   display: block;
+  overflow: visible;
 }
 
-.grid-line {
-  stroke: var(--border);
-  stroke-width: 0.5;
-}
+.grid-line { stroke: var(--row-border); stroke-width: 1; }
+.axis-label { font-family: var(--font-mono); font-size: 9px; fill: var(--text-muted); font-weight: 600; }
+.axis-label-left { opacity: 0.4; }
 
-.axis-label {
-  font-size: 10px;
-  fill: var(--text-muted);
-  font-family: var(--font);
-}
+.area-brent { fill: var(--brent-color); opacity: 0.03; }
+.line-brent { stroke: var(--brent-color); stroke-width: 1; opacity: 0.2; }
 
-.axis-label-left {
-  opacity: 0.5;
-}
+.line-petrol { stroke: var(--petrol-color); stroke-width: 2.5; transition: all 0.2s; }
+.line-diesel { stroke: var(--diesel-color); stroke-width: 2.5; transition: all 0.2s; }
 
-/* Brent (faded background) */
-.area-brent {
-  fill: var(--brent-color);
-  opacity: 0.04;
-}
+.line-petrol.dimmed, .line-diesel.dimmed { opacity: 0.1; stroke-width: 1; }
+.line-petrol.highlighted, .line-diesel.highlighted { stroke-width: 4; }
 
-.line-brent {
-  stroke: var(--brent-color);
-  stroke-width: 1;
-  opacity: 0.25;
-}
+.annotation-line { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.15; }
 
-/* Mauritius fuel (foreground) */
-.line-petrol {
-  stroke: var(--petrol-color);
-  stroke-width: 2;
-}
-
-.line-diesel {
-  stroke: var(--diesel-color);
-  stroke-width: 2;
-}
-
-/* Annotations */
-.annotation-group .annotation-line {
-  stroke: var(--text-muted);
-  stroke-width: 0.5;
-  stroke-dasharray: 3 3;
-  opacity: 0.4;
-  transition: opacity 0.15s, stroke-width 0.15s;
-}
-
-.annotation-group .annotation-label {
-  font-size: 8px;
-  fill: var(--text-muted);
-  font-family: var(--font);
-  font-weight: 500;
-  opacity: 0.6;
-  transition: opacity 0.15s, font-size 0.15s;
-}
-
-.annotation-group.highlighted .annotation-line {
-  stroke: var(--text);
-  stroke-width: 1.5;
-  opacity: 0.8;
-  stroke-dasharray: none;
-}
-
-.annotation-group.highlighted .annotation-label {
-  fill: var(--text);
-  font-size: 9px;
-  font-weight: 600;
-  opacity: 1;
-}
-
-/* Hover */
-.hover-line {
-  stroke: var(--text-muted);
-  stroke-width: 0.5;
-  stroke-dasharray: 4 2;
-}
-
+.hover-line { stroke: var(--text); stroke-width: 1; stroke-dasharray: 2 2; }
+.hover-dot { stroke: var(--bg); stroke-width: 2; }
+.hover-dot.brent { fill: var(--brent-color); }
 .hover-dot.petrol { fill: var(--petrol-color); }
 .hover-dot.diesel { fill: var(--diesel-color); }
-.hover-dot.brent { fill: var(--brent-color); opacity: 0.6; }
 
 .chart-tooltip {
   position: absolute;
-  top: 8px;
+  top: 0;
   transform: translateX(-50%);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 8px 12px;
-  font-size: 12px;
+  background: var(--text);
+  color: var(--bg);
+  padding: 12px;
   pointer-events: none;
-  white-space: nowrap;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-mono);
+  font-size: 10px;
   z-index: 10;
+  min-width: 140px;
 }
 
-.tooltip-date {
-  font-weight: 600;
-  margin-bottom: 4px;
+.tooltip-date { font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 6px; margin-bottom: 6px; }
+.tooltip-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+.brent-row { opacity: 0.6; margin-top: 4px; padding-top: 4px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+/* Extremes */
+.extremes {
+  grid-column: span 1;
+  grid-row: span 2;
 }
 
-.tooltip-row {
+.extremes-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.extreme-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.extreme-item .label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.extreme-item .value {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* Quick Nav */
+.quick-nav {
+  grid-column: span 4;
+  grid-row: span 1;
+  flex-direction: row;
+  padding: 0;
+  border: none;
+  gap: 20px;
+}
+
+.nav-btn {
+  flex: 1;
+  background: var(--surface);
+  border: 2px solid var(--border);
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-variant-numeric: tabular-nums;
+  justify-content: space-between;
+  padding: 24px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: all 0.1s;
 }
 
-.brent-row {
-  opacity: 0.6;
-  font-size: 11px;
+.nav-btn:hover {
+  background: var(--text);
+  color: var(--bg);
 }
 
-.annotation-popup {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--active-btn-bg);
-  color: var(--active-btn-text);
-  border-radius: var(--radius);
-  padding: 6px 12px;
-  font-size: 11px;
-  font-weight: 500;
-  pointer-events: none;
-  white-space: nowrap;
-  z-index: 10;
-}
-
-/* CTAs */
-.cta-row {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.cta-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 20px;
-  font-size: 13px;
-  font-weight: 500;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text);
-  transition: all 0.15s;
-}
-
-.cta-btn:hover {
-  background: var(--surface);
-  border-color: var(--text-muted);
-}
-
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 22px;
+@media (max-width: 1024px) {
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
+  .hero, .chart-section, .quick-nav { grid-column: span 2; }
+}
 
-  .stats-row {
-    flex-direction: column;
-  }
-
-  .stat {
-    text-align: left;
-    padding: 10px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .stat-label {
-    margin-bottom: 0;
-  }
-
-  .annotation-group .annotation-label {
-    display: none;
-  }
+@media (max-width: 640px) {
+  .bento-grid { grid-template-columns: 1fr; }
+  .hero, .price-card, .chart-section, .extremes, .quick-nav { grid-column: span 1; }
+  .hero h2 { font-size: 32px; }
+  .price-value { font-size: 48px; }
+  .quick-nav { flex-direction: column; }
 }
 </style>

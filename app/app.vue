@@ -86,42 +86,43 @@ function applyTheme() {
 }
 
 :root {
-  --bg: #fafafa;
-  --surface: #fff;
-  --border: #e5e5e5;
-  --text: #171717;
-  --text-secondary: #737373;
-  --text-muted: #a3a3a3;
-  --table-header: #f5f5f5;
-  --row-border: #f0f0f0;
-  --row-hover: #fafafa;
-  --active-btn-bg: #171717;
-  --active-btn-text: #fff;
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --border: #111111;
+  --text: #111111;
+  --text-secondary: #444444;
+  --text-muted: #888888;
+  --table-header: #f8f8f8;
+  --row-border: #eeeeee;
+  --row-hover: #fcfcfc;
+  --active-btn-bg: #111111;
+  --active-btn-text: #ffffff;
   --petrol-color: #2563eb;
   --diesel-color: #d97706;
   --up-color: #dc2626;
   --down-color: #16a34a;
   --brent-color: #ef4444;
-  --neutral-color: #737373;
-  --radius: 6px;
-  --radius-lg: 8px;
-  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+  --neutral-color: #444444;
+  --radius: 0px;
+  --radius-lg: 0px;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', SFMono-Regular, ui-monospace, monospace;
 }
 
 html.dark {
-  --bg: #0a0a0a;
-  --surface: #171717;
-  --border: #2e2e2e;
+  --bg: #0c0c0c;
+  --surface: #111111;
+  --border: #222222;
   --text: #e5e5e5;
   --text-secondary: #a3a3a3;
-  --text-muted: #636363;
-  --table-header: #1c1c1c;
-  --row-border: #222;
-  --row-hover: #1c1c1c;
+  --text-muted: #666666;
+  --table-header: #181818;
+  --row-border: #1a1a1a;
+  --row-hover: #161616;
   --active-btn-bg: #e5e5e5;
   --active-btn-text: #0a0a0a;
-  --petrol-color: #60a5fa;
+  --petrol-color: #3b82f6;
   --diesel-color: #fbbf24;
   --brent-color: #f87171;
   --up-color: #f87171;
@@ -133,8 +134,15 @@ body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
-  line-height: 1.5;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-weight: 800;
 }
 
 a {
@@ -142,29 +150,35 @@ a {
   text-decoration: none;
 }
 
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .header {
   background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--border);
   position: sticky;
   top: 0;
   z-index: 20;
 }
 
 .header-inner {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  height: 56px;
+  height: 64px;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 40px;
 }
 
 .header-title {
@@ -173,107 +187,119 @@ a {
 }
 
 .header-title h1 {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0;
 }
 
 .header-nav {
   display: flex;
-  gap: 4px;
+  gap: 0px;
+  border: 1.5px solid var(--border);
 }
 
 .header-nav a {
-  padding: 6px 12px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  border-radius: var(--radius);
-  transition: all 0.15s;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.1s;
+  border-right: 1.5px solid var(--border);
+}
+
+.header-nav a:last-child {
+  border-right: none;
 }
 
 .header-nav a:hover {
-  color: var(--text);
-  background: var(--bg);
+  background: var(--text);
+  color: var(--bg);
 }
 
 .header-nav a.active {
-  color: var(--text);
-  background: var(--bg);
+  background: var(--text);
+  color: var(--bg);
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
-.github-link {
+.github-link, .theme-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  color: var(--text-secondary);
-  transition: all 0.15s;
-}
-
-.github-link:hover {
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--border);
   color: var(--text);
-  background: var(--bg);
-}
-
-.theme-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
+  transition: all 0.1s;
+  background: transparent;
   cursor: pointer;
-  color: var(--text-secondary);
-  transition: all 0.15s;
 }
 
-.theme-toggle:hover {
-  color: var(--text);
-  background: var(--bg);
+.github-link:hover, .theme-toggle:hover {
+  background: var(--text);
+  color: var(--bg);
 }
 
 .page-footer {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 20px 24px 48px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-size: 12px;
+  width: 100%;
+  padding: 40px 24px;
+  border-top: 2px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 11px;
   color: var(--text-muted);
-  line-height: 1.8;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.page-footer p {
+  max-width: 400px;
 }
 
 .page-footer a {
-  color: var(--text-secondary);
+  color: var(--text);
   text-decoration: underline;
-  text-underline-offset: 2px;
+  text-underline-offset: 3px;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {
   .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
     height: auto;
-    padding: 12px 24px;
-    gap: 8px;
+    padding: 16px 24px;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .header-left {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
+    align-items: stretch;
+    gap: 16px;
+  }
+
+  .header-nav {
+    width: 100%;
+  }
+
+  .header-nav a {
+    flex: 1;
+    text-align: center;
+  }
+
+  .page-footer {
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
   }
 }
 </style>

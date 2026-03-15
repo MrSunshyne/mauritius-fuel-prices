@@ -24,62 +24,59 @@ function sortIcon(field: SortField): string {
 
 <template>
   <main class="main">
-    <div class="page-header">
-      <h2>Price History</h2>
-      <p class="page-sub">
-        Complete record of retail fuel price changes from the
-        <a :href="DATA_SOURCE.url" target="_blank" rel="noopener noreferrer">{{ DATA_SOURCE.name }}</a>.
-      </p>
-    </div>
-
-    <div class="results-bar">
-      <span class="results-count">{{ sortedPrices.length }} price changes recorded</span>
-      <div class="sort-buttons">
-        <span class="sort-label">Sort:</span>
-        <button :class="{ active: sortField === 'date' }" @click="toggleSort('date')">
-          Date{{ sortIcon('date') }}
-        </button>
-        <button :class="{ active: sortField === 'petrol' }" @click="toggleSort('petrol')">
-          Petrol{{ sortIcon('petrol') }}
-        </button>
-        <button :class="{ active: sortField === 'diesel' }" @click="toggleSort('diesel')">
-          Diesel{{ sortIcon('diesel') }}
-        </button>
-        <button :class="{ active: sortField === 'spread' }" @click="toggleSort('spread')">
-          Spread{{ sortIcon('spread') }}
-        </button>
+    <div class="bento-header">
+      <div class="header-left">
+        <div class="eyebrow">Archives // Historical Data</div>
+        <h2>Price Registry</h2>
+        <p>A complete chronological ledger of retail fuel price adjustments in Mauritius as mandated by the State Trading Corporation (STC).</p>
+      </div>
+      <div class="header-right">
+        <div class="stat-box">
+          <span class="label">Total Records</span>
+          <span class="val">{{ sortedPrices.length }}</span>
+        </div>
+        <div class="stat-box">
+          <span class="label">Timespan</span>
+          <span class="val">2002 - 2026</span>
+        </div>
       </div>
     </div>
 
-    <div class="table-wrapper">
-      <table class="price-table">
+    <div class="controls-bar">
+      <div class="sort-group">
+        <span class="label">Sort Ledger By</span>
+        <div class="btn-cluster">
+          <button :class="{ active: sortField === 'date' }" @click="toggleSort('date')">DATE{{ sortIcon('date') }}</button>
+          <button :class="{ active: sortField === 'petrol' }" @click="toggleSort('petrol')">PETROL{{ sortIcon('petrol') }}</button>
+          <button :class="{ active: sortField === 'diesel' }" @click="toggleSort('diesel')">DIESEL{{ sortIcon('diesel') }}</button>
+          <button :class="{ active: sortField === 'spread' }" @click="toggleSort('spread')">SPREAD{{ sortIcon('spread') }}</button>
+        </div>
+      </div>
+      <a :href="DATA_SOURCE.url" target="_blank" class="source-link">
+        Official STC Source
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+      </a>
+    </div>
+
+    <div class="ledger-wrapper">
+      <table class="ledger">
         <thead>
           <tr>
-            <th class="sortable" @click="toggleSort('date')">
-              Date{{ sortIcon('date') }}
-            </th>
-            <th class="num sortable" @click="toggleSort('petrol')">
-              Mogas (Petrol){{ sortIcon('petrol') }}
-            </th>
-            <th class="num sortable" @click="toggleSort('diesel')">
-              Gas Oil (Diesel){{ sortIcon('diesel') }}
-            </th>
-            <th class="num sortable" @click="toggleSort('spread')">
-              Spread{{ sortIcon('spread') }}
-            </th>
+            <th @click="toggleSort('date')">Effective Date</th>
+            <th class="num" @click="toggleSort('petrol')">Mogas (Petrol)</th>
+            <th class="num" @click="toggleSort('diesel')">Gas Oil (Diesel)</th>
+            <th class="num" @click="toggleSort('spread')">Index Spread</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(entry, i) in sortedPrices" :key="entry.date" :class="{ 'current-row': i === 0 && sortField === 'date' && sortDirection === 'desc' }">
-            <td>{{ formatDate(entry.date) }}</td>
-            <td class="num">
-              <span class="fuel-chip petrol">{{ formatPrice(entry.petrol) }}</span>
-            </td>
-            <td class="num">
-              <span class="fuel-chip diesel">{{ formatPrice(entry.diesel) }}</span>
-            </td>
+          <tr v-for="(entry, i) in sortedPrices" :key="entry.date">
+            <td class="date-cell">{{ formatDate(entry.date) }}</td>
+            <td class="num petrol-cell">{{ formatPrice(entry.petrol) }}</td>
+            <td class="num diesel-cell">{{ formatPrice(entry.diesel) }}</td>
             <td class="num spread-cell">
-              {{ (entry.petrol - entry.diesel >= 0 ? '+' : '') }}{{ (entry.petrol - entry.diesel).toFixed(2) }}
+              <span :class="{ pos: entry.petrol - entry.diesel > 0, neg: entry.petrol - entry.diesel < 0 }">
+                {{ (entry.petrol - entry.diesel).toFixed(2) }}
+              </span>
             </td>
           </tr>
         </tbody>
@@ -90,170 +87,185 @@ function sortIcon(field: SortField): string {
 
 <style scoped>
 .main {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 16px 24px 48px;
+  padding: 32px 24px;
 }
 
-.page-header {
-  padding: 24px 0 16px;
-}
-
-.page-header h2 {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.page-sub {
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-.page-sub a {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.results-bar {
+.bento-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
-  gap: 12px;
-  flex-wrap: wrap;
+  align-items: flex-end;
+  border: 2px solid var(--border);
+  padding: 32px;
+  margin-bottom: 24px;
+  background: var(--surface);
 }
 
-.results-count {
-  font-size: 13px;
-  color: var(--text-secondary);
-  font-variant-numeric: tabular-nums;
-}
-
-.sort-buttons {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.sort-label {
-  font-size: 12px;
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
   color: var(--text-muted);
-  margin-right: 4px;
-}
-
-.sort-buttons button {
-  padding: 4px 10px;
-  font-size: 12px;
-  font-weight: 500;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--surface);
-  cursor: pointer;
-  color: var(--text-secondary);
-  transition: all 0.15s;
-  white-space: nowrap;
-}
-
-.sort-buttons button.active {
-  background: var(--active-btn-bg);
-  color: var(--active-btn-text);
-  border-color: var(--active-btn-bg);
-}
-
-.table-wrapper {
-  overflow-x: auto;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
-}
-
-.price-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-
-.price-table thead {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-.price-table th {
-  background: var(--table-header);
-  padding: 10px 16px;
-  text-align: left;
-  font-weight: 600;
-  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+.header-left h2 {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.header-left p {
+  max-width: 500px;
+  font-size: 15px;
   color: var(--text-secondary);
-  border-bottom: 1px solid var(--border);
-  white-space: nowrap;
-  user-select: none;
+  line-height: 1.5;
 }
 
-.price-table th.sortable {
-  cursor: pointer;
+.header-right {
+  display: flex;
+  gap: 32px;
 }
 
-.price-table th.sortable:hover {
-  color: var(--text);
-}
-
-.price-table th.num,
-.price-table td.num {
+.stat-box {
   text-align: right;
 }
 
-.price-table td {
-  padding: 8px 16px;
-  border-bottom: 1px solid var(--row-border);
-  vertical-align: middle;
-  font-variant-numeric: tabular-nums;
-}
-
-.price-table tr:last-child td {
-  border-bottom: none;
-}
-
-.price-table tr:hover td {
-  background: var(--row-hover);
-}
-
-.current-row td {
-  font-weight: 600;
-}
-
-.fuel-chip {
-  display: inline-block;
-  padding: 2px 8px;
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 4px;
-  font-variant-numeric: tabular-nums;
-}
-
-.fuel-chip.petrol {
-  color: var(--petrol-color);
-  background: color-mix(in srgb, var(--petrol-color) 10%, transparent);
-}
-
-.fuel-chip.diesel {
-  color: var(--diesel-color);
-  background: color-mix(in srgb, var(--diesel-color) 10%, transparent);
-}
-
-.spread-cell {
+.stat-box .label {
+  display: block;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.stat-box .val {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+}
+
+.controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+
+.sort-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sort-group .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.btn-cluster {
+  display: flex;
+  border: 1.5px solid var(--border);
+}
+
+.btn-cluster button {
+  background: transparent;
+  border: none;
+  border-right: 1.5px solid var(--border);
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.1s;
+  color: var(--text);
+}
+
+.btn-cluster button:last-child { border-right: none; }
+
+.btn-cluster button:hover { background: var(--row-hover); }
+.btn-cluster button.active { background: var(--text); color: var(--bg); }
+
+.source-link {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   color: var(--text-secondary);
 }
 
+.source-link:hover { color: var(--text); text-decoration: underline; }
+
+.ledger-wrapper {
+  border: 2px solid var(--border);
+  background: var(--surface);
+}
+
+.ledger {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ledger th {
+  text-align: left;
+  padding: 16px 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--table-header);
+  border-bottom: 2px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+}
+
+.ledger th:hover { background: var(--border); color: var(--bg); }
+
+.ledger td {
+  padding: 14px 24px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  border-bottom: 1.5px solid var(--row-border);
+}
+
+.ledger tr:last-child td { border-bottom: none; }
+.ledger tr:hover td { background: var(--row-hover); }
+
+.ledger .num { text-align: right; font-weight: 600; }
+
+.petrol-cell { color: var(--petrol-color); }
+.diesel-cell { color: var(--diesel-color); }
+
+.spread-cell span {
+  padding: 2px 6px;
+  background: var(--row-border);
+  font-size: 12px;
+}
+
+.spread-cell span.pos { color: var(--up-color); }
+.spread-cell span.neg { color: var(--down-color); }
+
+@media (max-width: 1024px) {
+  .bento-header { flex-direction: column; align-items: stretch; gap: 32px; }
+  .header-right { justify-content: space-between; }
+}
+
 @media (max-width: 768px) {
-  .sort-buttons {
-    flex-wrap: wrap;
-  }
+  .controls-bar { flex-direction: column; align-items: stretch; gap: 16px; }
+  .sort-group { flex-direction: column; align-items: stretch; gap: 8px; }
+  .btn-cluster { width: 100%; }
+  .btn-cluster button { flex: 1; padding: 10px 4px; font-size: 9px; }
+  .ledger td, .ledger th { padding: 12px 16px; font-size: 12px; }
+  .header-left h2 { font-size: 32px; }
 }
 </style>
