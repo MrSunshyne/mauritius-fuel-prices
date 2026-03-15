@@ -2,6 +2,10 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  watch: {
+    exclude: ['.output', 'node_modules'],
+  },
+
   app: {
     baseURL: '/mauritius-fuel-prices/',
     head: {
