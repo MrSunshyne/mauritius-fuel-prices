@@ -32,6 +32,7 @@ function applyTheme() {
           </NuxtLink>
           <nav class="header-nav">
             <NuxtLink to="/" :class="{ active: route.path === '/' || route.path === '/mauritius-fuel-prices/' }">Overview</NuxtLink>
+            <NuxtLink to="/comparison" :class="{ active: route.path === '/comparison' || route.path === '/mauritius-fuel-prices/comparison' }">Comparison</NuxtLink>
             <NuxtLink to="/history" :class="{ active: route.path === '/history' || route.path === '/mauritius-fuel-prices/history' }">History</NuxtLink>
           </nav>
         </div>
@@ -99,6 +100,7 @@ function applyTheme() {
   --diesel-color: #d97706;
   --up-color: #dc2626;
   --down-color: #16a34a;
+  --brent-color: #ef4444;
   --neutral-color: #737373;
   --radius: 6px;
   --radius-lg: 8px;
@@ -120,6 +122,7 @@ html.dark {
   --active-btn-text: #0a0a0a;
   --petrol-color: #60a5fa;
   --diesel-color: #fbbf24;
+  --brent-color: #f87171;
   --up-color: #f87171;
   --down-color: #4ade80;
   color-scheme: dark;
