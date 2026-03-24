@@ -32,7 +32,9 @@ const timeline = computed<TimelinePoint[]>(() => {
   const muPrices = chronologicalPrices.value
   const points: TimelinePoint[] = []
   for (const b of brentPrices) {
-    const bDate = new Date(b.date + '-15')
+    // Use last day of the month so price changes late in the month are captured
+    const [y, m] = b.date.split('-').map(Number)
+    const bDate = new Date(y, m, 0) // day 0 of next month = last day of this month
     let activePetrol: number | null = null
     let activeDiesel: number | null = null
     for (const mu of muPrices) {
