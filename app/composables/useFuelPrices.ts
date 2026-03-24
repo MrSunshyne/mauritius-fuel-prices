@@ -1,6 +1,9 @@
 import { prices as fallbackPrices, DATA_SOURCE, type FuelPriceEntry } from '~/data/prices'
+import { brentPrices as fallbackBrent, type BrentPriceEntry } from '~/data/brent'
 
-const DATASET_URL = 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-fuel/main/data/prices.json'
+const DATASET_BASE = 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-fuel/main/data'
+const PRICES_URL = `${DATASET_BASE}/prices.json`
+const BRENT_URL = `${DATASET_BASE}/brent.json`
 
 export type SortField = 'date' | 'petrol' | 'diesel' | 'spread'
 export type SortDirection = 'asc' | 'desc'
@@ -8,24 +11,31 @@ export type SortDirection = 'asc' | 'desc'
 const sortField = ref<SortField>('date')
 const sortDirection = ref<SortDirection>('desc')
 const livePrices = ref<FuelPriceEntry[] | null>(null)
+const liveBrent = ref<BrentPriceEntry[] | null>(null)
 
 export function useFuelPrices() {
   // Use live data if fetched, otherwise fall back to bundled data
   const prices = computed(() => livePrices.value ?? fallbackPrices)
+  const brentPrices = computed(() => liveBrent.value ?? fallbackBrent)
 
   // Fetch live data from the dataset repo
   async function fetchLiveData() {
-    try {
-      const res = await fetch(DATASET_URL)
-      if (!res.ok) return
-      const data: FuelPriceEntry[] = await res.json()
-      if (Array.isArray(data) && data.length > 0 && data[0].date && data[0].petrol != null) {
-        livePrices.value = data
-      }
-    }
-    catch {
-      // Silently fall back to bundled data
-    }
+    const results = await Promise.allSettled([
+      fetch(PRICES_URL).then(async (res) => {
+        if (!res.ok) return
+        const data: FuelPriceEntry[] = await res.json()
+        if (Array.isArray(data) && data.length > 0 && data[0].date && data[0].petrol != null) {
+          livePrices.value = data
+        }
+      }),
+      fetch(BRENT_URL).then(async (res) => {
+        if (!res.ok) return
+        const data: BrentPriceEntry[] = await res.json()
+        if (Array.isArray(data) && data.length > 0 && data[0].date && data[0].price != null) {
+          liveBrent.value = data
+        }
+      }),
+    ])
   }
 
   const currentPrices = computed(() => prices.value[0])
@@ -146,6 +156,7 @@ export function useFuelPrices() {
 
   return {
     prices,
+    brentPrices,
     currentPrices,
     lastChange,
     allTimePetrolHigh,

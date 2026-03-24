@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { brentPrices } from '~/data/brent'
-
-const { chronologicalPrices, formatDate, formatPrice } = useFuelPrices()
+const { brentPrices, chronologicalPrices, formatDate, formatPrice } = useFuelPrices()
 
 useSeoMeta({
   title: 'Global Comparison - Mauritius Fuel Prices',
@@ -18,7 +16,7 @@ interface TimelinePoint {
 const timeline = computed<TimelinePoint[]>(() => {
   const muPrices = chronologicalPrices.value
   const points: TimelinePoint[] = []
-  for (const b of brentPrices) {
+  for (const b of brentPrices.value) {
     // Use last day of the month so price changes late in the month are captured
     const [y, m] = b.date.split('-').map(Number)
     const bDate = new Date(y, m, 0) // day 0 of next month = last day of this month
