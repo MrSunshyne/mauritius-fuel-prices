@@ -12,6 +12,7 @@ const sortField = ref<SortField>('date')
 const sortDirection = ref<SortDirection>('desc')
 const livePrices = ref<FuelPriceEntry[] | null>(null)
 const liveBrent = ref<BrentPriceEntry[] | null>(null)
+const dataReady = ref(false)
 
 export function useFuelPrices() {
   // Use live data if fetched, otherwise fall back to bundled data
@@ -20,22 +21,27 @@ export function useFuelPrices() {
 
   // Fetch live data from the dataset repo
   async function fetchLiveData() {
-    const results = await Promise.allSettled([
-      fetch(PRICES_URL).then(async (res) => {
-        if (!res.ok) return
-        const data: FuelPriceEntry[] = await res.json()
-        if (Array.isArray(data) && data.length > 0 && data[0].date && data[0].petrol != null) {
-          livePrices.value = data
-        }
-      }),
-      fetch(BRENT_URL).then(async (res) => {
-        if (!res.ok) return
-        const data: BrentPriceEntry[] = await res.json()
-        if (Array.isArray(data) && data.length > 0 && data[0].date && data[0].price != null) {
-          liveBrent.value = data
-        }
-      }),
-    ])
+    try {
+      await Promise.allSettled([
+        fetch(PRICES_URL).then(async (res) => {
+          if (!res.ok) return
+          const data: FuelPriceEntry[] = await res.json()
+          if (Array.isArray(data) && data.length > 0 && data[0].date && data[0].petrol != null) {
+            livePrices.value = data
+          }
+        }),
+        fetch(BRENT_URL).then(async (res) => {
+          if (!res.ok) return
+          const data: BrentPriceEntry[] = await res.json()
+          if (Array.isArray(data) && data.length > 0 && data[0].date && data[0].price != null) {
+            liveBrent.value = data
+          }
+        }),
+      ])
+    }
+    finally {
+      dataReady.value = true
+    }
   }
 
   const currentPrices = computed(() => prices.value[0])
@@ -157,6 +163,7 @@ export function useFuelPrices() {
   return {
     prices,
     brentPrices,
+    dataReady,
     currentPrices,
     lastChange,
     allTimePetrolHigh,
