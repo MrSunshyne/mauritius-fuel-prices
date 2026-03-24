@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const {
+  dataReady,
   currentPrices,
   lastChange,
   petrolPeak,
@@ -13,6 +14,12 @@ const {
   DATA_SOURCE,
   timeAgo,
 } = useFuelPrices()
+
+// Animated price display — starts at 0, counts up when data arrives
+const petrolTarget = computed(() => dataReady.value ? currentPrices.value.petrol : 0)
+const dieselTarget = computed(() => dataReady.value ? currentPrices.value.diesel : 0)
+const animatedPetrol = useAnimatedNumber(petrolTarget, { duration: 1000 })
+const animatedDiesel = useAnimatedNumber(dieselTarget, { duration: 1000, delay: 100 })
 
 useSeoMeta({
   title: 'Mauritius Fuel Prices - Petrol & Diesel Price Tracker',
@@ -247,13 +254,13 @@ function formatMonth(dateStr: string): string {
           </div>
         </div>
         <div class="card-body">
-          <div class="price-value">{{ formatPrice(currentPrices.petrol) }}</div>
-          <div class="price-change" :class="{ up: lastChange.petrol > 0, down: lastChange.petrol < 0 }">
+          <div class="price-value">Rs {{ animatedPetrol.toFixed(2) }}</div>
+          <div v-if="dataReady" class="price-change" :class="{ up: lastChange.petrol > 0, down: lastChange.petrol < 0 }">
             <span class="change-icon">{{ lastChange.petrol > 0 ? '▲' : '▼' }}</span>
             <span class="change-val">{{ Math.abs(lastChange.petrol).toFixed(2) }} MUR</span>
           </div>
         </div>
-        <div class="card-footer">
+        <div v-if="dataReady" class="card-footer">
           Since {{ formatDate(lastChange.sinceDate) }}
         </div>
       </div>
@@ -273,19 +280,19 @@ function formatMonth(dateStr: string): string {
           </div>
         </div>
         <div class="card-body">
-          <div class="price-value">{{ formatPrice(currentPrices.diesel) }}</div>
-          <div class="price-change" :class="{ up: lastChange.diesel > 0, down: lastChange.diesel < 0 }">
+          <div class="price-value">Rs {{ animatedDiesel.toFixed(2) }}</div>
+          <div v-if="dataReady" class="price-change" :class="{ up: lastChange.diesel > 0, down: lastChange.diesel < 0 }">
             <span class="change-icon">{{ lastChange.diesel > 0 ? '▲' : '▼' }}</span>
             <span class="change-val">{{ Math.abs(lastChange.diesel).toFixed(2) }} MUR</span>
           </div>
         </div>
-        <div class="card-footer">
+        <div v-if="dataReady" class="card-footer">
           Since {{ formatDate(lastChange.sinceDate) }}
         </div>
       </div>
 
       <!-- CHART SECTION -->
-      <section class="bento-item chart-section">
+      <section class="bento-item chart-section" :class="{ 'chart-ready': dataReady }">
         <div class="section-header">
           <h3>Historical Analysis</h3>
           <div class="chart-legend">
@@ -437,7 +444,7 @@ function formatMonth(dateStr: string): string {
       </section>
 
       <!-- EXTREMES -->
-      <section class="bento-item extremes">
+      <section v-if="dataReady" class="bento-item extremes">
         <div class="section-header">
           <h3>Market Extremes</h3>
         </div>
@@ -764,11 +771,16 @@ function formatMonth(dateStr: string): string {
   letter-spacing: 0.05em;
 }
 
-.area-brent { fill: var(--brent-color); opacity: 0.03; }
-.line-brent { stroke: var(--brent-color); stroke-width: 1.5; opacity: 0.3; }
+.area-brent { fill: var(--brent-color); opacity: 0; transition: opacity 0.8s ease 0.6s; }
+.chart-ready .area-brent { opacity: 0.03; }
 
-.line-petrol { stroke: var(--petrol-color); stroke-width: 2.5; transition: all 0.2s; }
-.line-diesel { stroke: var(--diesel-color); stroke-width: 2.5; transition: all 0.2s; }
+.line-brent { stroke: var(--brent-color); stroke-width: 1.5; opacity: 0.3; stroke-dasharray: 3000; stroke-dashoffset: 3000; }
+.chart-ready .line-brent { stroke-dashoffset: 0; transition: stroke-dashoffset 2s ease-out 0.3s; }
+
+.line-petrol { stroke: var(--petrol-color); stroke-width: 2.5; transition: all 0.2s; stroke-dasharray: 3000; stroke-dashoffset: 3000; }
+.line-diesel { stroke: var(--diesel-color); stroke-width: 2.5; transition: all 0.2s; stroke-dasharray: 3000; stroke-dashoffset: 3000; }
+.chart-ready .line-petrol { stroke-dashoffset: 0; transition: stroke-dashoffset 1.8s ease-out 0.5s, opacity 0.2s, stroke-width 0.2s; }
+.chart-ready .line-diesel { stroke-dashoffset: 0; transition: stroke-dashoffset 1.8s ease-out 0.7s, opacity 0.2s, stroke-width 0.2s; }
 
 .line-petrol.dimmed, .line-diesel.dimmed { opacity: 0.1; stroke-width: 1; }
 .line-petrol.highlighted, .line-diesel.highlighted { stroke-width: 4; }
