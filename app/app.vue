@@ -276,24 +276,40 @@ a {
 @media (max-width: 768px) {
   .header-inner {
     height: auto;
-    padding: 16px 24px;
-    flex-direction: column;
-    align-items: stretch;
+    padding: 12px 16px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
   }
 
   .header-left {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 16px;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .header-title h1 {
+    font-size: 16px;
   }
 
   .header-nav {
     width: 100%;
+    order: 3;
   }
 
   .header-nav a {
     flex: 1;
     text-align: center;
+    padding: 6px 8px;
+  }
+
+  .header-actions {
+    order: 2;
+    flex-shrink: 0;
   }
 
   .page-footer {
