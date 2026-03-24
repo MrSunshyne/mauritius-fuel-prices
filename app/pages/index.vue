@@ -32,7 +32,9 @@ const timeline = computed<TimelinePoint[]>(() => {
   const muPrices = chronologicalPrices.value
   const points: TimelinePoint[] = []
   for (const b of brentPrices) {
-    const bDate = new Date(b.date + '-15')
+    // Use last day of the month so price changes late in the month are captured
+    const [y, m] = b.date.split('-').map(Number)
+    const bDate = new Date(y, m, 0) // day 0 of next month = last day of this month
     let activePetrol: number | null = null
     let activeDiesel: number | null = null
     for (const mu of muPrices) {
@@ -240,8 +242,10 @@ function formatMonth(dateStr: string): string {
       >
         <div class="card-header">
           <span class="fuel-dot petrol" />
-          <span class="card-title">Mogas (Petrol)</span>
-          <span class="card-code" title="Research Octane Number: A standard measure of fuel performance and engine knock resistance.">RON 95</span>
+          <div class="card-title-group">
+            <span class="card-title">Petrol</span>
+            <span class="card-subtitle">Mogas · <span title="Research Octane Number: A standard measure of fuel performance and engine knock resistance.">RON 95</span></span>
+          </div>
         </div>
         <div class="card-body">
           <div class="price-value">{{ formatPrice(currentPrices.petrol) }}</div>
@@ -264,8 +268,10 @@ function formatMonth(dateStr: string): string {
       >
         <div class="card-header">
           <span class="fuel-dot diesel" />
-          <span class="card-title">Gas Oil (Diesel)</span>
-          <span class="card-code" title="European Emission Standard: Indicates ultra-low sulfur content (<10ppm) for cleaner combustion.">Euro 5</span>
+          <div class="card-title-group">
+            <span class="card-title">Diesel</span>
+            <span class="card-subtitle">Gas Oil · <span title="European Emission Standard: Indicates ultra-low sulfur content (<10ppm) for cleaner combustion.">Euro 5</span></span>
+          </div>
         </div>
         <div class="card-body">
           <div class="price-value">{{ formatPrice(currentPrices.diesel) }}</div>
@@ -602,7 +608,7 @@ function formatMonth(dateStr: string): string {
   position: relative;
 }
 
-.petrol-card { background: var(--petrol-color); color: #fff; border-color: var(--petrol-color); }
+.petrol-card { background: var(--petrol-color); color: #0a1f0e; border-color: var(--petrol-color); }
 .diesel-card { background: var(--diesel-color); color: #000; border-color: var(--diesel-color); }
 
 .price-card.dimmed { opacity: 0.3; filter: grayscale(1); }
@@ -619,20 +625,28 @@ function formatMonth(dateStr: string): string {
   margin-bottom: 32px;
 }
 
-.card-title {
-  font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
+.card-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.card-code {
+.card-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.card-subtitle {
   font-family: var(--font-mono);
   font-size: 10px;
-  opacity: 0.8;
-  margin-left: auto;
-  border: 1px solid currentColor;
-  padding: 2px 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  opacity: 0.65;
+  letter-spacing: 0.03em;
 }
 
 .fuel-dot {
@@ -641,7 +655,7 @@ function formatMonth(dateStr: string): string {
   border: 1.5px solid currentColor;
 }
 
-.card-header .fuel-dot.petrol { background: #fff; }
+.card-header .fuel-dot.petrol { background: #0a1f0e; }
 .card-header .fuel-dot.diesel { background: #000; }
 
 .fuel-dot.petrol { background: var(--petrol-color); }
@@ -905,10 +919,20 @@ function formatMonth(dateStr: string): string {
 }
 
 @media (max-width: 640px) {
-  .bento-grid { grid-template-columns: 1fr; }
-  .hero, .price-card, .chart-section, .extremes, .quick-nav { grid-column: span 1; }
+  .bento-grid { grid-template-columns: 1fr; gap: 12px; }
+  .hero, .price-card, .chart-section, .extremes, .quick-nav { grid-column: span 1; grid-row: span 1; }
   .hero h2 { font-size: 32px; }
   .price-value { font-size: 48px; }
   .quick-nav { flex-direction: column; }
+
+  /* Bring price cards above the fold on mobile */
+  .petrol-card { order: -2; }
+  .diesel-card { order: -1; }
+
+  /* Compact hero on mobile so it doesn't dominate */
+  .hero { padding: 16px; }
+  .hero h2 { font-size: 28px; margin-bottom: 12px; }
+  .hero p { display: none; }
+  .hero-meta { margin-top: 16px; padding-top: 12px; gap: 20px; }
 }
 </style>
