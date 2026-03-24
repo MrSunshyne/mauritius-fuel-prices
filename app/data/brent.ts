@@ -299,4 +299,5 @@ export const brentPrices: BrentPriceEntry[] = [
   { date: '2025-12', price: 62.54 },
   { date: '2026-01', price: 66.60 },
   { date: '2026-02', price: 70.89 },
+  { date: '2026-03', price: 97.61 },
 ]
