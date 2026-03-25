@@ -31,6 +31,7 @@ export function useAnimatedNumber(
     (newVal, oldVal) => {
       animate(oldVal ?? 0, newVal)
     },
+    { immediate: true },
   )
 
   return display
