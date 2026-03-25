@@ -7,6 +7,11 @@ export function useAnimatedNumber(
   let raf: number | undefined
 
   function animate(from: number, to: number) {
+    if (typeof requestAnimationFrame !== 'function') {
+      display.value = to
+      return
+    }
+
     if (raf) cancelAnimationFrame(raf)
     const start = performance.now() + delay
     function tick(now: number) {
