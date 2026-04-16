@@ -55,7 +55,7 @@ export function useFuelPrices() {
         return {
           petrol: +(curr.petrol - p[i].petrol).toFixed(2),
           diesel: +(curr.diesel - p[i].diesel).toFixed(2),
-          sinceDate: p[i].date,
+          sinceDate: p[i - 1].date,
         }
       }
     }
