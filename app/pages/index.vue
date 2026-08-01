@@ -215,6 +215,17 @@ function formatMonth(dateStr: string): string {
   const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
   return `${months[parseInt(month) - 1]} ${year}`
 }
+
+// Date of the most recent price entry; formatted in UTC so the
+// YYYY-MM-DD string doesn't shift a day in western timezones
+const lastUpdated = computed(() => {
+  return new Date(currentPrices.value.date).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  })
+})
 </script>
 
 <template>
@@ -230,7 +241,7 @@ function formatMonth(dateStr: string): string {
         <div class="hero-meta">
           <div class="meta-item">
             <span class="meta-label">Last Updated</span>
-            <span class="meta-value">March 15, 2026</span>
+            <span class="meta-value">{{ lastUpdated }}</span>
           </div>
           <div class="meta-item">
             <span class="meta-label">Status</span>
