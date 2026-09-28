@@ -101,6 +101,22 @@ export function useFuelPrices() {
   // Chronological order (oldest first) for chart
   const chronologicalPrices = computed(() => [...prices.value].reverse())
 
+  // Months for the chart x-axis: every Brent month, extended with months that have
+  // no Brent price up to the latest local price. Monthly Brent averages are only
+  // published after the month ends, so without this a recent price change has no
+  // month to be plotted on.
+  const chartMonths = computed(() => {
+    const months: { date: string, price: number | null }[] = [...brentPrices.value]
+    const latestPriceMonth = prices.value[0].date.slice(0, 7)
+    let month = months[months.length - 1].date
+    while (month < latestPriceMonth) {
+      const [y, m] = month.split('-').map(Number)
+      month = m === 12 ? `${y + 1}-01` : `${y}-${String(m + 1).padStart(2, '0')}`
+      months.push({ date: month, price: null })
+    }
+    return months
+  })
+
   const sortedPrices = computed(() => {
     const result = [...prices.value]
     result.sort((a, b) => {
@@ -175,6 +191,7 @@ export function useFuelPrices() {
     petrolFloor,
     dieselFloor,
     chronologicalPrices,
+    chartMonths,
     sortedPrices,
     sortField,
     sortDirection,

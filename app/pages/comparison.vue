@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { brentPrices, chronologicalPrices, formatDate, formatPrice } = useFuelPrices()
+const { chartMonths, chronologicalPrices, formatDate, formatPrice } = useFuelPrices()
 
 useSeoMeta({
   title: 'Global Comparison - Mauritius Fuel Prices',
@@ -16,7 +16,7 @@ interface TimelinePoint {
 const timeline = computed<TimelinePoint[]>(() => {
   const muPrices = chronologicalPrices.value
   const points: TimelinePoint[] = []
-  for (const b of brentPrices.value) {
+  for (const b of chartMonths.value) {
     // Use last day of the month so price changes late in the month are captured
     const [y, m] = b.date.split('-').map(Number)
     const bDate = new Date(y, m, 0) // day 0 of next month = last day of this month
@@ -55,6 +55,8 @@ const chartHeight = 400
 const padding = { top: 20, right: 45, bottom: 40, left: 45 }
 const innerWidth = chartWidth - padding.left - padding.right
 const innerHeight = chartHeight - padding.top - padding.bottom
+
+const lastBrentIndex = computed(() => timeline.value.findLastIndex(p => p.brent !== null))
 
 const brentMax = computed(() => Math.ceil(Math.max(...timeline.value.map(p => p.brent ?? 0)) / 10) * 10)
 const muMax = computed(() => Math.ceil(Math.max(...timeline.value.filter(p => p.petrol !== null).map(p => Math.max(p.petrol!, p.diesel!))) / 10) * 10)
@@ -225,7 +227,7 @@ function formatMonth(dateStr: string): string {
               >{{ a.label }}</text>
             </g>
 
-            <path :d="buildPathLeft(timeline.map(p => p.brent)) + ` L${xScale(timeline.length - 1)},${padding.top+innerHeight} L${xScale(0)},${padding.top+innerHeight} Z`" class="area-brent" />
+            <path :d="buildPathLeft(timeline.map(p => p.brent)) + ` L${xScale(lastBrentIndex)},${padding.top+innerHeight} L${xScale(0)},${padding.top+innerHeight} Z`" class="area-brent" />
             <path :d="buildPathLeft(timeline.map(p => p.brent))" class="line-brent" fill="none" />
             <path :d="buildPathRight(timeline.map(p => p.petrol))" class="line-petrol" fill="none" />
             <path :d="buildPathRight(timeline.map(p => p.diesel))" class="line-diesel" fill="none" />
@@ -240,7 +242,7 @@ function formatMonth(dateStr: string): string {
 
           <div v-if="tooltip.show && tooltip.point" class="chart-tooltip" :style="{ left: `${(tooltip.x / chartWidth) * 100}%` }">
             <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
-            <div class="tooltip-row"><span class="dot brent" /> BRENT: USD {{ tooltip.point.brent?.toFixed(2) }}/BBL</div>
+            <div v-if="tooltip.point.brent !== null" class="tooltip-row"><span class="dot brent" /> BRENT: USD {{ tooltip.point.brent?.toFixed(2) }}/BBL</div>
             <div class="tooltip-row"><span class="dot petrol" /> PETROL: MUR {{ tooltip.point.petrol?.toFixed(2) }}/L</div>
             <div class="tooltip-row"><span class="dot diesel" /> DIESEL: MUR {{ tooltip.point.diesel?.toFixed(2) }}/L</div>
           </div>
