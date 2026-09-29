@@ -13,6 +13,7 @@ const {
   formatPrice,
   DATA_SOURCE,
   timeAgo,
+  inflation,
 } = useFuelPrices()
 
 // Animated price display — starts at 0, counts up when data arrives
@@ -26,12 +27,22 @@ useSeoMeta({
   description: 'Track petrol and diesel price changes in Mauritius from 2002 to present. Data sourced from the State Trading Corporation.',
 })
 
+// --- Inflation adjustment ---
+// Adjusted prices are in rupees of the latest month with a CPI value. Months after it
+// (CPI not yet published) are left unadjusted.
+const adjustForInflation = ref(false)
+const inflationByMonth = computed(() => new Map(inflation.value.map(i => [i.date, i])))
+const cpiReference = computed(() => inflation.value.findLast(i => i.cpi !== null)!)
+
 // --- Build unified timeline for dual-axis chart ---
 interface TimelinePoint {
   date: string
   brent: number | null
   petrol: number | null
   diesel: number | null
+  nominalPetrol: number | null
+  nominalDiesel: number | null
+  inflation: number | null
 }
 
 const timeline = computed<TimelinePoint[]>(() => {
@@ -51,7 +62,18 @@ const timeline = computed<TimelinePoint[]>(() => {
         break
       }
     }
-    points.push({ date: b.date, brent: b.price, petrol: activePetrol, diesel: activeDiesel })
+    const month = inflationByMonth.value.get(b.date)
+    const reference = cpiReference.value.cpi!
+    const factor = adjustForInflation.value ? reference / (month?.cpi ?? reference) : 1
+    points.push({
+      date: b.date,
+      brent: b.price,
+      petrol: activePetrol === null ? null : activePetrol * factor,
+      diesel: activeDiesel === null ? null : activeDiesel * factor,
+      nominalPetrol: activePetrol,
+      nominalDiesel: activeDiesel,
+      inflation: month?.yoy ?? null,
+    })
   }
   return points
 })
@@ -305,7 +327,23 @@ const lastUpdated = computed(() => {
       <!-- CHART SECTION -->
       <section class="bento-item chart-section" :class="{ 'chart-ready': dataReady }">
         <div class="section-header">
-          <h3>Historical Analysis</h3>
+          <div class="chart-title-group">
+            <h3>Historical Analysis</h3>
+            <div class="value-toggle" role="group" aria-label="Price basis">
+              <button type="button" :class="{ active: !adjustForInflation }" :aria-pressed="!adjustForInflation" @click="adjustForInflation = false">
+                Nominal
+              </button>
+              <button
+                type="button"
+                :class="{ active: adjustForInflation }"
+                :aria-pressed="adjustForInflation"
+                :title="`Prices in ${formatMonth(cpiReference.date)} rupees, adjusted with the consumer price index`"
+                @click="adjustForInflation = true"
+              >
+                Inflation-adjusted
+              </button>
+            </div>
+          </div>
           <div class="chart-legend">
             <span class="legend-item" :class="{ active: hoveredFuel === 'petrol' }" @mouseenter="hoveredFuel = 'petrol'" @mouseleave="hoveredFuel = null">
               <span class="legend-line petrol" /> Petrol
@@ -360,7 +398,7 @@ const lastUpdated = computed(() => {
               text-anchor="start"
             >{{ tick }}</text>
 
-            <text :x="chartWidth - 8" :y="padding.top + innerHeight / 2" class="axis-title right" :transform="`rotate(90, ${chartWidth - 8}, ${padding.top + innerHeight / 2})`" text-anchor="middle">LOCAL (MUR/L)</text>
+            <text :x="chartWidth - 8" :y="padding.top + innerHeight / 2" class="axis-title right" :transform="`rotate(90, ${chartWidth - 8}, ${padding.top + innerHeight / 2})`" text-anchor="middle">{{ adjustForInflation ? `LOCAL (${formatMonth(cpiReference.date)} MUR/L)` : 'LOCAL (MUR/L)' }}</text>
 
             <!-- X-axis labels -->
             <text
@@ -442,9 +480,10 @@ const lastUpdated = computed(() => {
           <!-- Tooltip -->
           <div v-if="tooltip.show && tooltip.point" class="chart-tooltip" :style="{ left: `${(tooltip.x / chartWidth) * 100}%` }">
             <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
-            <div class="tooltip-row"><span class="fuel-dot petrol" /> PETROL: MUR {{ tooltip.point.petrol?.toFixed(2) }}/L</div>
-            <div class="tooltip-row"><span class="fuel-dot diesel" /> DIESEL: MUR {{ tooltip.point.diesel?.toFixed(2) }}/L</div>
+            <div class="tooltip-row"><span class="fuel-dot petrol" /> PETROL: MUR {{ tooltip.point.petrol?.toFixed(2) }}/L<span v-if="tooltip.point.nominalPetrol !== tooltip.point.petrol" class="tooltip-nominal">THEN {{ tooltip.point.nominalPetrol?.toFixed(2) }}</span></div>
+            <div class="tooltip-row"><span class="fuel-dot diesel" /> DIESEL: MUR {{ tooltip.point.diesel?.toFixed(2) }}/L<span v-if="tooltip.point.nominalDiesel !== tooltip.point.diesel" class="tooltip-nominal">THEN {{ tooltip.point.nominalDiesel?.toFixed(2) }}</span></div>
             <div v-if="tooltip.point.brent !== null" class="tooltip-row brent-row"><span class="fuel-dot brent" /> BRENT: USD {{ tooltip.point.brent?.toFixed(2) }}/BBL</div>
+            <div v-if="tooltip.point.inflation !== null" class="tooltip-row inflation-row"><span class="fuel-dot inflation" /> INFLATION: {{ tooltip.point.inflation.toFixed(1) }}% YOY</div>
           </div>
 
           <!-- Annotation detail popup -->
@@ -678,6 +717,7 @@ const lastUpdated = computed(() => {
 .fuel-dot.petrol { background: var(--petrol-color); }
 .fuel-dot.diesel { background: var(--diesel-color); }
 .fuel-dot.brent { background: var(--brent-color); }
+.fuel-dot.inflation { background: var(--text-muted); }
 
 .price-value {
   font-family: var(--font-mono);
@@ -719,12 +759,48 @@ const lastUpdated = computed(() => {
 
 .section-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
+  gap: 12px 24px;
   margin-bottom: 24px;
 }
 
 .section-header h3 { font-size: 14px; }
+
+.chart-title-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 16px;
+}
+
+.value-toggle {
+  display: flex;
+  border: 1.5px solid var(--border);
+}
+
+.value-toggle button {
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  background: transparent;
+  border: none;
+  border-right: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.value-toggle button:last-child { border-right: none; }
+
+.value-toggle button:hover, .value-toggle button.active {
+  background: var(--text);
+  color: var(--bg);
+}
 
 .chart-legend {
   display: flex;
@@ -790,8 +866,8 @@ const lastUpdated = computed(() => {
 
 .line-petrol { stroke: var(--petrol-color); stroke-width: 2.5; transition: all 0.2s; stroke-dasharray: 3000; stroke-dashoffset: 3000; }
 .line-diesel { stroke: var(--diesel-color); stroke-width: 2.5; transition: all 0.2s; stroke-dasharray: 3000; stroke-dashoffset: 3000; }
-.chart-ready .line-petrol { stroke-dashoffset: 0; transition: stroke-dashoffset 1.8s ease-out 0.5s, opacity 0.2s, stroke-width 0.2s; }
-.chart-ready .line-diesel { stroke-dashoffset: 0; transition: stroke-dashoffset 1.8s ease-out 0.7s, opacity 0.2s, stroke-width 0.2s; }
+.chart-ready .line-petrol { stroke-dashoffset: 0; transition: stroke-dashoffset 1.8s ease-out 0.5s, opacity 0.2s, stroke-width 0.2s, d 0.4s ease; }
+.chart-ready .line-diesel { stroke-dashoffset: 0; transition: stroke-dashoffset 1.8s ease-out 0.7s, opacity 0.2s, stroke-width 0.2s, d 0.4s ease; }
 
 .line-petrol.dimmed, .line-diesel.dimmed { opacity: 0.1; stroke-width: 1; }
 .line-petrol.highlighted, .line-diesel.highlighted { stroke-width: 4; }
@@ -825,6 +901,8 @@ const lastUpdated = computed(() => {
 .tooltip-date { font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 6px; margin-bottom: 6px; }
 .tooltip-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
 .brent-row { opacity: 0.6; margin-top: 4px; padding-top: 4px; border-top: 1px solid rgba(255,255,255,0.1); }
+.inflation-row { opacity: 0.6; }
+.tooltip-nominal { opacity: 0.6; margin-left: 4px; }
 
 .annotation-popup {
   position: absolute;

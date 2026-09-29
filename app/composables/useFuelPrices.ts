@@ -1,9 +1,11 @@
 import { prices as fallbackPrices, DATA_SOURCE, type FuelPriceEntry } from '~/data/prices'
 import { brentPrices as fallbackBrent, type BrentPriceEntry } from '~/data/brent'
+import { inflation as fallbackInflation, type InflationEntry } from '~/data/inflation'
 
 const DATASET_BASE = 'https://raw.githubusercontent.com/MrSunshyne/mauritius-dataset-fuel/main/data'
 const PRICES_URL = `${DATASET_BASE}/prices.json`
 const BRENT_URL = `${DATASET_BASE}/brent.json`
+const INFLATION_URL = `${DATASET_BASE}/inflation.json`
 
 export type SortField = 'date' | 'petrol' | 'diesel' | 'spread'
 export type SortDirection = 'asc' | 'desc'
@@ -12,12 +14,14 @@ const sortField = ref<SortField>('date')
 const sortDirection = ref<SortDirection>('desc')
 const livePrices = ref<FuelPriceEntry[] | null>(null)
 const liveBrent = ref<BrentPriceEntry[] | null>(null)
+const liveInflation = ref<InflationEntry[] | null>(null)
 const dataReady = ref(false)
 
 export function useFuelPrices() {
   // Use live data if fetched, otherwise fall back to bundled data
   const prices = computed(() => livePrices.value ?? fallbackPrices)
   const brentPrices = computed(() => liveBrent.value ?? fallbackBrent)
+  const inflation = computed(() => liveInflation.value ?? fallbackInflation)
 
   // Fetch live data from the dataset repo
   async function fetchLiveData() {
@@ -35,6 +39,13 @@ export function useFuelPrices() {
           const data: BrentPriceEntry[] = await res.json()
           if (Array.isArray(data) && data.length > 0 && data[0].date && data[0].price != null) {
             liveBrent.value = data
+          }
+        }),
+        fetch(INFLATION_URL).then(async (res) => {
+          if (!res.ok) return
+          const data: InflationEntry[] = await res.json()
+          if (Array.isArray(data) && data.length > 0 && data[0].date && data[data.length - 1].cpi != null) {
+            liveInflation.value = data
           }
         }),
       ])
@@ -179,6 +190,7 @@ export function useFuelPrices() {
   return {
     prices,
     brentPrices,
+    inflation,
     dataReady,
     currentPrices,
     lastChange,
