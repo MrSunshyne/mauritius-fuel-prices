@@ -476,6 +476,7 @@ function formatMonth(dateStr: string): string {
 }
 
 .tooltip-date { font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 8px; padding-bottom: 4px; }
+.tooltip-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
 .inflation-row { opacity: 0.6; }
 .tooltip-nominal { opacity: 0.6; margin-left: 4px; }
 
