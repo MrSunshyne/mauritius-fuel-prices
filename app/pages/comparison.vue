@@ -1,5 +1,14 @@
 <script setup lang="ts">
-const { chartMonths, chronologicalPrices, formatDate, formatPrice } = useFuelPrices()
+const {
+  chartMonths,
+  chronologicalPrices,
+  formatDate,
+  formatPrice,
+  adjustForInflation,
+  inflationByMonth,
+  cpiReference,
+  inflationFactor,
+} = useFuelPrices()
 
 useSeoMeta({
   title: 'Global Comparison - Mauritius Fuel Prices',
@@ -11,6 +20,9 @@ interface TimelinePoint {
   brent: number | null
   petrol: number | null
   diesel: number | null
+  nominalPetrol: number | null
+  nominalDiesel: number | null
+  inflation: number | null
 }
 
 const timeline = computed<TimelinePoint[]>(() => {
@@ -30,7 +42,16 @@ const timeline = computed<TimelinePoint[]>(() => {
         break
       }
     }
-    points.push({ date: b.date, brent: b.price, petrol: activePetrol, diesel: activeDiesel })
+    const factor = inflationFactor(b.date)
+    points.push({
+      date: b.date,
+      brent: b.price,
+      petrol: activePetrol === null ? null : activePetrol * factor,
+      diesel: activeDiesel === null ? null : activeDiesel * factor,
+      nominalPetrol: activePetrol,
+      nominalDiesel: activeDiesel,
+      inflation: inflationByMonth.value.get(b.date)?.yoy ?? null,
+    })
   }
   return points
 })
@@ -190,6 +211,7 @@ function formatMonth(dateStr: string): string {
             <span class="legend-item"><span class="dot petrol" /> Petrol (Rs/L)</span>
             <span class="legend-item"><span class="dot diesel" /> Diesel (Rs/L)</span>
           </div>
+          <InflationToggle />
         </div>
 
         <div class="chart-container">
@@ -201,7 +223,7 @@ function formatMonth(dateStr: string): string {
             
             <text v-for="tick in yTicksRight" :key="'r-'+tick" :x="padding.left + innerWidth + 8" :y="yScaleRight(tick) + 3" class="axis-label axis-right" text-anchor="start">{{ tick }}</text>
             
-            <text :x="chartWidth - 8" :y="padding.top + innerHeight / 2" class="axis-title right" :transform="`rotate(90, ${chartWidth - 8}, ${padding.top + innerHeight / 2})`" text-anchor="middle">LOCAL (MUR/L)</text>
+            <text :x="chartWidth - 8" :y="padding.top + innerHeight / 2" class="axis-title right" :transform="`rotate(90, ${chartWidth - 8}, ${padding.top + innerHeight / 2})`" text-anchor="middle">{{ adjustForInflation ? `LOCAL (${formatMonth(cpiReference.date)} MUR/L)` : 'LOCAL (MUR/L)' }}</text>
             
             <text v-for="label in xLabels" :key="'x-'+label.year" :x="xScale(label.index)" :y="padding.top + innerHeight + 25" class="axis-label" text-anchor="middle">{{ label.year }}</text>
 
@@ -243,8 +265,9 @@ function formatMonth(dateStr: string): string {
           <div v-if="tooltip.show && tooltip.point" class="chart-tooltip" :style="{ left: `${(tooltip.x / chartWidth) * 100}%` }">
             <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
             <div v-if="tooltip.point.brent !== null" class="tooltip-row"><span class="dot brent" /> BRENT: USD {{ tooltip.point.brent?.toFixed(2) }}/BBL</div>
-            <div class="tooltip-row"><span class="dot petrol" /> PETROL: MUR {{ tooltip.point.petrol?.toFixed(2) }}/L</div>
-            <div class="tooltip-row"><span class="dot diesel" /> DIESEL: MUR {{ tooltip.point.diesel?.toFixed(2) }}/L</div>
+            <div class="tooltip-row"><span class="dot petrol" /> PETROL: MUR {{ tooltip.point.petrol?.toFixed(2) }}/L<span v-if="tooltip.point.nominalPetrol !== tooltip.point.petrol" class="tooltip-nominal">THEN {{ tooltip.point.nominalPetrol?.toFixed(2) }}</span></div>
+            <div class="tooltip-row"><span class="dot diesel" /> DIESEL: MUR {{ tooltip.point.diesel?.toFixed(2) }}/L<span v-if="tooltip.point.nominalDiesel !== tooltip.point.diesel" class="tooltip-nominal">THEN {{ tooltip.point.nominalDiesel?.toFixed(2) }}</span></div>
+            <div v-if="tooltip.point.inflation !== null" class="tooltip-row inflation-row"><span class="dot inflation" /> INFLATION: {{ tooltip.point.inflation.toFixed(1) }}% YOY</div>
           </div>
 
           <!-- Annotation detail popup -->
@@ -372,6 +395,11 @@ function formatMonth(dateStr: string): string {
 }
 
 .chart-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 24px;
   margin-bottom: 32px;
 }
 
@@ -394,6 +422,7 @@ function formatMonth(dateStr: string): string {
 .dot.brent { background: var(--brent-color); }
 .dot.petrol { background: var(--petrol-color); }
 .dot.diesel { background: var(--diesel-color); }
+.dot.inflation { background: var(--text-muted); }
 
 .chart-container {
   position: relative;
@@ -421,8 +450,8 @@ function formatMonth(dateStr: string): string {
 
 .area-brent { fill: var(--brent-color); opacity: 0.04; }
 .line-brent { stroke: var(--brent-color); stroke-width: 1.5; opacity: 0.3; }
-.line-petrol { stroke: var(--petrol-color); stroke-width: 2.5; }
-.line-diesel { stroke: var(--diesel-color); stroke-width: 2.5; }
+.line-petrol { stroke: var(--petrol-color); stroke-width: 2.5; transition: d 0.4s ease; }
+.line-diesel { stroke: var(--diesel-color); stroke-width: 2.5; transition: d 0.4s ease; }
 
 .annotation-line { stroke: var(--border); stroke-width: 1; stroke-dasharray: 4 4; opacity: 0.15; transition: all 0.2s; }
 .annotation-label { font-family: var(--font-mono); font-size: 8px; font-weight: 700; fill: var(--text-muted); opacity: 0.6; transition: all 0.2s; }
@@ -447,6 +476,8 @@ function formatMonth(dateStr: string): string {
 }
 
 .tooltip-date { font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 8px; padding-bottom: 4px; }
+.inflation-row { opacity: 0.6; }
+.tooltip-nominal { opacity: 0.6; margin-left: 4px; }
 
 .annotation-popup {
   position: absolute;

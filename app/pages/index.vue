@@ -13,7 +13,10 @@ const {
   formatPrice,
   DATA_SOURCE,
   timeAgo,
-  inflation,
+  adjustForInflation,
+  inflationByMonth,
+  cpiReference,
+  inflationFactor,
 } = useFuelPrices()
 
 // Animated price display — starts at 0, counts up when data arrives
@@ -26,13 +29,6 @@ useSeoMeta({
   title: 'Mauritius Fuel Prices - Petrol & Diesel Price Tracker',
   description: 'Track petrol and diesel price changes in Mauritius from 2002 to present. Data sourced from the State Trading Corporation.',
 })
-
-// --- Inflation adjustment ---
-// Adjusted prices are in rupees of the latest month with a CPI value. Months after it
-// (CPI not yet published) are left unadjusted.
-const adjustForInflation = ref(false)
-const inflationByMonth = computed(() => new Map(inflation.value.map(i => [i.date, i])))
-const cpiReference = computed(() => inflation.value.findLast(i => i.cpi !== null)!)
 
 // --- Build unified timeline for dual-axis chart ---
 interface TimelinePoint {
@@ -62,9 +58,7 @@ const timeline = computed<TimelinePoint[]>(() => {
         break
       }
     }
-    const month = inflationByMonth.value.get(b.date)
-    const reference = cpiReference.value.cpi!
-    const factor = adjustForInflation.value ? reference / (month?.cpi ?? reference) : 1
+    const factor = inflationFactor(b.date)
     points.push({
       date: b.date,
       brent: b.price,
@@ -72,7 +66,7 @@ const timeline = computed<TimelinePoint[]>(() => {
       diesel: activeDiesel === null ? null : activeDiesel * factor,
       nominalPetrol: activePetrol,
       nominalDiesel: activeDiesel,
-      inflation: month?.yoy ?? null,
+      inflation: inflationByMonth.value.get(b.date)?.yoy ?? null,
     })
   }
   return points
@@ -329,20 +323,7 @@ const lastUpdated = computed(() => {
         <div class="section-header">
           <div class="chart-title-group">
             <h3>Historical Analysis</h3>
-            <div class="value-toggle" role="group" aria-label="Price basis">
-              <button type="button" :class="{ active: !adjustForInflation }" :aria-pressed="!adjustForInflation" @click="adjustForInflation = false">
-                Nominal
-              </button>
-              <button
-                type="button"
-                :class="{ active: adjustForInflation }"
-                :aria-pressed="adjustForInflation"
-                :title="`Prices in ${formatMonth(cpiReference.date)} rupees, adjusted with the consumer price index`"
-                @click="adjustForInflation = true"
-              >
-                Inflation-adjusted
-              </button>
-            </div>
+            <InflationToggle />
           </div>
           <div class="chart-legend">
             <span class="legend-item" :class="{ active: hoveredFuel === 'petrol' }" @mouseenter="hoveredFuel = 'petrol'" @mouseleave="hoveredFuel = null">
@@ -773,33 +754,6 @@ const lastUpdated = computed(() => {
   flex-wrap: wrap;
   align-items: center;
   gap: 12px 16px;
-}
-
-.value-toggle {
-  display: flex;
-  border: 1.5px solid var(--border);
-}
-
-.value-toggle button {
-  padding: 4px 10px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--text);
-  background: transparent;
-  border: none;
-  border-right: 1.5px solid var(--border);
-  cursor: pointer;
-  transition: all 0.1s;
-}
-
-.value-toggle button:last-child { border-right: none; }
-
-.value-toggle button:hover, .value-toggle button.active {
-  background: var(--text);
-  color: var(--bg);
 }
 
 .chart-legend {

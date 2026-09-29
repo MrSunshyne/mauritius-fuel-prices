@@ -16,6 +16,8 @@ const livePrices = ref<FuelPriceEntry[] | null>(null)
 const liveBrent = ref<BrentPriceEntry[] | null>(null)
 const liveInflation = ref<InflationEntry[] | null>(null)
 const dataReady = ref(false)
+// Shared so the chart keeps its price basis when switching pages
+const adjustForInflation = ref(false)
 
 export function useFuelPrices() {
   // Use live data if fetched, otherwise fall back to bundled data
@@ -128,6 +130,18 @@ export function useFuelPrices() {
     return months
   })
 
+  // Inflation adjustment: prices are expressed in rupees of the latest month with a
+  // CPI value. Months after it (CPI not yet published) are left unadjusted.
+  const inflationByMonth = computed(() => new Map(inflation.value.map(i => [i.date, i])))
+  const cpiReference = computed(() => inflation.value.findLast(i => i.cpi !== null)!)
+
+  // Multiplier for a YYYY-MM month's prices under the current price basis
+  function inflationFactor(month: string): number {
+    if (!adjustForInflation.value) return 1
+    const reference = cpiReference.value.cpi!
+    return reference / (inflationByMonth.value.get(month)?.cpi ?? reference)
+  }
+
   const sortedPrices = computed(() => {
     const result = [...prices.value]
     result.sort((a, b) => {
@@ -204,6 +218,10 @@ export function useFuelPrices() {
     dieselFloor,
     chronologicalPrices,
     chartMonths,
+    adjustForInflation,
+    inflationByMonth,
+    cpiReference,
+    inflationFactor,
     sortedPrices,
     sortField,
     sortDirection,
