@@ -7,7 +7,7 @@ const {
   dieselPeak,
   petrolFloor,
   dieselFloor,
-  brentPrices,
+  chartMonths,
   chronologicalPrices,
   formatDate,
   formatPrice,
@@ -37,7 +37,7 @@ interface TimelinePoint {
 const timeline = computed<TimelinePoint[]>(() => {
   const muPrices = chronologicalPrices.value
   const points: TimelinePoint[] = []
-  for (const b of brentPrices.value) {
+  for (const b of chartMonths.value) {
     // Use last day of the month so price changes late in the month are captured
     const [y, m] = b.date.split('-').map(Number)
     const bDate = new Date(y, m, 0) // day 0 of next month = last day of this month
@@ -444,7 +444,7 @@ const lastUpdated = computed(() => {
             <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
             <div class="tooltip-row"><span class="fuel-dot petrol" /> PETROL: MUR {{ tooltip.point.petrol?.toFixed(2) }}/L</div>
             <div class="tooltip-row"><span class="fuel-dot diesel" /> DIESEL: MUR {{ tooltip.point.diesel?.toFixed(2) }}/L</div>
-            <div class="tooltip-row brent-row"><span class="fuel-dot brent" /> BRENT: USD {{ tooltip.point.brent?.toFixed(2) }}/BBL</div>
+            <div v-if="tooltip.point.brent !== null" class="tooltip-row brent-row"><span class="fuel-dot brent" /> BRENT: USD {{ tooltip.point.brent?.toFixed(2) }}/BBL</div>
           </div>
 
           <!-- Annotation detail popup -->
