@@ -262,7 +262,12 @@ function formatMonth(dateStr: string): string {
             </template>
           </svg>
 
-          <div v-if="tooltip.show && tooltip.point" class="chart-tooltip" :style="{ left: `${(tooltip.x / chartWidth) * 100}%` }">
+          <div
+            v-if="tooltip.show && tooltip.point"
+            class="chart-tooltip"
+            :class="{ 'on-left': tooltip.x > chartWidth / 2 }"
+            :style="{ '--x': `${(tooltip.x / chartWidth) * 100}%` }"
+          >
             <div class="tooltip-date">{{ formatMonth(tooltip.point.date) }}</div>
             <div v-if="tooltip.point.brent !== null" class="tooltip-row"><span class="dot brent" /> BRENT: USD {{ tooltip.point.brent?.toFixed(2) }}/BBL</div>
             <div class="tooltip-row"><span class="dot petrol" /> PETROL: MUR {{ tooltip.point.petrol?.toFixed(2) }}/L<span v-if="tooltip.point.nominalPetrol !== tooltip.point.petrol" class="tooltip-nominal">THEN {{ tooltip.point.nominalPetrol?.toFixed(2) }}</span></div>
@@ -462,23 +467,31 @@ function formatMonth(dateStr: string): string {
 .hover-line { stroke: var(--text); stroke-width: 1; stroke-dasharray: 2 2; }
 .hover-dot { stroke: var(--bg); stroke-width: 2; }
 
+/* Sits beside the hover line, on whichever side has more room, so it stays
+   inside the chart and does not cover the hovered point */
 .chart-tooltip {
   position: absolute;
   top: -20px;
-  transform: translateX(-50%);
+  left: var(--x);
+  transform: translateX(16px);
   background: var(--text);
   color: var(--bg);
-  padding: 12px;
+  padding: 12px 14px;
+  pointer-events: none;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: nowrap;
   z-index: 10;
-  min-width: 150px;
+  min-width: 190px;
 }
 
-.tooltip-date { font-weight: 800; border-bottom: 1px solid rgba(255,255,255,0.2); margin-bottom: 8px; padding-bottom: 4px; }
+.chart-tooltip.on-left { transform: translateX(calc(-100% - 16px)); }
+
+.tooltip-date { font-size: 13px; font-weight: 800; border-bottom: 1px solid color-mix(in srgb, currentColor 25%, transparent); margin-bottom: 8px; padding-bottom: 6px; }
 .tooltip-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
-.inflation-row { opacity: 0.6; }
-.tooltip-nominal { opacity: 0.6; margin-left: 4px; }
+.inflation-row { opacity: 0.7; }
+.tooltip-nominal { opacity: 0.7; margin-left: 4px; }
 
 .annotation-popup {
   position: absolute;
@@ -543,5 +556,11 @@ function formatMonth(dateStr: string): string {
 @media (max-width: 768px) {
   .report-header h2 { font-size: 32px; }
   .content-grid, .obs-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  /* The chart is too narrow to fit the tooltip beside the hover line: show it
+     full-width below the chart, where a finger on the chart does not cover it */
+  .chart-tooltip, .chart-tooltip.on-left { top: 100%; left: 0; right: 0; transform: none; margin-top: 8px; white-space: normal; }
 }
 </style>
