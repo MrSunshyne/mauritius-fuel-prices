@@ -28,7 +28,7 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: 'https://fuel.ramgolam.com/og-image.png' },
       ],
       script: [
-        { src: 'https://cloud.umami.is/script.js', defer: true, 'data-website-id': '1008a54e-9dad-4e60-852a-1cdf95eeede7' },
+        { src: 'https://gc.zgo.at/count.js', async: true, 'data-goatcounter': 'https://fuel-prices-mauritius.goatcounter.com/count' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
