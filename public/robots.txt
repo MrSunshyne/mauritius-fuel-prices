@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://fuel-prices.ramgolam.com/sitemap.xml

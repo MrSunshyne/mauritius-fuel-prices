@@ -1,0 +1,11 @@
+# mauritius-fuel-prices.netlify.app was this site's first home. It now only
+# redirects to https://fuel-prices.ramgolam.com (GitHub Pages). The Netlify project
+# is not linked to this repo; deploy this folder by hand:
+#   netlify deploy --prod --no-build --dir netlify-redirect --site mauritius-fuel-prices
+# Files in this folder (the Google verification file) are served as they are; every
+# other path 301s to the same path on fuel-prices.ramgolam.com, and Netlify passes
+# the query string along. GitHub Pages serves pages with a trailing slash, so the
+# two pages get it here to keep it to one hop.
+/comparison  https://fuel-prices.ramgolam.com/comparison/  301
+/history     https://fuel-prices.ramgolam.com/history/     301
+/*           https://fuel-prices.ramgolam.com/:splat       301
